@@ -14,6 +14,7 @@ bin/
 gen/
 out/
 
+.idea/
 # Gradle files
 .gradle/
 build/
@@ -75,3 +76,9 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+/rudu/.idea/.gitignore
+/rudu/.idea/compiler.xml
+/rudu/.idea/encodings.xml
+/rudu/.idea/gradle.xml
+/rudu/.idea/jarRepositories.xml
+/rudu/.idea/misc.xml

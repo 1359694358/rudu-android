@@ -15,7 +15,7 @@ android {
         versionCode Integer.parseInt(project.versionCode)
         //版本号 来自于gradle.properties的配置
         versionName project.versionName
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     flavorDimensions project.applicationId
