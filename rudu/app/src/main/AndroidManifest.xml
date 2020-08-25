@@ -56,6 +56,11 @@
             android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Rudu"/>
+
+        <activity android:name=".ui.HomeActivity"
+            android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Rudu"/>
     </application>
 
 </manifest>

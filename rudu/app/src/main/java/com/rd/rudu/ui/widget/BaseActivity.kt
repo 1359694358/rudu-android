@@ -1,23 +1,24 @@
 package com.rd.rudu.ui.widget
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Process
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
+import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.ContentFrameLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.rd.rudu.App
-import com.rd.rudu.utils.StatusBarUtil
 import com.rd.rudu.R
 import com.rd.rudu.databinding.AppToolbarBinding
+import com.rd.rudu.utils.StatusBarUtil
 
 
 abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
@@ -121,4 +122,103 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
         return true
     }
 
+
+    @CallSuper
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+//		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        val fm = supportFragmentManager
+        var fragments: List<Fragment?>? = null
+        try {
+            fragments = fm.fragments
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        if (fragments == null) return
+        for (frag in fragments) {
+            frag?.let { handlePermissonsResult(it, requestCode, permissions, grantResults) }
+        }
+    }
+
+      fun handlePermissonsResult(
+        frag: Fragment,
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        frag.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        var frags: List<Fragment?>? = null
+        try {
+            frags = frag.childFragmentManager.fragments
+        } catch (e: Exception) {
+        }
+        if (frags != null) {
+            for (f in frags) {
+                if (f != null && f.activity != null) handlePermissonsResult(
+                    f,
+                    requestCode,
+                    permissions,
+                    grantResults
+                )
+            }
+        }
+    }
+
+    @CallSuper
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val fm = supportFragmentManager
+        var fragments: List<Fragment?>? = null
+        try {
+            fragments = fm.fragments
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        if (fragments == null) return
+        for (frag in fragments) {
+            frag?.let { handleResult(it, requestCode, resultCode, data) }
+        }
+    }
+
+    /**
+     * 递归调用，对所有子Fragement生效
+     *
+     * @param frag
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    fun handleResult(
+        frag: Fragment, requestCode: Int, resultCode: Int,
+        data: Intent?
+    ) {
+        if (frag.activity != null) frag.onActivityResult(
+            requestCode and 0xffff,
+            resultCode,
+            data
+        )
+        var frags: List<Fragment?>? = null
+        try {
+            frags = frag.childFragmentManager.fragments
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        if (frags != null) {
+            for (f in frags) {
+                if (f != null && f.activity != null) handleResult(
+                    f,
+                    requestCode,
+                    resultCode,
+                    data
+                )
+            }
+        }
+    }
 }

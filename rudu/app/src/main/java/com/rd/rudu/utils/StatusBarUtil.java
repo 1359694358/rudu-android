@@ -18,7 +18,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 
-import com.rtsl.app.android.R;
+import com.rd.rudu.R;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
