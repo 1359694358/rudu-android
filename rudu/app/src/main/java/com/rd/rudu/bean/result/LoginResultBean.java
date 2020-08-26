@@ -1,12 +1,14 @@
-package com.rd.rudu.bean.result;
+package com.google.android.app.bean.result;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
-import com.rd.rudu.utils.UtilsKt;
+import com.rd.rudu.bean.result.BaseResultBean;
+import com.google.android.app.utils.UtilsKt;
+import com.rd.rudu.bean.result.YouZanTokenBean;
 
-public class LoginResultBean extends BaseResultBean<LoginResultBean.LoginResult>{
+public class LoginResultBean extends BaseResultBean<LoginResultBean.LoginResult> {
 
     //    "id": 3,
 //        "userId": null,

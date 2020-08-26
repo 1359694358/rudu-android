@@ -1,6 +1,6 @@
 package com.rd.rudu.bean.request
 
-import com.rd.rudu.net.TransUtils
+import com.google.android.app.net.TransUtils
 
 
 open class BaseRequestBody()

@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.app.utils.ToastUtil
 import com.rd.rudu.R
 import com.rd.rudu.databinding.ActivityHomeBinding
-import com.rd.rudu.ui.widget.BaseActivity
-import com.rd.rudu.utils.ToastUtil
+import com.google.android.app.widget.BaseActivity
 
 class HomeActivity: BaseActivity<ActivityHomeBinding>() {
     val Interval=3000

@@ -1,20 +1,10 @@
 package com.rd.rudu
 
-import android.app.Activity
-import android.app.Application
-import android.content.Context
 import android.util.Log
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStore
-import androidx.lifecycle.ViewModelStoreOwner
-import androidx.multidex.MultiDexApplication
+import com.google.android.app.DefaultApp
+import com.google.android.app.utils.*
 import com.pgyersdk.crash.PgyCrashManager
-import com.rd.rudu.utils.AssetsManager
-import com.rd.rudu.utils.ExceptionHandler
-import com.rd.rudu.utils.FileUtil
 import com.rd.rudu.R
-import com.tencent.mmkv.MMKV
 import com.tencent.smtt.export.external.TbsCoreSettings
 import com.tencent.smtt.sdk.QbSdk
 import com.youzan.androidsdk.YouzanSDK
@@ -23,17 +13,13 @@ import com.youzan.androidsdkx5.YouzanPreloader
 import org.jetbrains.anko.doAsync
 
 
-class App: MultiDexApplication(), ViewModelStoreOwner {
-    private val mAppViewModelStore=ViewModelStore()
-
-    private var mFactory: ViewModelProvider.Factory? = null
+class App: DefaultApp() {
 
     override fun onCreate() {
         super.onCreate()
         YouzanSDK.init(this@App, resources.getString(R.string.youzan_clientId),YouZanSDKX5Adapter())
         YouzanPreloader.preloadHtml(this@App, resources.getString(R.string.youzan_storeurl));
         doAsync {
-            ExceptionHandler.getInstance().init(this@App)
             ExceptionHandler.getInstance().setCrashCallBack {
                 PgyCrashManager.reportCaughtException(it as java.lang.Exception?)
             }
@@ -44,7 +30,6 @@ class App: MultiDexApplication(), ViewModelStoreOwner {
             AssetsManager.copyAssetFile2SDCard(this@App,use_terms,FileUtil.createFile("${cacheDir}${use_terms}"))
             var app_policy=this@App.resources.getString(R.string.app_policy)
             AssetsManager.copyAssetFile2SDCard(this@App,app_policy,FileUtil.createFile("${cacheDir}${app_policy}"))
-            MMKV.initialize(this@App)
 
             val map = HashMap<String, Any>()
             map[TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER] = true
@@ -76,43 +61,5 @@ class App: MultiDexApplication(), ViewModelStoreOwner {
                 e.printStackTrace()
             }
         }
-    }
-    companion object
-    {
-        @JvmStatic
-        fun initFile(context: Context)
-        {
-            doAsync {
-                FileUtil.initPackage(context)
-            }
-        }
-    }
-
-    fun getAppViewModelProvider(activity: Activity): ViewModelProvider
-    {
-        return ViewModelProvider(this,(activity.applicationContext as App).getAppFactory(activity))
-    }
-
-    private fun getAppFactory(activity: Activity): ViewModelProvider.Factory {
-        val application = checkApplication(activity)
-        if (mFactory == null) {
-            mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        }
-        return mFactory!!
-    }
-
-    private fun checkApplication(activity: Activity): Application {
-        return activity.application
-                ?: throw IllegalStateException("Your activity/fragment is not yet attached to "
-                        + "Application. You can't request ViewModel before onCreate call.")
-    }
-
-    private fun checkActivity(fragment: Fragment): Activity? {
-        return fragment.activity
-                ?: throw IllegalStateException("Can't create ViewModelProvider for detached fragment")
-    }
-
-    override fun getViewModelStore(): ViewModelStore {
-        return mAppViewModelStore
     }
 }

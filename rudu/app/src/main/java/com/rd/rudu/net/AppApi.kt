@@ -1,7 +1,9 @@
 package com.rd.rudu.net
 
+import com.google.android.app.net.JSONObjectConvertFactory
+import com.google.android.app.net.SSLSocketClient
+import com.google.android.app.utils.ExceptionHandler
 import com.rd.rudu.BuildConfig
-import com.rd.rudu.utils.ExceptionHandler
 import io.reactivex.plugins.RxJavaPlugins
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

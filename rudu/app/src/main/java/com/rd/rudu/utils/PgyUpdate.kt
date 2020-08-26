@@ -7,10 +7,10 @@ import com.pgyersdk.update.PgyUpdateManager
 import com.pgyersdk.update.UpdateManagerListener
 import com.pgyersdk.update.javabean.AppBean
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog
-import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction
 import com.rd.rudu.bean.result.UpdateAppResultBean
 import com.rd.rudu.net.AppApi
-import com.rd.rudu.net.TransUtils
+import com.google.android.app.net.TransUtils
+import com.google.android.app.utils.*
 import java.io.File
 import java.lang.Exception
 

@@ -6,7 +6,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.rd.rudu.R
 import com.rd.rudu.databinding.ActivityGuideBinding
-import com.rd.rudu.ui.widget.BaseActivity
+import com.google.android.app.widget.BaseActivity
 
 class GuideActivity: BaseActivity<ActivityGuideBinding>() {
     override fun getLayoutResId(): Int {

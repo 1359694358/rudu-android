@@ -4,13 +4,15 @@ import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
+import com.google.android.app.DefaultApp
+import com.google.android.app.widget.BaseActivity
 import com.permissionx.guolindev.PermissionX
 import com.rd.rudu.databinding.ActivityMainBinding
-import com.rd.rudu.databinding.SimpleDialogBinding
+import com.google.android.app.databinding.SimpleDialogBinding
 import com.rd.rudu.ui.HomeActivity
-import com.rd.rudu.ui.widget.*
-import com.rd.rudu.utils.PermissionPageUtils
-import com.rd.rudu.utils.ToastUtil
+import com.google.android.app.widget.*
+import com.google.android.app.utils.PermissionPageUtils
+import com.google.android.app.utils.ToastUtil
 import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -91,7 +93,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
     private fun init()
     {
-        App.initFile(this)
+        DefaultApp.initFile(this)
         startHomeActivity()
     }
 

@@ -1,2 +1,3 @@
 rootProject.name = "rudu"
 include ':app'
+include ':applibrary'
