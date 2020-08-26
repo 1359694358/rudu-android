@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dime_sixty">60dp</dimen>
+    <dimen name="dime_twelve">12dp</dimen>
+    <dimen name="footer_padding">10dp</dimen>
+    <dimen name="dime_three">3dp</dimen>
+    <dimen name="dime_thirty">30dp</dimen>
+</resources>

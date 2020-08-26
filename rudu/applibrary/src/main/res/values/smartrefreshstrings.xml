@@ -1,0 +1,10 @@
+<resources>
+    <string name="xlistview_header_hint_normal1">下拉刷新</string>
+    <string name="xlistview_header_hint_ready1">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading1">正在刷新数据中...</string>
+    <string name="xlistview_header_last_time1">最后更新：今天</string>
+    <string name="xlistview_footer_hint_normal1">上拉加载更多</string>
+    <string name="xlistview_footer_hint_ready1">松开载入更多</string>
+    <string name="xlistview_header_timeformat">HH:mm</string>
+    <string name="all_finished_load">已经全部加载完毕</string>
+</resources>

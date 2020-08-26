@@ -1,4 +1,4 @@
-package com.rd.rudu.ui
+package com.rd.rudu.ui.acttivity
 
 import android.os.Bundle
 import android.os.Handler
@@ -8,11 +8,13 @@ import com.google.android.app.utils.ToastUtil
 import com.rd.rudu.R
 import com.rd.rudu.databinding.ActivityHomeBinding
 import com.google.android.app.widget.BaseActivity
+import com.rd.rudu.ui.fragment.HomeJoinFragment
+import com.rd.rudu.ui.fragment.HomeWebFragment
 
 class HomeActivity: BaseActivity<ActivityHomeBinding>() {
     val Interval=3000
     var time = System.currentTimeMillis()-Interval
-    var fragmentMap= mapOf<Int,Fragment>()
+    var fragmentMap= mutableMapOf<Int,Fragment>()
     override fun getLayoutResId(): Int {
         return R.layout.activity_home
     }
@@ -36,8 +38,27 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        pushFragment()
         checkedTableIndex(0)
         addCheckedListener()
+    }
+
+    private fun pushFragment()
+    {
+        fragmentMap[0]=HomeWebFragment()
+        fragmentMap[1]= HomeJoinFragment()
+        fragmentMap[2]= HomeJoinFragment()
+        fragmentMap[3]= HomeJoinFragment()
+        fragmentMap[4]= HomeJoinFragment()
+        var iterator=fragmentMap.iterator()
+        var tran=supportFragmentManager.beginTransaction()
+        while (iterator.hasNext())
+        {
+            var item=iterator.next()
+            tran.add(R.id.fragmentContainer,item.value)
+        }
+        tran.commitAllowingStateLoss()
+        chooseFragment(0)
     }
 
     private fun addCheckedListener()
@@ -58,7 +79,6 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
         {
             var isSelected=index==layerIndex
             bottomLayout.getChildAt(layerIndex).isSelected=isSelected
-
         }
     }
 
@@ -69,6 +89,17 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
         {
             var item=iterator.next()
             var fgIndex=item.key
+            var fragment=item.value
+            if(fgIndex==index)
+            {
+                if(fragment.isHidden)
+                    supportFragmentManager.beginTransaction().show(fragment).commitAllowingStateLoss()
+            }
+            else
+            {
+                if(!fragment.isHidden)
+                    supportFragmentManager.beginTransaction().hide(fragment).commitAllowingStateLoss()
+            }
         }
     }
 }

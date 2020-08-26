@@ -1,4 +1,4 @@
-package com.rd.rudu.ui
+package com.rd.rudu.ui.acttivity
 
 import android.os.Bundle
 import android.view.ViewGroup
@@ -21,7 +21,9 @@ class GuideActivity: BaseActivity<ActivityGuideBinding>() {
                 parent: ViewGroup,
                 viewType: Int
             ): ViewHolderX {
-                return ViewHolderX(ImageView(this@GuideActivity))
+                return ViewHolderX(
+                    ImageView(this@GuideActivity)
+                )
             }
 
             override fun getItemCount(): Int {

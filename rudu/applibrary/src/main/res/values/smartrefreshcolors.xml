@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="hqylive_itembottomlayout_bgcolor">#f4f4f4</color>
+    <color name="hqyusername_textcolor">#333333</color>
+    <color name="hqylive_viewcount_color">#666666</color>
+    <color name="hqyusername_default_themebgcolor">#58C5C0</color>
+    <color name="hqyusername_default_themetxtcolor">#58C5C0</color>
+    <color name="hqylive_editbgcolor">#FFEEEEEE</color>
+    <color name="hqylive_prepar_bottomcolor">#FF999999</color>
+    <color name="half_transparent">#80000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="hqyLiveEndTimeColor">#ff07fe55</color>
+    <color name="hqylive_watch_portrait_bg">#FF333333</color>
+    <color name="hqylive_dialg_okcolor">#58c5c0</color>
+    <color name="hqylive_dialg_nocolor">#cccccc</color>
+    <color name="hqylive_msgname_graycolor">#ccc</color>
+    <color name="hqy_giftname_color">#ed6160</color>
+    <color name="hqylive_giftcount_color">#5fcdee</color>
+</resources>
