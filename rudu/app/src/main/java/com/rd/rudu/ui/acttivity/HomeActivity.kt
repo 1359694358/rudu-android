@@ -1,9 +1,12 @@
 package com.rd.rudu.ui.acttivity
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.utils.ToastUtil
 import com.rd.rudu.R
 import com.rd.rudu.databinding.ActivityHomeBinding
@@ -22,6 +25,13 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
         backHandle()
     }
 
+    override fun getFitSystemWindow(): Boolean {
+        return true
+    }
+    override fun setStatusBarColor()
+    {
+        StatusBarUtil.setColor(this,  Color.WHITE,0)
+    }
     override fun backHandle() {
         var temp = System.currentTimeMillis()
         if (temp - time > Interval) {
@@ -38,6 +48,8 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var pd=resources.getDimensionPixelOffset(R.dimen.dimen13)
+        contentBinding.titleBar.setPaddingRelative(0,pd+StatusBarUtil.getStatusBarHeight(this),0,pd)
         pushFragment()
         checkedTableIndex(0)
         addCheckedListener()
@@ -50,15 +62,14 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
         fragmentMap[2]= HomeJoinFragment()
         fragmentMap[3]= HomeJoinFragment()
         fragmentMap[4]= HomeJoinFragment()
-        var iterator=fragmentMap.iterator()
+      /*  var iterator=fragmentMap.iterator()
         var tran=supportFragmentManager.beginTransaction()
         while (iterator.hasNext())
         {
             var item=iterator.next()
             tran.add(R.id.fragmentContainer,item.value)
         }
-        tran.commitAllowingStateLoss()
-        chooseFragment(0)
+        tran.commitAllowingStateLoss()*/
     }
 
     private fun addCheckedListener()
@@ -92,8 +103,15 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
             var fragment=item.value
             if(fgIndex==index)
             {
-                if(fragment.isHidden)
+                if(fragment.isAdded)
+                {
                     supportFragmentManager.beginTransaction().show(fragment).commitAllowingStateLoss()
+                }
+                else
+                {
+                    supportFragmentManager.beginTransaction().add(R.id.fragmentContainer,fragment).commitAllowingStateLoss()
+                    supportFragmentManager.beginTransaction().show(fragment).commitAllowingStateLoss()
+                }
             }
             else
             {
@@ -102,4 +120,5 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
             }
         }
     }
+
 }

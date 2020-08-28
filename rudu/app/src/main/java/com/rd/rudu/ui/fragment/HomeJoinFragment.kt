@@ -21,15 +21,17 @@ class HomeJoinFragment: BaseFragment<FragmentHomejoinBinding>()
     val bannerAdapter:BannerAdapter by lazy { BannerAdapter(requireContext()) }
     val companyItemAdapter: CompanyItemAdapter by lazy { CompanyItemAdapter(requireContext()) }
     val adapter: DelegateAdapter by lazy { contentBinding.recyclerView.addVLayoutImpl() }
-    val appAdapters = mutableListOf< DelegateAdapter.Adapter<out RecyclerView.ViewHolder>>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
         bannerAdapter.add("1")
+        bannerAdapter.add("1")
         companyItemAdapter.add("1")
         companyItemAdapter.add("1")
-        appAdapters.add(bannerAdapter)
-        appAdapters.add(companyItemAdapter)
+        val appAdapters = mutableListOf< DelegateAdapter.Adapter<out RecyclerView.ViewHolder>>(
+                bannerAdapter,
+                companyItemAdapter
+        )
         adapter.setAdapters(appAdapters)
     }
 }

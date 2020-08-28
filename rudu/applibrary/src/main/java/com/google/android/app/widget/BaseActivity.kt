@@ -70,7 +70,7 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
         StatusBarUtil.setLightMode(this)
     }
 
-    fun setStatusBarColor()
+    open fun setStatusBarColor()
     {
         StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.statusbar_color),0)
     }

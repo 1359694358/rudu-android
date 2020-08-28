@@ -8,7 +8,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <TextView
+            android:id="@+id/titleBar"
+            android:textSize="@dimen/dimen17"
+            android:textColor="#222222"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingTop="@dimen/dimen13"
+            android:paddingBottom="@dimen/dimen13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottomLayout"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +39,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="首页"
+                android:text="@string/home_web"
                 android:textColor="@color/home_table_color"
                 android:textSize="11sp" />
 
@@ -41,7 +53,7 @@
                 android:drawableTop="@drawable/join_selector"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="加盟"
+                android:text="@string/home_join"
                 android:textColor="@color/home_table_color"
                 android:textSize="11sp" />
 
@@ -55,7 +67,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/shopCar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="头条"
+                android:text="@string/home_topic"
                 android:textColor="@color/home_table_color"
                 android:textSize="11sp" />
 
@@ -70,7 +82,7 @@
                 android:drawableTop="@drawable/mine_selector"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="购物车"
+                android:text="@string/home_shopcar"
                 android:textColor="@color/home_table_color"
                 android:textSize="11sp" />
 
@@ -85,7 +97,7 @@
                 android:drawableTop="@drawable/mine_selector"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="我的"
+                android:text="@string/home_mine"
                 android:textColor="@color/home_table_color"
                 android:textSize="11sp" />
 
@@ -93,7 +105,8 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <FrameLayout
-            app:layout_constraintTop_toTopOf="parent"
+            android:background="#F5F5F5"
+            app:layout_constraintTop_toBottomOf="@+id/titleBar"
             app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
