@@ -25,9 +25,6 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
         backHandle()
     }
 
-    override fun getFitSystemWindow(): Boolean {
-        return true
-    }
     override fun setStatusBarColor()
     {
         StatusBarUtil.setColor(this,  Color.WHITE,0)
@@ -49,7 +46,6 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var pd=resources.getDimensionPixelOffset(R.dimen.dimen13)
-        contentBinding.titleBar.setPaddingRelative(0,pd+StatusBarUtil.getStatusBarHeight(this),0,pd)
         pushFragment()
         checkedTableIndex(0)
         addCheckedListener()
@@ -95,6 +91,12 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
 
     private fun chooseFragment(index:Int)
     {
+/*        var titleList= listOf(
+                resources.getString(R.string.home_web),
+                resources.getString(R.string.home_join),
+                resources.getString(R.string.home_topic),
+                resources.getString(R.string.home_shopcar),
+                resources.getString(R.string.home_mine))*/
         var iterator=fragmentMap.iterator()
         while (iterator.hasNext())
         {
