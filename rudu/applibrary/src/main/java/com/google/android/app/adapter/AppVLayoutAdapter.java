@@ -65,6 +65,7 @@ public abstract class AppVLayoutAdapter<T> extends DelegateAdapter.Adapter imple
     }
     @Override
     public LayoutHelper onCreateLayoutHelper() {
+        mLayoutHelper.setItemCount(getItemCount());
         return mLayoutHelper;
     }
     public final Context getContext()
