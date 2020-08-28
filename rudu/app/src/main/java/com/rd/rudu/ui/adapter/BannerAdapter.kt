@@ -21,3 +21,10 @@ class BannerAdapter(context: Context, layoutHelper: LayoutHelper= DefaultLayoutH
 
 class BannerViewHolder(layoutId: Int, context: Context?) :
     BaseViewHolder<AdapterJoinBannerBinding>(layoutId, context)
+{
+    init {
+        contentViewBinding.banner.setOnItemClickListener { banner, position, tag ->
+
+        }
+    }
+}
