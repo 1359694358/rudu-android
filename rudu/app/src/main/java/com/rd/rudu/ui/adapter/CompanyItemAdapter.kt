@@ -12,11 +12,6 @@ import com.rd.rudu.databinding.AdapterJoinCompanyBinding
 
 class CompanyItemAdapter(context: Context,var layoutHelper: LinearLayoutHelper=LinearLayoutHelper(context.resources.getDimensionPixelOffset(R.dimen.dimen10))) : AppVLayoutAdapter<String>(context, layoutHelper) {
     init {
-        layoutHelper.setAspectRatio(2.0f)
-        layoutHelper.setBgColor(Color.YELLOW)
-        layoutHelper.setAspectRatio(2.0f)
-        layoutHelper.setMargin(10, 10, 10, 10)
-        layoutHelper.setPadding(10, 10, 10, 10)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
     {

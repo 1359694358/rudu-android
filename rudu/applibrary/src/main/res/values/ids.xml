@@ -5,4 +5,5 @@
     <item name="recyclerItemTag" type="id"/>
     <item name="recyclerItemData" type="id"/>
     <item name="toolbarBindingView" type="id"/>
+    <item name="vlayoutparam" type="id"/>
 </resources>

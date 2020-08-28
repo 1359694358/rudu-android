@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
+import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.google.android.app.R;
 
 import java.lang.ref.WeakReference;
@@ -97,6 +98,7 @@ public abstract class AppVLayoutAdapter<T> extends DelegateAdapter.Adapter imple
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position)
     {
+        setItemLayoutParam(holder, position);
         holder.itemView.setTag(R.id.recyclerItemTag,position);
         holder.itemView.setTag(R.id.recyclerItemData,getItem(position));
         if(holder!=null&&!holder.itemView.hasOnClickListeners()&&needSetOnClickListener())
@@ -104,6 +106,19 @@ public abstract class AppVLayoutAdapter<T> extends DelegateAdapter.Adapter imple
             holder.itemView.setOnClickListener(this);
         }
     }
+
+    //默认要加这个 不然显示不出来
+    protected void  setItemLayoutParam(RecyclerView.ViewHolder holder, int position)
+    {
+        if(holder.itemView.getTag(R.id.vlayoutparam)==null)
+        {
+            VirtualLayoutManager.LayoutParams layoutParams = new VirtualLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            holder.itemView.setTag(R.id.vlayoutparam,layoutParams);
+            holder.itemView.setLayoutParams(layoutParams);
+        }
+
+    }
+
     protected boolean needSetOnClickListener()
     {
         return true;
