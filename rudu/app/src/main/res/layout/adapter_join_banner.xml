@@ -8,10 +8,14 @@
         android:layout_height="wrap_content">
         <com.google.android.app.widget.LoopPager
             android:id="@+id/banner"
+            android:layout_marginStart="@dimen/dimen14"
+            android:layout_marginEnd="@dimen/dimen14"
+            android:layout_marginTop="@dimen/dimen9"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:background="@android:color/holo_red_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="h,331:153"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen60"/>
+            android:layout_height="0dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -14,6 +14,7 @@
             android:textSize="@dimen/dimen17"
             android:textColor="#222222"
             android:text="@string/home_join"
+            android:textStyle="bold"
             android:gravity="center"
             android:includeFontPadding="false"
             app:layout_constraintTop_toTopOf="parent"
