@@ -6,10 +6,12 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="#F5F5F5"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <com.youzan.androidsdkx5.YouzanBrowser
             android:id="@+id/mView"
+            android:background="#F5F5F5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

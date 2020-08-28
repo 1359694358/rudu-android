@@ -27,79 +27,94 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen100">
+            android:layout_height="@dimen/dimen46">
 
             <TextView
+                android:paddingTop="@dimen/dimen7"
+                app:layout_constraintTop_toTopOf="parent"
+                android:drawablePadding="@dimen/dimen3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/home"
                 app:layout_constraintEnd_toStartOf="@+id/join"
                 app:layout_constraintHorizontal_chainStyle="spread"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:drawableTop="@drawable/home_selector"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="@string/home_web"
                 android:textColor="@color/home_table_color"
-                android:textSize="11sp" />
+                android:textSize="@dimen/dimen9" />
 
             <TextView
+                android:paddingTop="@dimen/dimen7"
                 android:id="@+id/join"
-                android:gravity="center"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                android:drawablePadding="@dimen/dimen3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toEndOf="@+id/home"
                 app:layout_constraintEnd_toStartOf="@+id/topic"
                 android:drawableTop="@drawable/join_selector"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="@string/home_join"
                 android:textColor="@color/home_table_color"
-                android:textSize="11sp" />
+                android:textSize="@dimen/dimen9" />
 
             <TextView
+                android:paddingTop="@dimen/dimen7"
                 android:id="@+id/topic"
-                android:gravity="center"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                android:drawablePadding="@dimen/dimen3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toEndOf="@+id/join"
                 android:drawableTop="@drawable/topic_selector"
                 app:layout_constraintEnd_toStartOf="@+id/shopCar"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="@string/home_topic"
                 android:textColor="@color/home_table_color"
-                android:textSize="11sp" />
+                android:textSize="@dimen/dimen9" />
 
 
             <TextView
+                android:paddingTop="@dimen/dimen7"
+                app:layout_constraintTop_toTopOf="parent"
+                android:drawablePadding="@dimen/dimen3"
                 android:id="@+id/shopCar"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toEndOf="@+id/topic"
                 app:layout_constraintEnd_toStartOf="@+id/mine"
-                android:drawableTop="@drawable/mine_selector"
+                android:drawableTop="@drawable/shopcar_selector"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="@string/home_shopcar"
                 android:textColor="@color/home_table_color"
-                android:textSize="11sp" />
+                android:textSize="@dimen/dimen9" />
 
 
             <TextView
+                android:paddingTop="@dimen/dimen7"
                 android:id="@+id/mine"
-                android:gravity="center"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                android:drawablePadding="@dimen/dimen3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toEndOf="@+id/shopCar"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:drawableTop="@drawable/mine_selector"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="@string/home_mine"
                 android:textColor="@color/home_table_color"
-                android:textSize="11sp" />
+                android:textSize="@dimen/dimen9" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -111,5 +126,10 @@
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp" />
+        <View
+            app:layout_constraintTop_toTopOf="@+id/bottomLayout"
+            android:background="#F5F5F5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
