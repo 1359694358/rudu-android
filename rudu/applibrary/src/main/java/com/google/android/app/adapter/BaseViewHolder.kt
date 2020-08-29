@@ -1,22 +1,23 @@
-package com.google.android.app.adapter;
+package com.google.android.app.adapter
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.content.Context
+import android.view.LayoutInflater
+import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
-import androidx.recyclerview.widget.RecyclerView;
+open class BaseViewHolder<B : ViewDataBinding>(@LayoutRes layoutId: Int,var context: Context) : RecyclerView.ViewHolder(DataBindingUtil.inflate<ViewDataBinding>(ContextCompat.getSystemService(context, LayoutInflater::class.java)!!, layoutId, null, false).root) {
+    var contentViewBinding: B
 
-public class BaseViewHolder<T extends ViewDataBinding> extends RecyclerView.ViewHolder
-{
-    public T contentViewBinding;
-    public BaseViewHolder(@LayoutRes int layoutId, Context context)
-    {
-        super(DataBindingUtil.inflate(ContextCompat.getSystemService(context, LayoutInflater.class),layoutId,null,false).getRoot());
-        contentViewBinding=DataBindingUtil.getBinding(itemView);
+    init {
+        contentViewBinding = DataBindingUtil.getBinding(itemView)!!
     }
+
+    protected fun getLayoutInflater():LayoutInflater
+    {
+        return ContextCompat.getSystemService(context, LayoutInflater::class.java)!!
+    }
+
 }

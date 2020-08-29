@@ -8,10 +8,13 @@ import android.view.ViewGroup;
 import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.google.android.app.R;
+import com.google.android.app.utils.WrapperUtils;
+import com.google.android.app.utils.WrapperUtils.SpanSizeCallback;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -19,6 +22,11 @@ import java.util.List;
 
 public abstract class BaseRecyclerAdapter <T> extends RecyclerView.Adapter implements View.OnClickListener
 {
+    /**
+     * gridmanager默认反回独占整个spancount的宽度
+     */
+    public static final int LayoutSpanCount=-1;
+    public static final int OnlyOneSpan=1;
     protected WeakReference<Context> contextRef;
     protected ItemClickListener<T> clickListener;
 
@@ -31,6 +39,30 @@ public abstract class BaseRecyclerAdapter <T> extends RecyclerView.Adapter imple
         clickListener = listener;
     }
 
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        WrapperUtils.onAttachedToRecyclerView(this,recyclerView,false,new SpanSizeCallback()
+        {
+
+            @Override
+            public int getSpanSize(GridLayoutManager layoutManager, GridLayoutManager.SpanSizeLookup oldLookup, int position) {
+                if(getItemSpanCount(position)>0)
+                    return getItemSpanCount(position);
+                else if(getItemSpanCount(position)==LayoutSpanCount)
+                    return layoutManager.getSpanCount();
+                if (oldLookup != null)
+                    return oldLookup.getSpanSize(position);
+                return OnlyOneSpan;
+            }
+        });
+    }
+
+    protected int getItemSpanCount(int position)
+    {
+        return LayoutSpanCount;
+    }
 
     @Override
     @CallSuper
@@ -53,11 +85,11 @@ public abstract class BaseRecyclerAdapter <T> extends RecyclerView.Adapter imple
 
     List<T> data;
 
-    public BaseRecyclerAdapter(Context context) {
+    public BaseRecyclerAdapter(@NonNull Context context) {
         this(new ArrayList<T>(),context);
     }
 
-    public BaseRecyclerAdapter(List<T> data, Context context) {
+    public BaseRecyclerAdapter(List<T> data,@NonNull  Context context) {
         this.contextRef=new WeakReference<>(context);
         this.data = data;
     }
