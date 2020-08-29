@@ -36,9 +36,9 @@ val JOIN_TYPE_INTRO=Pair(4,LayoutSpanCount)
 val JOIN_TYPE_ZHANHUI_HEADER=Pair(5,LayoutSpanCount)
 val JOIN_TYPE_ZHANHUI_ITEM=Pair(6,OnlyOneSpan)
 val JOIN_TYPE_BANGDANG=Pair(7,LayoutSpanCount)
-val JOIN_TYPE_HaoHuoTuiJianHeader=Pair(8,OnlyOneSpan)
-val JOIN_TYPE_HaoHuoTuiJianItem=Pair(9,OnlyOneSpan)
-val JOIN_TYPE_XinXianChangHeader=Pair(10,OnlyOneSpan)
+val JOIN_TYPE_HaoHuoTuiJianHeader=Pair(8,LayoutSpanCount)
+val JOIN_TYPE_HaoHuoTuiJianItem=Pair(9,LayoutSpanCount)
+val JOIN_TYPE_XinXianChangHeader=Pair(10,LayoutSpanCount)
 val JOIN_TYPE_XinXianChangItem=Pair(11,OnlyOneSpan)
 
 
@@ -55,22 +55,20 @@ fun buildJoinList():List<HomeJoinItemType>
     list.add(HomeJoinItem(JOIN_TYPE_ZHANHUI_ITEM))
     list.add(HomeJoinItem(JOIN_TYPE_BANGDANG))
     list.add(HomeJoinItem(JOIN_TYPE_BANGDANG))
-    /*
-      list.add(HomeJoinItem(JOIN_TYPE_BANGDANG))
-      list.add(HomeJoinItem(JOIN_TYPE_HaoHuoTuiJianHeader))
-      list.add(HomeJoinItem(JOIN_TYPE_HaoHuoTuiJianItem))
-      list.add(HomeJoinItem(JOIN_TYPE_XinXianChangHeader))
-      list.add(HomeJoinItem(JOIN_TYPE_XinXianChangHeader))
-      list.add(HomeJoinItem(JOIN_TYPE_XinXianChangItem))
-      list.add(HomeJoinItem(JOIN_TYPE_XinXianChangItem))
-      list.add(HomeJoinItem(JOIN_TYPE_XinXianChangItem))*/
+    list.add(HomeJoinItem(JOIN_TYPE_HaoHuoTuiJianHeader))
+    list.add(HomeJoinItem(JOIN_TYPE_HaoHuoTuiJianItem))
+    list.add(HomeJoinItem(JOIN_TYPE_HaoHuoTuiJianItem))
+    list.add(HomeJoinItem(JOIN_TYPE_HaoHuoTuiJianItem))
+    list.add(HomeJoinItem(JOIN_TYPE_XinXianChangHeader))
+    list.add(HomeJoinItem(JOIN_TYPE_XinXianChangItem))
+    list.add(HomeJoinItem(JOIN_TYPE_XinXianChangItem))
     return list
 }
 
 class CompanyItemHolder(layoutId: Int, context: Context) : BaseViewHolder<AdapterJoinCompanyBinding>(layoutId, context)
 
 class BannerViewHolder(layoutId: Int, context: Context) :
-        BaseViewHolder<AdapterJoinBannerBinding>(layoutId, context), LoopPager.OnLooperPagerHandle {
+    BaseViewHolder<AdapterJoinBannerBinding>(layoutId, context), LoopPager.OnLooperPagerHandle {
     init {
         contentViewBinding.banner.onLooperPagerHandle=this
         contentViewBinding.banner.setOnItemClickListener { banner, position, tag ->
@@ -158,6 +156,15 @@ class JoinBangDangHolder(layoutId: Int, context: Context) :
     }
 }
 
+class HomeJoinHaoHuoTuiJianHolder(layoutId: Int, context: Context) :
+    BaseViewHolder<AdapterJoinTuijianItemBinding>(layoutId, context)
+
+class HomeJoinMiddleTitleHolder(layoutId: Int, context: Context) :
+    BaseViewHolder<AdapterJoinMiddletitleBinding>(layoutId, context)
+
+class HomeJoinChangXianItemHolder(layoutId: Int, context: Context) :
+    BaseViewHolder<AdapterJoinChangxianItemBinding>(layoutId, context)
+
 class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemType>(context) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType)
@@ -170,12 +177,18 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
                 JoinImage2Holder(R.layout.adapter_join_image,context)
             JOIN_TYPE_INTRO.first->
                 JoinIntroHolder(R.layout.adapter_join_intro,context)
-            JOIN_TYPE_ZHANHUI_HEADER.first->
+            JOIN_TYPE_ZHANHUI_HEADER.first,JOIN_TYPE_HaoHuoTuiJianHeader.first->
                 JoinZhanHuiHeaderHolder(R.layout.adapter_join_grid_header,context)
             JOIN_TYPE_BANGDANG.first->
                 JoinBangDangHolder(R.layout.adapter_join_bangdang,context)
             JOIN_TYPE_ZHANHUI_ITEM.first->
                 JoinZhanHuiItemHolder(R.layout.adapter_join_grid_item,context)
+            JOIN_TYPE_HaoHuoTuiJianItem.first->
+                HomeJoinHaoHuoTuiJianHolder(R.layout.adapter_join_tuijian_item,context)
+            JOIN_TYPE_XinXianChangHeader.first->
+                HomeJoinMiddleTitleHolder(R.layout.adapter_join_middletitle,context)
+            JOIN_TYPE_XinXianChangItem.first->
+                HomeJoinChangXianItemHolder(R.layout.adapter_join_changxian_item,context)
             else->
                 object:RecyclerView.ViewHolder(View(context)){}
         }
@@ -185,13 +198,31 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
-        if(holder is BannerViewHolder)
+        var viewType=getItemViewType(position)
+        when(holder)
         {
-            holder.setData()
-        }
-        else if(holder is JoinBangDangHolder)
-        {
-            holder.setData()
+            is JoinZhanHuiHeaderHolder->
+            {
+                if(JOIN_TYPE_HaoHuoTuiJianHeader.first==viewType)
+                {
+                    holder.contentViewBinding.jianjie.text="好货推荐"
+                }
+            }
+            is JoinBangDangHolder->
+            {
+                holder.setData()
+            }
+            is BannerViewHolder->
+            {
+                holder.setData()
+            }
+            is HomeJoinMiddleTitleHolder->
+            {
+                if(JOIN_TYPE_XinXianChangHeader.first==viewType)
+                {
+                    holder.contentViewBinding.title.text="新品尝鲜"
+                }
+            }
         }
     }
 

@@ -22,5 +22,12 @@ class HomeJoinFragment: BaseFragment<FragmentHomejoinBinding>()
         contentBinding.recyclerView.adapter=adapter
         adapter.addAll(buildJoinList())
         adapter.notifyDataSetChanged()
+        contentBinding.refreshLayout.setOnLoadMoreListener {
+
+        }
+        contentBinding.refreshLayout.setOnRefreshListener {
+
+        }
+        contentBinding.refreshLayout.setEnableLoadMore(false)
     }
 }
