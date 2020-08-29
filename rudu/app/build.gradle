@@ -20,7 +20,7 @@ android {
     flavorDimensions project.applicationId
     productFlavors
             {
-                rtsl
+                out
                         {
                             applicationId project.applicationId
                             //版本code 来自于gradle.properties的配置

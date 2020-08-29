@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingTop="@dimen/dimen7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/jianjie"
+                android:layout_marginStart="@dimen/dimen9"
+                android:layout_marginTop="@dimen/dimen13"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="爆款榜单"
+                android:textColor="#ff333333"
+                android:textSize="15sp"
+                />
+            <View
+                android:id="@+id/line"
+                android:layout_margin="@dimen/dimen9"
+                android:layout_marginBottom="@dimen/dimen14"
+                app:layout_constraintTop_toBottomOf="@+id/jianjie"
+                app:layout_constraintStart_toStartOf="@+id/jianjie"
+                android:background="#E6E6E6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen1"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bangdangList"
+                android:paddingStart="@dimen/dimen5"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/line"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                app:layout_constraintDimensionRatio="h,331:154"
+                android:layout_height="0dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

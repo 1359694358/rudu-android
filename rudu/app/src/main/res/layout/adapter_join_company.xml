@@ -8,8 +8,6 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/image"
-            android:layout_marginStart="@dimen/dimen14"
-            android:layout_marginEnd="@dimen/dimen14"
             android:layout_marginTop="@dimen/dimen9"
             android:src="@mipmap/join_image"
             app:layout_constraintTop_toTopOf="parent"

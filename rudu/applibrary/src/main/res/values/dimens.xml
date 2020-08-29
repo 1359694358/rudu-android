@@ -33,4 +33,5 @@
     <dimen name="dimen80">80dp</dimen>
     <dimen name="dimen120">120dp</dimen>
     <dimen name="dimen100">100dp</dimen>
+    <dimen name="dimen86">86dp</dimen>
 </resources>

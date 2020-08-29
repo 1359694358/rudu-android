@@ -13,52 +13,57 @@ import com.google.android.app.adapter.BaseRecyclerAdapter.OnlyOneSpan
 import com.google.android.app.adapter.BaseViewHolder
 import com.google.android.app.widget.LoopPager
 import com.rd.rudu.R
-import com.rd.rudu.databinding.AdapterJoinBannerBinding
-import com.rd.rudu.databinding.AdapterJoinBannerItemBinding
-import com.rd.rudu.databinding.AdapterJoinCompanyBinding
+import com.rd.rudu.databinding.*
 
 interface HomeJoinItemType
 {
-    fun getJointItemType():Pair<Int,Int>
+    fun getJoinItemType():Pair<Int,Int>
 }
 
-class HomeJoinItem(var joinItemType: Pair<Int,Int>):HomeJoinItemType
+class HomeJoinItem(var joinType: Pair<Int,Int>):HomeJoinItemType
 {
-    override fun getJointItemType(): Pair<Int, Int> {
-        return joinItemType
+
+    override fun getJoinItemType(): Pair<Int, Int> {
+        return joinType
     }
 
 }
 
-val JOINT_TYPE_BANNER=Pair(1,LayoutSpanCount)
-val JOINT_TYPE_IMAGE1=Pair(2,LayoutSpanCount)
-val JOINT_TYPE_IMAGE2=Pair(3,LayoutSpanCount)
-val JOINT_TYPE_INTRO=Pair(4,LayoutSpanCount)
-val JOINT_TYPE_ZHANHUI_HEADER=Pair(5,LayoutSpanCount)
-val JOINT_TYPE_ZHANHUI_ITEM=Pair(6,OnlyOneSpan)
-val JOINT_TYPE_BANGDANG=Pair(7,OnlyOneSpan)
-val JOINT_TYPE_HaoHuoTuiJianHeader=Pair(8,OnlyOneSpan)
-val JOINT_TYPE_HaoHuoTuiJianItem=Pair(9,OnlyOneSpan)
-val JOINT_TYPE_XinXianChangHeader=Pair(10,OnlyOneSpan)
-val JOINT_TYPE_XinXianChangItem=Pair(11,OnlyOneSpan)
+val JOIN_TYPE_BANNER=Pair(1,LayoutSpanCount)
+val JOIN_TYPE_IMAGE1=Pair(2,LayoutSpanCount)
+val JOIN_TYPE_IMAGE2=Pair(3,LayoutSpanCount)
+val JOIN_TYPE_INTRO=Pair(4,LayoutSpanCount)
+val JOIN_TYPE_ZHANHUI_HEADER=Pair(5,LayoutSpanCount)
+val JOIN_TYPE_ZHANHUI_ITEM=Pair(6,OnlyOneSpan)
+val JOIN_TYPE_BANGDANG=Pair(7,LayoutSpanCount)
+val JOIN_TYPE_HaoHuoTuiJianHeader=Pair(8,OnlyOneSpan)
+val JOIN_TYPE_HaoHuoTuiJianItem=Pair(9,OnlyOneSpan)
+val JOIN_TYPE_XinXianChangHeader=Pair(10,OnlyOneSpan)
+val JOIN_TYPE_XinXianChangItem=Pair(11,OnlyOneSpan)
+
 
 fun buildJoinList():List<HomeJoinItemType>
 {
     var list= mutableListOf<HomeJoinItemType>()
-    list.add(HomeJoinItem(JOINT_TYPE_BANNER))
-    list.add(HomeJoinItem(JOINT_TYPE_IMAGE1))
-    /*  list.add(HomeJoinItem(JOINT_TYPE_IMAGE2))
-      list.add(HomeJoinItem(JOINT_TYPE_INTRO))
-      list.add(HomeJoinItem(JOINT_TYPE_ZHANHUI_HEADER))
-      list.add(HomeJoinItem(JOINT_TYPE_ZHANHUI_ITEM))
-      list.add(HomeJoinItem(JOINT_TYPE_BANGDANG))
-      list.add(HomeJoinItem(JOINT_TYPE_HaoHuoTuiJianHeader))
-      list.add(HomeJoinItem(JOINT_TYPE_HaoHuoTuiJianItem))
-      list.add(HomeJoinItem(JOINT_TYPE_XinXianChangHeader))
-      list.add(HomeJoinItem(JOINT_TYPE_XinXianChangHeader))
-      list.add(HomeJoinItem(JOINT_TYPE_XinXianChangItem))
-      list.add(HomeJoinItem(JOINT_TYPE_XinXianChangItem))
-      list.add(HomeJoinItem(JOINT_TYPE_XinXianChangItem))*/
+    list.add(HomeJoinItem(JOIN_TYPE_BANNER))
+    list.add(HomeJoinItem(JOIN_TYPE_IMAGE1))
+    list.add(HomeJoinItem(JOIN_TYPE_IMAGE2))
+    list.add(HomeJoinItem(JOIN_TYPE_IMAGE2))
+    list.add(HomeJoinItem(JOIN_TYPE_INTRO))
+    list.add(HomeJoinItem(JOIN_TYPE_ZHANHUI_HEADER))
+    list.add(HomeJoinItem(JOIN_TYPE_ZHANHUI_ITEM))
+    list.add(HomeJoinItem(JOIN_TYPE_ZHANHUI_ITEM))
+    list.add(HomeJoinItem(JOIN_TYPE_BANGDANG))
+    list.add(HomeJoinItem(JOIN_TYPE_BANGDANG))
+    /*
+      list.add(HomeJoinItem(JOIN_TYPE_BANGDANG))
+      list.add(HomeJoinItem(JOIN_TYPE_HaoHuoTuiJianHeader))
+      list.add(HomeJoinItem(JOIN_TYPE_HaoHuoTuiJianItem))
+      list.add(HomeJoinItem(JOIN_TYPE_XinXianChangHeader))
+      list.add(HomeJoinItem(JOIN_TYPE_XinXianChangHeader))
+      list.add(HomeJoinItem(JOIN_TYPE_XinXianChangItem))
+      list.add(HomeJoinItem(JOIN_TYPE_XinXianChangItem))
+      list.add(HomeJoinItem(JOIN_TYPE_XinXianChangItem))*/
     return list
 }
 
@@ -125,19 +130,56 @@ class BannerViewHolder(layoutId: Int, context: Context) :
     }
 }
 
+class JoinImage2Holder(layoutId: Int, context: Context) :
+    BaseViewHolder<AdapterJoinImageBinding>(layoutId, context)
+
+class JoinIntroHolder(layoutId: Int, context: Context) :
+    BaseViewHolder<AdapterJoinIntroBinding>(layoutId, context)
+
+class JoinZhanHuiHeaderHolder(layoutId: Int, context: Context) :
+    BaseViewHolder<AdapterJoinGridHeaderBinding>(layoutId, context)
+
+class JoinZhanHuiItemHolder(layoutId: Int, context: Context) :
+    BaseViewHolder<AdapterJoinGridItemBinding>(layoutId, context)
+
+class JoinBangDangHolder(layoutId: Int, context: Context) :
+    BaseViewHolder<AdapterJoinBangdangBinding>(layoutId, context)
+{
+    val adapter:HomeJoinBangDangAdapter by lazy { HomeJoinBangDangAdapter(context) }
+    fun setData()
+    {
+        adapter.data.clear()
+        adapter.data.add("1")
+        adapter.data.add("1")
+        adapter.data.add("1")
+        adapter.data.add("1")
+        adapter.data.add("1")
+        contentViewBinding.bangdangList.adapter=adapter
+    }
+}
 
 class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemType>(context) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType)
         {
-            JOINT_TYPE_BANNER.first->
+            JOIN_TYPE_BANNER.first->
                 BannerViewHolder(R.layout.adapter_join_banner,context)
-            JOINT_TYPE_IMAGE1.first->
+            JOIN_TYPE_IMAGE1.first->
                 CompanyItemHolder(R.layout.adapter_join_company,context)
+            JOIN_TYPE_IMAGE2.first->
+                JoinImage2Holder(R.layout.adapter_join_image,context)
+            JOIN_TYPE_INTRO.first->
+                JoinIntroHolder(R.layout.adapter_join_intro,context)
+            JOIN_TYPE_ZHANHUI_HEADER.first->
+                JoinZhanHuiHeaderHolder(R.layout.adapter_join_grid_header,context)
+            JOIN_TYPE_BANGDANG.first->
+                JoinBangDangHolder(R.layout.adapter_join_bangdang,context)
+            JOIN_TYPE_ZHANHUI_ITEM.first->
+                JoinZhanHuiItemHolder(R.layout.adapter_join_grid_item,context)
             else->
                 object:RecyclerView.ViewHolder(View(context)){}
         }
-        /*  if(viewType== JOINT_TYPE_IMAGE1.first)
+        /*  if(viewType== JOIN_TYPE_IMAGE1.first)
               return CompanyItemHolder(R.layout.adapter_join_company,context)*/
     }
 
@@ -147,13 +189,17 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
         {
             holder.setData()
         }
+        else if(holder is JoinBangDangHolder)
+        {
+            holder.setData()
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return getItem(position).getJointItemType().first
+        return getItem(position).getJoinItemType().first
     }
 
     override fun getItemSpanCount(position: Int): Int {
-        return getItem(position).getJointItemType().second
+        return getItem(position).getJoinItemType().second
     }
 }
