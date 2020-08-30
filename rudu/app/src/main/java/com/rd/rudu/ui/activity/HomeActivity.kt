@@ -49,7 +49,7 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
 
     private fun pushFragment()
     {
-        fragmentMap[0]=HomeWebFragment()
+        fragmentMap[0]=HomeWebFragment.newInstance(resources.getString(R.string.youzan_storeurl))
         fragmentMap[1]= HomeJoinFragment()
         fragmentMap[2]= HomeJoinFragment()
         fragmentMap[3]= HomeJoinFragment()

@@ -55,7 +55,7 @@ android {
         }
         debug {
             signingConfig signingConfigs.release
-            buildConfigField "String","Host",'"https://m.runtae.com"'
+            buildConfigField "String","Host",'"http://www.huimiao.wang"'
         }
     }
     compileOptions {
@@ -85,7 +85,7 @@ dependencies {
 
     implementation 'com.pgyersdk:sdk:+'
     api project(path: ':applibrary')
-
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.8'
 }
 
 repositories {

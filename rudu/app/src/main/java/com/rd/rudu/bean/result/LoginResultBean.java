@@ -1,14 +1,13 @@
-package com.google.android.app.bean.result;
+package com.rd.rudu.bean.result;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
-import com.rd.rudu.bean.result.BaseResultBean;
 import com.google.android.app.utils.UtilsKt;
 import com.rd.rudu.bean.result.YouZanTokenBean;
 
-public class LoginResultBean extends BaseResultBean<LoginResultBean.LoginResult> {
+public class LoginResultBean extends BaseResultBean<LoginResultBean.LoginUserDataWrapper> {
 
     //    "id": 3,
 //        "userId": null,
@@ -124,5 +123,11 @@ public class LoginResultBean extends BaseResultBean<LoginResultBean.LoginResult>
             parcel.writeString(verKey);
             parcel.writeString(verCode);
         }
+    }
+
+    public static class LoginUserDataWrapper
+    {
+        public String token;
+        public LoginResult user;
     }
 }

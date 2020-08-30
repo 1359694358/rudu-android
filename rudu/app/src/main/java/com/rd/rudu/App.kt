@@ -28,8 +28,8 @@ class App: DefaultApp() {
             var cacheDir=this@App.cacheDir.absolutePath
             Log.d("AppCache","cacheDir:$cacheDir")
             AssetsManager.copyAssetFile2SDCard(this@App,use_terms,FileUtil.createFile("${cacheDir}${use_terms}"))
-            var app_policy=this@App.resources.getString(R.string.app_policy)
-            AssetsManager.copyAssetFile2SDCard(this@App,app_policy,FileUtil.createFile("${cacheDir}${app_policy}"))
+//            var app_policy=this@App.resources.getString(R.string.app_policy)
+//            AssetsManager.copyAssetFile2SDCard(this@App,app_policy,FileUtil.createFile("${cacheDir}${app_policy}"))
 
             val map = HashMap<String, Any>()
             map[TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER] = true

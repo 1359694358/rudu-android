@@ -17,7 +17,7 @@ object TransUtils {
     fun <T> jsonTransform(classRef: Class<T>): ObservableTransformer<JSONObject, T> {
         return ObservableTransformer { upstream ->
             upstream.map { s ->
-                Log.w("App","$s")
+                Log.w("TransUtils","$s")
                 gson.fromJson("$s",classRef)
             }
         }

@@ -89,7 +89,6 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
     protected fun <T: ViewModel> getViewModelByApplication(modelClazz:Class<T>): T
     {
         return (applicationContext as DefaultApp).getAppViewModelProvider(this).get(modelClazz)
-//        return ViewModelProvider..of(this.applicationContext).get(modelClazz)
     }
     override fun finish() {
         hideKeyBroad()

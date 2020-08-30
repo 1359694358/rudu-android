@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.app.DefaultApp
 
-abstract class BaseFragment<T: ViewDataBinding>() : Fragment()
-{
-    protected lateinit var contentBinding:T
+abstract class BaseFragment<T: ViewDataBinding>() : Fragment() {
+    protected lateinit var contentBinding: T
     fun getRootFragment(): Fragment? {
         var fragment: Fragment? = parentFragment ?: return this
         while (fragment != null && fragment.parentFragment != null) {
@@ -21,18 +23,26 @@ abstract class BaseFragment<T: ViewDataBinding>() : Fragment()
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
-        contentBinding= DataBindingUtil.inflate(layoutInflater,getLayoutResId(),null,false)
+        contentBinding = DataBindingUtil.inflate(layoutInflater, getLayoutResId(), null, false)
         return contentBinding.root
     }
-    abstract fun getLayoutResId():Int
-    override fun startActivityForResult(intent: Intent?, requestCode: Int)
-    {
+
+    abstract fun getLayoutResId(): Int
+    override fun startActivityForResult(intent: Intent?, requestCode: Int) {
         if (getRootFragment() !== this) getRootFragment()?.startActivityForResult(intent, requestCode) else {
             super.startActivityForResult(intent, requestCode)
         }
+    }
+
+    protected fun <T : ViewModel> getViewModel(modelClazz: Class<T>): T {
+        return ViewModelProviders.of(this).get(modelClazz)
+    }
+
+    protected fun <T : ViewModel> getViewModelByApplication(modelClazz: Class<T>): T {
+        return (requireActivity().applicationContext as DefaultApp).getAppViewModelProvider(requireActivity()).get(modelClazz)
     }
 }

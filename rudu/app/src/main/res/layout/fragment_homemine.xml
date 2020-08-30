@@ -52,7 +52,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HI~ 欢迎来到誉都商城"
+            android:text="@string/app_nologin_nick"
             android:textColor="#ffffffff"
             android:textSize="@dimen/dimen13"
             />
