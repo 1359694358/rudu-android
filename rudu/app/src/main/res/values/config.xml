@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer-array name="rudu_app_guide_res">
-        <item>@drawable/simpledialogbg</item>
-        <item>@drawable/simpledialogbg</item>
-        <item>@drawable/simpledialogbg</item>
-        <item>@drawable/simpledialogbg</item>
+        <item>@drawable/login_bacground</item>
+        <item>@drawable/login_bacground</item>
+        <item>@drawable/login_bacground</item>
+        <item>@drawable/login_bacground</item>
     </integer-array>
 </resources>

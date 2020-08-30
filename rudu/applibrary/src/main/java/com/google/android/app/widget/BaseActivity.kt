@@ -128,7 +128,7 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
     }
 
 
-    @CallSuper
+   /* @CallSuper
     override fun onRequestPermissionsResult(
             requestCode: Int,
             permissions: Array<String>,
@@ -171,7 +171,7 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
                 )
             }
         }
-    }
+    }*/
 
     @CallSuper
     override fun onActivityResult(

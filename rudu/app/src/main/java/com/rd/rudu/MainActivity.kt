@@ -13,6 +13,7 @@ import com.rd.rudu.ui.activity.HomeActivity
 import com.google.android.app.widget.*
 import com.google.android.app.utils.PermissionPageUtils
 import com.google.android.app.utils.ToastUtil
+import com.rd.rudu.ui.activity.GuideActivity
 import com.rd.rudu.ui.activity.LoginActivity
 import org.jetbrains.anko.startActivity
 
@@ -101,7 +102,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     fun startHomeActivity()
     {
         contentBinding.root.postDelayed({
-            startActivity<LoginActivity>()
+            if(GuideActivity.needWatchGuide())
+            {
+                startActivity<GuideActivity>()
+            }
+            else
+            {
+                startActivity<HomeActivity>()
+            }
             finish()
         },2000)
     }
