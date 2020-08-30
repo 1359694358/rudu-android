@@ -107,7 +107,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <FrameLayout
-            android:background="#F5F5F5"
+            android:background="@android:color/white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
             android:id="@+id/fragmentContainer"

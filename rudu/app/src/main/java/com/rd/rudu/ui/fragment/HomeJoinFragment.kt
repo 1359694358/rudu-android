@@ -2,6 +2,8 @@ package com.rd.rudu.ui.fragment
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.widget.BaseFragment
 import com.rd.rudu.R
 import com.rd.rudu.databinding.FragmentHomejoinBinding
@@ -29,5 +31,12 @@ class HomeJoinFragment: BaseFragment<FragmentHomejoinBinding>()
 
         }
         contentBinding.refreshLayout.setEnableLoadMore(false)
+        contentBinding.titleBar.viewTreeObserver.addOnDrawListener {
+            if(contentBinding.titleBar.layoutParams!=null&&contentBinding.titleBar.layoutParams is ViewGroup.MarginLayoutParams)
+            {
+                (contentBinding.titleBar.layoutParams as ViewGroup.MarginLayoutParams).topMargin=StatusBarUtil.getStatusBarHeight(requireActivity())
+                contentBinding.titleBar.requestLayout()
+            }
+        }
     }
 }

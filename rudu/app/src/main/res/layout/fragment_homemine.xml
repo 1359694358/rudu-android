@@ -22,7 +22,7 @@
             android:id="@+id/titleBar"
             android:textSize="@dimen/dimen17"
             android:textColor="@android:color/white"
-            android:text="@string/home_join"
+            android:text="@string/home_mine"
             android:textStyle="bold"
             android:gravity="center"
             android:includeFontPadding="false"
