@@ -60,7 +60,7 @@
                     />
                 <TextView
                     android:id="@+id/priceInfo"
-                    android:layout_marginTop="@dimen/dimen9"
+                    android:layout_marginTop="@dimen/dimen7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="2020-08-07"

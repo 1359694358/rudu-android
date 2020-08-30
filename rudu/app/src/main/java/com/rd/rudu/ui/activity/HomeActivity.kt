@@ -11,6 +11,7 @@ import com.rd.rudu.R
 import com.rd.rudu.databinding.ActivityHomeBinding
 import com.google.android.app.widget.BaseActivity
 import com.rd.rudu.ui.fragment.HomeJoinFragment
+import com.rd.rudu.ui.fragment.HomeMineFragment
 import com.rd.rudu.ui.fragment.HomeWebFragment
 
 class HomeActivity: BaseActivity<ActivityHomeBinding>() {
@@ -24,10 +25,6 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
         backHandle()
     }
 
-    override fun setStatusBarColor()
-    {
-        StatusBarUtil.setColor(this,  Color.WHITE,0)
-    }
     override fun backHandle() {
         var temp = System.currentTimeMillis()
         if (temp - time > Interval) {
@@ -56,7 +53,7 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
         fragmentMap[1]= HomeJoinFragment()
         fragmentMap[2]= HomeJoinFragment()
         fragmentMap[3]= HomeJoinFragment()
-        fragmentMap[4]= HomeJoinFragment()
+        fragmentMap[4]= HomeMineFragment()
       /*  var iterator=fragmentMap.iterator()
         var tran=supportFragmentManager.beginTransaction()
         while (iterator.hasNext())
@@ -120,6 +117,14 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
                     supportFragmentManager.beginTransaction().hide(fragment).commitAllowingStateLoss()
             }
         }
+    }
+
+    override fun getStatusBarColor(): Int {
+        return Color.TRANSPARENT
+    }
+
+    override fun getFitSystemWindow(): Boolean {
+        return false
     }
 
 }
