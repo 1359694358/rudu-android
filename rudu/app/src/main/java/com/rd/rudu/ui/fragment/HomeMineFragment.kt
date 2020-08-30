@@ -1,5 +1,6 @@
 package com.rd.rudu.ui.fragment
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -7,13 +8,19 @@ import androidx.core.content.ContextCompat
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.utils.imageloader.ImageLoader
 import com.google.android.app.widget.BaseFragment
+import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.config.PictureMimeType
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.qmuiteam.qmui.widget.dialog.QMUIBottomSheet
 import com.rd.rudu.R
 import com.rd.rudu.bean.result.LoginResultBean
 import com.rd.rudu.databinding.FragmentHomemineBinding
 import com.rd.rudu.ui.activity.LoginActivity
+import com.rd.rudu.utils.GlideEngine
 import com.rd.rudu.utils.clearLoginState
 import org.jetbrains.anko.support.v4.startActivity
+
 
 class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
     override fun getLayoutResId(): Int {
@@ -43,11 +50,11 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
                         dialog.dismiss()
                         if(position==0)
                         {
-
+                            openCamera()
                         }
                         else if(position==1)
                         {
-
+                            openAlbum()
                         }
                     }
                     .build()
@@ -84,5 +91,41 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
             contentBinding.nickName.setText(R.string.app_nologin_nick)
             contentBinding.userIcon.setImageResource(R.mipmap.morentouxiang)
         }
+    }
+
+    fun openAlbum()
+    {
+        PictureSelector.create(this)
+            .openGallery(PictureMimeType.ofImage())
+            .maxSelectNum(1)
+            .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+            .imageEngine(GlideEngine.createGlideEngine())
+            .forResult(object : OnResultCallbackListener<LocalMedia?> {
+                override fun onResult(result: List<LocalMedia?>) {
+                    // 结果回调
+                }
+
+                override fun onCancel() {
+                    // 取消
+                }
+            })
+    }
+
+    fun openCamera()
+    {
+        PictureSelector.create(this)
+            .openCamera(PictureMimeType.ofImage())
+            .maxSelectNum(1)
+            .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+            .imageEngine(GlideEngine.createGlideEngine())
+            .forResult(object : OnResultCallbackListener<LocalMedia?> {
+                override fun onResult(result: List<LocalMedia?>) {
+                    // 结果回调
+                }
+
+                override fun onCancel() {
+                    // 取消
+                }
+            })
     }
 }
