@@ -39,21 +39,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/prizeIcon"
+                app:layout_constraintStart_toStartOf="@+id/imageContainer"
+                app:layout_constraintTop_toTopOf="@+id/imageContainer"
+                android:layout_marginStart="@dimen/dimen4"
+                android:elevation="@dimen/dimen14"
+                android:src="@mipmap/icon_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <TextView
                 android:elevation="@dimen/dimen14"
                 android:id="@+id/title"
-                android:layout_marginTop="@dimen/dimen4"
-                app:layout_constraintBottom_toTopOf="@+id/date"
+                android:layout_marginTop="@dimen/dimen5"
+                app:layout_constraintBottom_toTopOf="@+id/priceInfo"
                 app:layout_constraintStart_toStartOf="@+id/imageContainer"
                 app:layout_constraintEnd_toEndOf="@+id/imageContainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="北欧现代家居..."
                 android:textColor="#212121"
-                android:textSize="11sp"
+                android:textSize="11dp"
                 />
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/priceInfo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/imageContainer"
                 app:layout_constraintEnd_toEndOf="@+id/imageContainer"
@@ -62,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:text="2020-08-07"
                 android:textColor="#ff999999"
-                android:textSize="11sp"
+                android:textSize="11dp"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,7 +27,7 @@
             android:includeFontPadding="false"
             android:text="招商加盟 合作共赢"
             android:textColor="#ffffffff"
-            android:textSize="17sp"
+            android:textSize="17dp"
             android:id="@+id/topTitle"
             />
         <TextView
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:text="誉都商城线上交易平台"
             android:textColor="#ffffffff"
-            android:textSize="10sp"
+            android:textSize="10dp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

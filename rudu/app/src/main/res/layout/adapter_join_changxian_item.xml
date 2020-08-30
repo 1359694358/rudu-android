@@ -52,21 +52,20 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/title"
-                    android:layout_marginTop="@dimen/dimen9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="美式创意玻璃材质摆件欧式办公室书桌..."
                     android:textColor="#333333"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     />
                 <TextView
-                    android:id="@+id/price"
+                    android:id="@+id/priceInfo"
                     android:layout_marginTop="@dimen/dimen9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="2020-08-07"
                     android:textColor="#ff999999"
-                    android:textSize="11sp"
+                    android:textSize="11dp"
                     />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

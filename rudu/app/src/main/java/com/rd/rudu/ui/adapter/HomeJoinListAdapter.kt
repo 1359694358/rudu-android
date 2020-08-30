@@ -1,10 +1,15 @@
 package com.rd.rudu.ui.adapter
 
 import android.content.Context
+import android.graphics.Color
+import android.text.SpannableStringBuilder
+import android.text.style.*
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
+import androidx.core.text.set
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.app.adapter.BaseRecyclerAdapter
@@ -12,6 +17,8 @@ import com.google.android.app.adapter.BaseRecyclerAdapter.LayoutSpanCount
 import com.google.android.app.adapter.BaseRecyclerAdapter.OnlyOneSpan
 import com.google.android.app.adapter.BaseViewHolder
 import com.google.android.app.widget.LoopPager
+import com.google.android.app.widget.RadiusBackgroundSpan
+import com.google.android.app.widget.RoundBackgroundColorSpan
 import com.rd.rudu.R
 import com.rd.rudu.databinding.*
 
@@ -158,12 +165,56 @@ class JoinBangDangHolder(layoutId: Int, context: Context) :
 
 class HomeJoinHaoHuoTuiJianHolder(layoutId: Int, context: Context) :
     BaseViewHolder<AdapterJoinTuijianItemBinding>(layoutId, context)
+{
+    fun setData()
+    {
+        var currentPrice="99"
+        var originPrice="139.9"
+        var priceFormat= SpannableStringBuilder(context.resources.getString(R.string.price_format,currentPrice,originPrice))
+        priceFormat[0,1]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen10))
+        priceFormat[1,currentPrice.length+1]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen15))
+        priceFormat[0,currentPrice.length+1]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.currentPriceColor))
+        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.originPriceColor))
+        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen12))
+        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=StrikethroughSpan()
+        contentViewBinding.priceInfo.text=priceFormat
+
+        var title="客厅瓷砖地砖通体大理石瓷砖仿玛瑙玉餐厅地板定制"
+        var titleFormat=SpannableStringBuilder("推荐 ${title}")
+        titleFormat[0,2]= RoundBackgroundColorSpan(context,0xFFFF653C.toInt(), Color.WHITE)//,context.resources.getDimensionPixelOffset(R.dimen.dimen4),context.resources.getDimensionPixelOffset(R.dimen.dimen8))
+        titleFormat[0,2]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen10))
+        titleFormat[titleFormat.length-title.length,titleFormat.length]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen13))
+        contentViewBinding.title.text=titleFormat
+    }
+}
 
 class HomeJoinMiddleTitleHolder(layoutId: Int, context: Context) :
     BaseViewHolder<AdapterJoinMiddletitleBinding>(layoutId, context)
 
 class HomeJoinChangXianItemHolder(layoutId: Int, context: Context) :
     BaseViewHolder<AdapterJoinChangxianItemBinding>(layoutId, context)
+{
+    fun setData()
+    {
+        var currentPrice="99"
+        var originPrice="139.9"
+        var priceFormat= SpannableStringBuilder(context.resources.getString(R.string.price_format,currentPrice,originPrice))
+        priceFormat[0,1]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen12))
+        priceFormat[1,currentPrice.length+1]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen17))
+        priceFormat[0,currentPrice.length+1]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.currentPriceColor))
+        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.originPriceColor))
+        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen12))
+        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=StrikethroughSpan()
+        contentViewBinding.priceInfo.text=priceFormat
+
+        var title="客厅瓷砖地砖通体大理石瓷砖仿玛瑙玉餐厅地板定制"
+        var titleFormat=SpannableStringBuilder("新品 ${title}")
+        titleFormat[0,2]= RoundBackgroundColorSpan(context,0xFF81BDF1.toInt(), Color.WHITE)//,context.resources.getDimensionPixelOffset(R.dimen.dimen4),context.resources.getDimensionPixelOffset(R.dimen.dimen8))
+        titleFormat[0,2]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen10))
+        titleFormat[titleFormat.length-title.length,titleFormat.length]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen13))
+        contentViewBinding.title.text=titleFormat
+    }
+}
 
 class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemType>(context) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -221,7 +272,16 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
                 if(JOIN_TYPE_XinXianChangHeader.first==viewType)
                 {
                     holder.contentViewBinding.title.text="新品尝鲜"
+                    holder.contentViewBinding.title.setCompoundDrawablesRelativeWithIntrinsicBounds(ContextCompat.getDrawable(context,R.mipmap.icon_xinpin),null,null,null)
                 }
+            }
+            is HomeJoinHaoHuoTuiJianHolder->
+            {
+                holder.setData()
+            }
+            is HomeJoinChangXianItemHolder->
+            {
+                holder.setData()
             }
         }
     }

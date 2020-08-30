@@ -43,9 +43,9 @@
                 android:layout_height="wrap_content"
                 android:text="风景动物现代家居三联画沙发背景墙装饰画简约晶瓷..."
                 android:textColor="#333333"
-                android:textSize="13sp"
                 />
             <TextView
+                android:id="@+id/priceInfo"
                 app:layout_constraintStart_toStartOf="@+id/title"
                 app:layout_constraintTop_toBottomOf="@+id/title"
                 android:layout_width="0dp"
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:text="誉都商城专注建材家居，品质保证。"
                 android:textColor="#ff999999"
-                android:textSize="11sp"
+                android:textSize="11dp"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

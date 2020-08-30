@@ -12,12 +12,14 @@
     <string name="use_terms">用户使用条款.docx</string>
     <string name="app_policy">誉都商城隐私政策.docx</string>
     <string name="youzan_storeurl" des="注意地址里面的&amp;  是转义了的andd符号">https://shop90993627.youzan.com/v2/showcase/homepage?alias=7Z8pCcLOuG&amp;dc_ps=2588151986751006725.300001</string>
-    <string name="youzan_clientId">e88624886b67c1085b</string>
+    <string name="youzan_clientId">3251437bd708a72081</string>
     <string name="youzan_appKey"></string>
     <string name="home_web">首页</string>
     <string name="home_join">加盟</string>
     <string name="home_topic">头条</string>
     <string name="home_shopcar">购物车</string>
     <string name="home_mine">我的</string>
+
+    <string name="price_format">￥%1$s ￥%2$s</string>
 
 </resources>

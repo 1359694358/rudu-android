@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="誉都简介"
                 android:textColor="#ff333333"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 />
             <View
                 android:id="@+id/line"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:text="誉都商城"
                 android:textColor="#ff333333"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 />
             <TextView
                 app:layout_constraintStart_toStartOf="@+id/title"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:text="誉都商城专注建材家居，品质保证。"
                 android:textColor="#ff999999"
-                android:textSize="11sp"
+                android:textSize="11dp"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

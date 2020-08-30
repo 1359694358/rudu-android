@@ -32,6 +32,7 @@
             android:layout_height="@dimen/dimen1"/>
         <TextView
             android:id="@+id/title"
+            android:drawablePadding="@dimen/dimen4"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/dimen14"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="城市合伙人加盟"
             android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:textSize="15dp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
