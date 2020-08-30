@@ -27,7 +27,7 @@ import com.youzan.androidsdk.event.AbsChooserEvent
 import org.jetbrains.anko.support.v4.startActivity
 
 //首页有赞
-class HomeWebFragment private constructor(): BaseFragment<FragmentHomeyouzanBinding>()
+class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>()
 {
     companion object
     {

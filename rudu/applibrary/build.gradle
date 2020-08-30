@@ -61,7 +61,7 @@ dependencies {
     api 'com.github.bumptech.glide:glide:4.10.0'
     api 'com.github.bumptech.glide:okhttp3-integration:4.10.0'
     api 'com.scwang.smartrefresh:SmartRefreshLayout:+'
-    api(name:"AppfacShareModuleV2",ext:"aar")//微信登录
+    api(name:"AppfacShareModuleV2",ext:"aar")
 }
 
 repositories {
