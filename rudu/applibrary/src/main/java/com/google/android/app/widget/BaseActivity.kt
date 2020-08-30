@@ -8,6 +8,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import androidx.annotation.CallSuper
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -19,10 +20,9 @@ import com.google.android.app.R
 import com.google.android.app.databinding.AppToolbarBinding
 import com.google.android.app.utils.StatusBarUtil
 import com.qmuiteam.qmui.arch.QMUIActivity
-import com.qmuiteam.qmui.arch.SwipeBackLayout
 
 
-abstract class BaseActivity<T: ViewDataBinding>: QMUIActivity()
+abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
 {
     lateinit var contentBinding:T
     var toolbarBinding: AppToolbarBinding?=null
@@ -66,14 +66,18 @@ abstract class BaseActivity<T: ViewDataBinding>: QMUIActivity()
         toolbarBinding?.titleText?.setText(titleId)
     }
 
-    fun setStatusBarMode()
+    open fun setStatusBarMode()
     {
         StatusBarUtil.setLightMode(this)
     }
 
     open fun setStatusBarColor()
     {
-        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.statusbar_color),0)
+        StatusBarUtil.setColor(this,getStatusBarColor() ,0)
+    }
+    open fun getStatusBarColor():Int
+    {
+        return ContextCompat.getColor(this, R.color.statusbar_color)
     }
     abstract fun getLayoutResId():Int
 
@@ -108,14 +112,6 @@ abstract class BaseActivity<T: ViewDataBinding>: QMUIActivity()
     protected fun killProcess()
     {
         Process.killProcess(Process.myPid())
-    }
-
-    final override fun performTranslucent() {
-//        super.performTranslucent()
-    }
-
-    override fun getDragDirection(swipeBackLayout: SwipeBackLayout, viewMoveAction: SwipeBackLayout.ViewMoveAction, downX: Float, downY: Float, dx: Float, dy: Float, slopTouch: Float): Int {
-        return SwipeBackLayout.DRAG_DIRECTION_NONE
     }
 
     open fun setFit(contentView: View) {

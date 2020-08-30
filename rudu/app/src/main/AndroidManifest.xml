@@ -53,15 +53,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.acttivity.GuideActivity"
+        <activity android:name=".ui.activity.GuideActivity"
             android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Rudu"/>
 
-        <activity android:name=".ui.acttivity.HomeActivity"
+        <activity android:name=".ui.activity.HomeActivity"
             android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Rudu"/>
+
+        <activity android:name=".ui.activity.LoginActivity"
+            android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.OfficeFileViewActivity"
+            android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

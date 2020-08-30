@@ -5,9 +5,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:src="@mipmap/login_bacground"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
         <ImageView
             android:src="@mipmap/rudu_login_logo"
             android:id="@+id/topTitle"
@@ -144,5 +150,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen38" />
+
+        <com.qmuiteam.qmui.qqface.QMUIQQFaceView
+            android:clickable="true"
+            android:id="@+id/appAgree"
+            android:layout_marginBottom="@dimen/dimen48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/agree_str"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/dimen12"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

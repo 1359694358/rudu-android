@@ -1,10 +1,9 @@
-package com.rd.rudu.ui.acttivity
+package com.rd.rudu.ui.activity
 
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.utils.ToastUtil
@@ -21,8 +20,8 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
     override fun getLayoutResId(): Int {
         return R.layout.activity_home
     }
-    override fun doOnBackPressed() {
-        doOnBackPressed()
+    override fun onBackPressed() {
+        backHandle()
     }
 
     override fun setStatusBarColor()

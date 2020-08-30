@@ -1,4 +1,4 @@
-package com.rd.rudu.ui.acttivity
+package com.rd.rudu.ui.activity
 
 import android.os.Bundle
 import android.view.ViewGroup

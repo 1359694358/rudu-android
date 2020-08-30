@@ -21,5 +21,6 @@
     <string name="home_mine">我的</string>
 
     <string name="price_format">￥%1$s ￥%2$s</string>
+    <string name="agree_str">点击登录即同意誉都商城用户协议</string>
 
 </resources>

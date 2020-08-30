@@ -9,10 +9,11 @@ import com.google.android.app.widget.BaseActivity
 import com.permissionx.guolindev.PermissionX
 import com.rd.rudu.databinding.ActivityMainBinding
 import com.google.android.app.databinding.SimpleDialogBinding
-import com.rd.rudu.ui.acttivity.HomeActivity
+import com.rd.rudu.ui.activity.HomeActivity
 import com.google.android.app.widget.*
 import com.google.android.app.utils.PermissionPageUtils
 import com.google.android.app.utils.ToastUtil
+import com.rd.rudu.ui.activity.LoginActivity
 import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -100,12 +101,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     fun startHomeActivity()
     {
         contentBinding.root.postDelayed({
-            startActivity<HomeActivity>()
+            startActivity<LoginActivity>()
             finish()
         },2000)
     }
-    override fun doOnBackPressed() {
-        super.doOnBackPressed()
+    override fun onBackPressed() {
+        super.onBackPressed()
         killProcess()
     }
 
