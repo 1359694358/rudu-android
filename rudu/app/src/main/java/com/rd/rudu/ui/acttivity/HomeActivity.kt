@@ -21,8 +21,8 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
     override fun getLayoutResId(): Int {
         return R.layout.activity_home
     }
-    override fun onBackPressed() {
-        backHandle()
+    override fun doOnBackPressed() {
+        doOnBackPressed()
     }
 
     override fun setStatusBarColor()

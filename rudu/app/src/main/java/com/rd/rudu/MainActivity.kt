@@ -104,8 +104,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             finish()
         },2000)
     }
-    override fun onBackPressed() {
-        super.onBackPressed()
+    override fun doOnBackPressed() {
+        super.doOnBackPressed()
         killProcess()
     }
 

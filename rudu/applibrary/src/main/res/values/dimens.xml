@@ -44,4 +44,9 @@
     <dimen name="dimen2">2dp</dimen>
     <dimen name="dimen1">1dp</dimen>
     <dimen name="dimen105">105dp</dimen>
+    <dimen name="dimen96">96dp</dimen>
+    <dimen name="dimen110">110dp</dimen>
+    <dimen name="dimen24">24dp</dimen>
+    <dimen name="dimen29">29dp</dimen>
+    <dimen name="dimen28">28dp</dimen>
 </resources>

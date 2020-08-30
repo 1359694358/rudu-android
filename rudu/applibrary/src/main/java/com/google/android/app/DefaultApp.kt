@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.multidex.MultiDexApplication
 import com.google.android.app.utils.*
+import com.qmuiteam.qmui.arch.QMUISwipeBackActivityManager
 import com.tencent.mmkv.MMKV
 import org.jetbrains.anko.doAsync
 
@@ -20,6 +21,7 @@ open class DefaultApp: MultiDexApplication(), ViewModelStoreOwner {
 
     override fun onCreate() {
         super.onCreate()
+        QMUISwipeBackActivityManager.init(this)
         doAsync {
             ExceptionHandler.getInstance().init(this@DefaultApp)
             MMKV.initialize(this@DefaultApp)

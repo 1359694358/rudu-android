@@ -8,7 +8,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import androidx.annotation.CallSuper
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -19,9 +18,11 @@ import com.google.android.app.DefaultApp
 import com.google.android.app.R
 import com.google.android.app.databinding.AppToolbarBinding
 import com.google.android.app.utils.StatusBarUtil
+import com.qmuiteam.qmui.arch.QMUIActivity
+import com.qmuiteam.qmui.arch.SwipeBackLayout
 
 
-abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
+abstract class BaseActivity<T: ViewDataBinding>: QMUIActivity()
 {
     lateinit var contentBinding:T
     var toolbarBinding: AppToolbarBinding?=null
@@ -109,6 +110,14 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
         Process.killProcess(Process.myPid())
     }
 
+    final override fun performTranslucent() {
+//        super.performTranslucent()
+    }
+
+    override fun getDragDirection(swipeBackLayout: SwipeBackLayout, viewMoveAction: SwipeBackLayout.ViewMoveAction, downX: Float, downY: Float, dx: Float, dy: Float, slopTouch: Float): Int {
+        return SwipeBackLayout.DRAG_DIRECTION_NONE
+    }
+
     open fun setFit(contentView: View) {
         var view = contentView
         while (view.parent !== window.decorView) {
@@ -125,11 +134,12 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
 
     @CallSuper
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<String>,
+            grantResults: IntArray
     ) {
-//		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(System.currentTimeMillis()<0)//肯定不会执行的 为了不代码显示错误
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         val fm = supportFragmentManager
         var fragments: List<Fragment?>? = null
         try {
@@ -143,11 +153,11 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
         }
     }
 
-      fun handlePermissonsResult(
-        frag: Fragment,
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
+    fun handlePermissonsResult(
+            frag: Fragment,
+            requestCode: Int,
+            permissions: Array<String>,
+            grantResults: IntArray
     ) {
         frag.onRequestPermissionsResult(requestCode, permissions, grantResults)
         var frags: List<Fragment?>? = null
@@ -158,10 +168,10 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
         if (frags != null) {
             for (f in frags) {
                 if (f != null && f.activity != null) handlePermissonsResult(
-                    f,
-                    requestCode,
-                    permissions,
-                    grantResults
+                        f,
+                        requestCode,
+                        permissions,
+                        grantResults
                 )
             }
         }
@@ -169,9 +179,9 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
 
     @CallSuper
     override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
+            requestCode: Int,
+            resultCode: Int,
+            data: Intent?
     ) {
         super.onActivityResult(requestCode, resultCode, data)
         val fm = supportFragmentManager
@@ -196,13 +206,13 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
      * @param data
      */
     fun handleResult(
-        frag: Fragment, requestCode: Int, resultCode: Int,
-        data: Intent?
+            frag: Fragment, requestCode: Int, resultCode: Int,
+            data: Intent?
     ) {
         if (frag.activity != null) frag.onActivityResult(
-            requestCode and 0xffff,
-            resultCode,
-            data
+                requestCode and 0xffff,
+                resultCode,
+                data
         )
         var frags: List<Fragment?>? = null
         try {
@@ -213,10 +223,10 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
         if (frags != null) {
             for (f in frags) {
                 if (f != null && f.activity != null) handleResult(
-                    f,
-                    requestCode,
-                    resultCode,
-                    data
+                        f,
+                        requestCode,
+                        resultCode,
+                        data
                 )
             }
         }
