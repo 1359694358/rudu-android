@@ -1,6 +1,7 @@
 package com.google.android.app.net;
 
 
+import android.app.Activity
 import android.util.Log
 import com.google.gson.Gson
 import org.json.JSONObject
@@ -19,6 +20,15 @@ object TransUtils {
             upstream.map { s ->
                 Log.w("TransUtils","$s")
                 gson.fromJson("$s",classRef)
+            }
+        }
+    }
+
+    inline fun <reified T> jsonTransform(): ObservableTransformer<JSONObject, T> {
+        return ObservableTransformer { upstream ->
+            upstream.map { s ->
+                Log.w("TransUtils","$s")
+                gson.fromJson("$s",T::class.java)
             }
         }
     }

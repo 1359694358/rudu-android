@@ -9,10 +9,7 @@ import com.rd.rudu.bean.request.LoginEntity
 import com.rd.rudu.bean.request.LoginType
 import com.rd.rudu.bean.request.SmsCodeEntity
 import com.rd.rudu.bean.request.YouZanSysEntity
-import com.rd.rudu.bean.result.BaseResultBean
-import com.rd.rudu.bean.result.LoginResultBean
-import com.rd.rudu.bean.result.SmsCodeBean
-import com.rd.rudu.bean.result.YouZanTokenBean
+import com.rd.rudu.bean.result.*
 import com.rd.rudu.net.AppApi
 import io.reactivex.Observable
 import org.json.JSONObject
@@ -24,6 +21,7 @@ class UserViewModel: ViewModel()
     val smsCodeObserver= MutableLiveDataX<SmsCodeBean?>()
     val loginObserver=MutableLiveDataX<LoginResultBean?>()
     val youzanTokenObserver=MutableLiveDataX<YouZanTokenBean?>()
+    val changeAvatarObserver=MutableLiveDataX<ChangeAvatarBean?>()
     fun getSmsCode(phone: String)
     {
         var smsCodeEntity= SmsCodeEntity(phone)
@@ -159,13 +157,16 @@ class UserViewModel: ViewModel()
     fun changeImage(file:File)
     {
         AppApi.serverApi.uploadAvatar(AppApi.buildFile(file)).compose(TransUtils.schedulersTransformer())
+                .compose(TransUtils.jsonTransform<ChangeAvatarBean>())
                 .subscribe(
                         {
                             logw("$it")
+                            changeAvatarObserver.postValue(it)
                         }
                 ,
                         {
                             logw("$it")
+                            changeAvatarObserver.postValue(null)
                         }
                 )
     }

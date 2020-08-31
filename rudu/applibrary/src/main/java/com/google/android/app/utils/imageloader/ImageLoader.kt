@@ -54,8 +54,8 @@ object ImageLoader
                     }
                     return
                 }
-                val glideUrl = GlideUrl(url)
-                Glide.with(image).load(glideUrl).apply(requestOption).listener(object : RequestListener<Drawable> {
+//                val glideUrl = GlideUrl(url)
+                Glide.with(image).load(url).apply(requestOption).listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(e: GlideException?, model: Any, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
                         loadListener?.loadError(e?.message?:"")
                         return false
@@ -65,8 +65,7 @@ object ImageLoader
                         loadListener?.loadComplete(resource)
                         return false
                     }
-                }).transition(DrawableTransitionOptions.with(drawableCrossFadeFactory)).
-                    into(image)
+                }).into(image)
             }
         }
     }

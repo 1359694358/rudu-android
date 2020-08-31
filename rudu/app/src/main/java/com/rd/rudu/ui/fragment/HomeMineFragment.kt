@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.google.android.app.utils.StatusBarUtil
+import com.google.android.app.utils.ToastUtil
 import com.google.android.app.utils.imageloader.ImageLoader
 import com.google.android.app.widget.BaseFragment
 import com.luck.picture.lib.PictureSelector
@@ -33,6 +35,22 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
     var loadingDialog: QMUITipDialog?=null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        refreshUserInfo()
+        userViewModel.changeAvatarObserver.observe(this, Observer {
+            loadingDialog?.dismiss()
+            if(it?.yes()==true)
+            {
+                var userInfo=LoginResultBean.LoginResult.getLoginResult()
+                userInfo.avatar=it.data
+                LoginResultBean.LoginResult.setLoginResult(userInfo)
+                refreshUserInfo()
+                ToastUtil.show(requireActivity(),"上传头像成功")
+            }
+            else
+            {
+                ToastUtil.show(requireActivity(),"上传头像失败")
+            }
+        })
         contentBinding.titleBar.viewTreeObserver.addOnDrawListener {
             if(contentBinding.titleBar.layoutParams!=null&&contentBinding.titleBar.layoutParams is ViewGroup.MarginLayoutParams)
             {
@@ -78,7 +96,6 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
 
     override fun onResume() {
         super.onResume()
-        refreshUserInfo()
     }
     fun refreshUserInfo()
     {
@@ -88,6 +105,7 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
             contentBinding.exitLogin.visibility=View.VISIBLE
             contentBinding.nickName.text="手机号：${loginResult.telephone}"
             ImageLoader.loader.load(contentBinding.userIcon,loginResult.avatar,ContextCompat.getDrawable(requireActivity(),R.mipmap.morentouxiang))
+//            GlideEngine.createGlideEngine().loadImage(requireContext(),loginResult.avatar,contentBinding.userIcon)
         }
         else
         {

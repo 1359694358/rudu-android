@@ -3,6 +3,7 @@ package com.rd.rudu.net
 import com.google.android.app.net.JSONObjectConvertFactory
 import com.google.android.app.net.SSLSocketClient
 import com.google.android.app.utils.ExceptionHandler
+import com.google.android.app.utils.logw
 import com.google.android.app.utils.readAny
 import com.rd.rudu.BuildConfig
 import com.rd.rudu.bean.request.LoginEntity
@@ -49,8 +50,8 @@ interface ServerApi
 
 object AppApi
 {
-    var ReadTimeOut = 5L
-    var ConnectTimeOut = 5L
+    var ReadTimeOut = 500L
+    var ConnectTimeOut = 500L
     //服务器接口地址修改就改这
 //    val Host="https://m.runtae.com"
 //    val Host="http://www.huimiao.wang"
@@ -68,6 +69,7 @@ object AppApi
             var token:String?= readAny(Token)
             if(token?.isNotEmpty()==true)
                 requestBuilder.addHeader(Token,token)
+            logw("token:$token")
             val request: Request = requestBuilder.build()
             return@addInterceptor it.proceed(request)
         }
