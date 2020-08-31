@@ -12,6 +12,7 @@ import com.rd.rudu.databinding.ActivityHomeBinding
 import com.google.android.app.widget.BaseActivity
 import com.rd.rudu.ui.fragment.HomeJoinFragment
 import com.rd.rudu.ui.fragment.HomeMineFragment
+import com.rd.rudu.ui.fragment.HomeTopNewsFragment
 import com.rd.rudu.ui.fragment.HomeWebFragment
 
 class HomeActivity: BaseActivity<ActivityHomeBinding>() {
@@ -51,7 +52,7 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
     {
         fragmentMap[0]=HomeWebFragment.newInstance(resources.getString(R.string.youzan_storeurl))
         fragmentMap[1]= HomeJoinFragment()
-        fragmentMap[2]= HomeJoinFragment()
+        fragmentMap[2]= HomeTopNewsFragment()
         fragmentMap[3]= HomeJoinFragment()
         fragmentMap[4]= HomeMineFragment()
       /*  var iterator=fragmentMap.iterator()
