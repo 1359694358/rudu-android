@@ -21,12 +21,12 @@ import com.rd.rudu.bean.request.LoginType
 import com.rd.rudu.bean.result.LoginResultBean
 import com.rd.rudu.databinding.ActivityLoginlayoutBinding
 import com.rd.rudu.utils.saveAppToken
-import com.rd.rudu.vm.LoginViewModel
+import com.rd.rudu.vm.UserViewModel
 
 class LoginActivity: BaseActivity<ActivityLoginlayoutBinding>()
 {
     lateinit var countDownTimer: CountDown
-    val loginViewModel: LoginViewModel by lazy { getViewModelByApplication(LoginViewModel::class.java) }
+    val userViewModel: UserViewModel by lazy { getViewModelByApplication(UserViewModel::class.java) }
     private var loginType= LoginType.Mobile
     private var verKey:String=""
     private var weChatId:String=""
@@ -102,10 +102,10 @@ class LoginActivity: BaseActivity<ActivityLoginlayoutBinding>()
                 .setTipWord("正在登录")
                 .create()
             loadingDialog?.show()
-            loginViewModel.login(resources.getString(R.string.youzan_clientId),phone,"",loginType,phone,verKey,verCode,weChatId,alipayId)
+            userViewModel.login(resources.getString(R.string.youzan_clientId),phone,"",loginType,phone,verKey,verCode,weChatId,alipayId)
         }
 
-        loginViewModel.loginObserver.observe(this, Observer
+        userViewModel.loginObserver.observe(this, Observer
         {
             loadingDialog?.dismiss()
             if(it?.yes()==true)
@@ -127,7 +127,7 @@ class LoginActivity: BaseActivity<ActivityLoginlayoutBinding>()
                 ToastUtil.show(this,"登录失败 ${it?.msg?:""}")
             }
         })
-        loginViewModel.smsCodeObserver.observe(this, Observer{
+        userViewModel.smsCodeObserver.observe(this, Observer{
             if(it?.yes()==true)
             {
                 countDownTimer.start()
@@ -173,12 +173,12 @@ class LoginActivity: BaseActivity<ActivityLoginlayoutBinding>()
     }
 
     override fun onBackPressed() {
-        loginViewModel.youzanTokenObserver.postValue(null)
+        userViewModel.youzanTokenObserver.postValue(null)
         super.onBackPressed()
     }
 
     override fun backHandle() {
-        loginViewModel.youzanTokenObserver.postValue(null)
+        userViewModel.youzanTokenObserver.postValue(null)
         super.backHandle()
     }
 
@@ -187,7 +187,7 @@ class LoginActivity: BaseActivity<ActivityLoginlayoutBinding>()
         hideKeyBroad()
         contentBinding.getSmsCode.text = "发送中"
         contentBinding.getSmsCode.isClickable = false
-        loginViewModel.getSmsCode(contentBinding.phoneInput.text.toString())
+        userViewModel.getSmsCode(contentBinding.phoneInput.text.toString())
 //        countDownTimer.start()
     }
 

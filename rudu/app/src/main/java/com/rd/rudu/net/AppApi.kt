@@ -7,16 +7,19 @@ import com.google.android.app.utils.readAny
 import com.rd.rudu.BuildConfig
 import com.rd.rudu.bean.request.LoginEntity
 import com.rd.rudu.bean.request.SmsCodeEntity
+import io.reactivex.Observable
 import io.reactivex.plugins.RxJavaPlugins
-import okhttp3.OkHttpClient
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.asRequestBody
+import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.http.*
+import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.X509TrustManager
-import io.reactivex.Observable
-import okhttp3.Request
-import org.json.JSONObject
-import retrofit2.http.*
+
 
 interface ServerApi
 {
@@ -26,8 +29,9 @@ interface ServerApi
     @POST("/api/auth/login")
     fun login(@Body loginEntity: LoginEntity):Observable<JSONObject>
 
-    @POST("/api/customer/uploadAvatar")
-    fun uploadAvatar()
+    @Multipart
+    @POST("/api/user/uploadAvatar")
+    fun uploadAvatar(@Part file:MultipartBody.Part ):Observable<JSONObject>
     /*
 
     @POST("api/ap_user/yzLogin")
@@ -82,6 +86,13 @@ object AppApi
             .client(okHttpClient)
             .build()
         serverApi=retrofit.create(ServerApi::class.java)
+    }
+
+    fun buildFile(file:File):MultipartBody.Part
+    {
+        val requestBody: RequestBody =  file.asRequestBody("image/jpeg".toMediaType())
+        val part: MultipartBody.Part = MultipartBody.Part.createFormData("file", file.name, requestBody)
+        return part
     }
 
 }

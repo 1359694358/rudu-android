@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.app.net.MutableLiveDataX
 import com.google.android.app.net.TransUtils
+import com.google.android.app.utils.logw
 import com.rd.rudu.bean.request.LoginEntity
 import com.rd.rudu.bean.request.LoginType
 import com.rd.rudu.bean.request.SmsCodeEntity
@@ -15,8 +16,9 @@ import com.rd.rudu.bean.result.YouZanTokenBean
 import com.rd.rudu.net.AppApi
 import io.reactivex.Observable
 import org.json.JSONObject
+import java.io.File
 
-class LoginViewModel: ViewModel()
+class UserViewModel: ViewModel()
 {
 
     val smsCodeObserver= MutableLiveDataX<SmsCodeBean?>()
@@ -153,4 +155,18 @@ class LoginViewModel: ViewModel()
                 }
             )
     }*/
+
+    fun changeImage(file:File)
+    {
+        AppApi.serverApi.uploadAvatar(AppApi.buildFile(file)).compose(TransUtils.schedulersTransformer())
+                .subscribe(
+                        {
+                            logw("$it")
+                        }
+                ,
+                        {
+                            logw("$it")
+                        }
+                )
+    }
 }

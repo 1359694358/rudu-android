@@ -34,6 +34,9 @@ inline fun  Any.logd(message:String) = Log.d(javaClass.simpleName, message)
 
 inline fun Any.logd(message:Any) = Log.d(javaClass.simpleName, message.toString())
 
+inline fun  Any.logw(message:String) = Log.w(javaClass.simpleName, message)
+
+inline fun  Any.logw(message:Any) =  Log.w(javaClass.simpleName, message.toString())
 inline fun  Any.loge(error: Throwable, message: () -> String) = Log.d(javaClass.simpleName, message(), error)
 
 inline fun  Any.loge(error: Throwable, message:String?="") = Log.d(javaClass.simpleName, message, error)

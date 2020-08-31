@@ -16,7 +16,7 @@ import com.rd.rudu.R
 import com.rd.rudu.databinding.FragmentHomeyouzanBinding
 import com.rd.rudu.ui.activity.LoginActivity
 import com.rd.rudu.utils.clearLoginState
-import com.rd.rudu.vm.LoginViewModel
+import com.rd.rudu.vm.UserViewModel
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
@@ -46,7 +46,7 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>()
     {
         return R.layout.fragment_homeyouzan
     }
-    val loginViewMode: LoginViewModel by lazy { getViewModelByApplication(LoginViewModel::class.java) }
+    val userViewMode: UserViewModel by lazy { getViewModelByApplication(UserViewModel::class.java) }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         url=requireArguments().getString(WebUrl,requireActivity().resources.getString(R.string.youzan_storeurl))
@@ -90,7 +90,7 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>()
             url=resources.getString(R.string.youzan_storeurl)
         }
         contentBinding.mView.loadUrl(url)
-        loginViewMode.youzanTokenObserver.observe(this, Observer {
+        userViewMode.youzanTokenObserver.observe(this, Observer {
             if(it?.yes()==true)
             {
                 logd("登录成功 获取到有赞token")
