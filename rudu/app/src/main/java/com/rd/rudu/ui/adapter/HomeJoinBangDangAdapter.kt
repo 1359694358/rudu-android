@@ -60,4 +60,4 @@ class HomeJoinBangDangAdapter(context: Context) : BaseRecyclerAdapter<String>(co
 }
 
 class JoinBangDangItemHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinBangdangItemBinding>(layoutId, context)
+    BaseViewHolder<AdapterJoinBangdangItemBinding>(context, layoutId)

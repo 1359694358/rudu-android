@@ -51,4 +51,7 @@
     <dimen name="dimen28">28dp</dimen>
     <dimen name="dimen58">59dp</dimen>
     <dimen name="dimen92">92dp</dimen>
+    <dimen name="dimen23">23dp</dimen>
+    <dimen name="dimen87">87dp</dimen>
+    <dimen name="dimen72">72dp</dimen>
 </resources>

@@ -17,7 +17,6 @@ import com.google.android.app.adapter.BaseRecyclerAdapter.LayoutSpanCount
 import com.google.android.app.adapter.BaseRecyclerAdapter.OnlyOneSpan
 import com.google.android.app.adapter.BaseViewHolder
 import com.google.android.app.widget.LoopPager
-import com.google.android.app.widget.RadiusBackgroundSpan
 import com.google.android.app.widget.RoundBackgroundColorSpan
 import com.rd.rudu.R
 import com.rd.rudu.databinding.*
@@ -72,10 +71,13 @@ fun buildJoinList():List<HomeJoinItemType>
     return list
 }
 
-class CompanyItemHolder(layoutId: Int, context: Context) : BaseViewHolder<AdapterJoinCompanyBinding>(layoutId, context)
+class CompanyItemHolder(layoutId: Int, context: Context) : BaseViewHolder<AdapterJoinCompanyBinding>(
+    context,
+    layoutId
+)
 
 class BannerViewHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinBannerBinding>(layoutId, context), LoopPager.OnLooperPagerHandle {
+    BaseViewHolder<AdapterJoinBannerBinding>(context, layoutId), LoopPager.OnLooperPagerHandle {
     init {
         contentViewBinding.banner.onLooperPagerHandle=this
         contentViewBinding.banner.setOnItemClickListener { banner, position, tag ->
@@ -136,19 +138,19 @@ class BannerViewHolder(layoutId: Int, context: Context) :
 }
 
 class JoinImage2Holder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinImageBinding>(layoutId, context)
+    BaseViewHolder<AdapterJoinImageBinding>(context, layoutId)
 
 class JoinIntroHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinIntroBinding>(layoutId, context)
+    BaseViewHolder<AdapterJoinIntroBinding>(context, layoutId)
 
 class JoinZhanHuiHeaderHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinGridHeaderBinding>(layoutId, context)
+    BaseViewHolder<AdapterJoinGridHeaderBinding>(context, layoutId)
 
 class JoinZhanHuiItemHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinGridItemBinding>(layoutId, context)
+    BaseViewHolder<AdapterJoinGridItemBinding>(context, layoutId)
 
 class JoinBangDangHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinBangdangBinding>(layoutId, context)
+    BaseViewHolder<AdapterJoinBangdangBinding>(context, layoutId)
 {
     val adapter:HomeJoinBangDangAdapter by lazy { HomeJoinBangDangAdapter(context) }
     fun setData()
@@ -164,7 +166,7 @@ class JoinBangDangHolder(layoutId: Int, context: Context) :
 }
 
 class HomeJoinHaoHuoTuiJianHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinTuijianItemBinding>(layoutId, context)
+    BaseViewHolder<AdapterJoinTuijianItemBinding>(context, layoutId)
 {
     fun setData()
     {
@@ -189,10 +191,10 @@ class HomeJoinHaoHuoTuiJianHolder(layoutId: Int, context: Context) :
 }
 
 class HomeJoinMiddleTitleHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinMiddletitleBinding>(layoutId, context)
+    BaseViewHolder<AdapterJoinMiddletitleBinding>(context, layoutId)
 
 class HomeJoinChangXianItemHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinChangxianItemBinding>(layoutId, context)
+    BaseViewHolder<AdapterJoinChangxianItemBinding>(context, layoutId)
 {
     fun setData()
     {

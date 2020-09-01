@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import com.chinamcloud.project.shanshipin.utils.bindMagicIndicator
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.widget.BaseFragment
 import com.rd.rudu.R
@@ -70,5 +71,6 @@ class HomeTopNewsFragment: BaseFragment<FragmentHomeTopnewsBinding>() {
 
         }
         tab.navigator=tabNavigatorAdapter
+        contentBinding.viewPager.bindMagicIndicator(tab)
     }
 }

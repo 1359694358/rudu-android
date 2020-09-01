@@ -8,7 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
-open class BaseViewHolder<B : ViewDataBinding>(@LayoutRes layoutId: Int,var context: Context) : RecyclerView.ViewHolder(DataBindingUtil.inflate<ViewDataBinding>(ContextCompat.getSystemService(context, LayoutInflater::class.java)!!, layoutId, null, false).root) {
+open class BaseViewHolder<B : ViewDataBinding>(
+    var context: Context,
+    @LayoutRes layoutId: Int
+) : RecyclerView.ViewHolder(DataBindingUtil.inflate<ViewDataBinding>(ContextCompat.getSystemService(context, LayoutInflater::class.java)!!, layoutId, null, false).root) {
     var contentViewBinding: B = DataBindingUtil.getBinding(itemView)!!
 
     protected fun getLayoutInflater():LayoutInflater

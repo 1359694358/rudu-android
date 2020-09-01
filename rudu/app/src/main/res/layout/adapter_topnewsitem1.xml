@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dimen10"
+        android:paddingEnd="@dimen/dimen10"
+        android:paddingBottom="@dimen/dimen15"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_marginStart="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen15"
+            android:src="@mipmap/xiaotouxiang_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="@dimen/dimen20"
+            android:layout_height="@dimen/dimen23" />
+
+        <TextView
+            android:id="@+id/name"
+            android:includeFontPadding="false"
+            android:layout_marginTop="@dimen/dimen2"
+            app:layout_constraintTop_toTopOf="@+id/icon"
+            android:layout_marginStart="@dimen/dimen5"
+            app:layout_constraintStart_toEndOf="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="誉都商城官方"
+            android:textColor="#ff9a9a9a"
+            android:textSize="@dimen/dimen12" />
+
+        <TextView
+            app:layout_constraintBottom_toTopOf="@+id/date"
+            android:layout_marginEnd="@dimen/dimen18"
+            android:layout_marginTop="@dimen/dimen16"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            app:layout_constraintEnd_toStartOf="@+id/imageContainer"
+            app:layout_constraintStart_toEndOf="@+id/icon"
+            android:layout_width="0dp"
+            android:id="@+id/title"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen15"
+            android:text="为新航母做战备？歼15战机开始进行高强度训练"
+            android:textColor="#ff343434"
+            android:textSize="@dimen/dimen14" />
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="@dimen/dimen5"
+            android:id="@+id/imageContainer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/name"
+            android:layout_marginTop="@dimen/dimen2"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="@dimen/dimen87"
+            android:layout_height="@dimen/dimen72">
+
+            <ImageView
+                android:id="@+id/image"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/join_zhanhui_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/date"
+            android:includeFontPadding="false"
+            app:layout_constraintBottom_toBottomOf="@+id/imageContainer"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2020-08-15"
+            android:textColor="#ff9a9a9a"
+            android:textSize="@dimen/dimen10" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
