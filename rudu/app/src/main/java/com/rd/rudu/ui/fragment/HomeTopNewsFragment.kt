@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chinamcloud.project.shanshipin.utils.bindMagicIndicator
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.widget.BaseFragment
@@ -71,6 +73,18 @@ class HomeTopNewsFragment: BaseFragment<FragmentHomeTopnewsBinding>() {
 
         }
         tab.navigator=tabNavigatorAdapter
+        val fgarr= arrayOf(HomeTopNewsListFragment(),HomeVideoNewsListFragment())
         contentBinding.viewPager.bindMagicIndicator(tab)
+        contentBinding.viewPager.adapter=object:FragmentStateAdapter(requireActivity())
+        {
+            override fun getItemCount(): Int {
+               return fgarr.size
+            }
+
+            override fun createFragment(position: Int): Fragment {
+                return fgarr[position]
+            }
+
+        }
     }
 }

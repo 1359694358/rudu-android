@@ -23,6 +23,11 @@ class HomeTopNewsListFragment : BaseFragment<FragmentHomeTopnewslistBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        contentBinding.recyclerView.adapter=adapter
+        adapter.add("1")
+        adapter.add("1")
+        adapter.add("1")
+        adapter.notifyDataSetChanged()
     }
 }
 
