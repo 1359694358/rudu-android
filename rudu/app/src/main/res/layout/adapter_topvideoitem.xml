@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dimen10"
+        android:paddingEnd="@dimen/dimen10"
+       >
+        <androidx.cardview.widget.CardView
+            app:cardBackgroundColor="@android:color/white"
+            android:background="@android:color/white"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="@dimen/dimen1"
+            app:cardCornerRadius="@dimen/dimen5"
+            android:id="@+id/imageContainer"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/dimen8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="h,331:179"
+            android:layout_width="0dp"
+            android:layout_height="0dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/image"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@mipmap/join_zhanhui_item"
+                    app:layout_constraintDimensionRatio="h,331:144"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
+                <ImageView
+                    app:layout_constraintStart_toStartOf="@+id/image"
+                    app:layout_constraintEnd_toEndOf="@+id/image"
+                    app:layout_constraintTop_toTopOf="@+id/image"
+                    app:layout_constraintBottom_toBottomOf="@+id/image"
+                    android:src="@mipmap/zhezhao"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"/>
+                <ImageView
+                    app:layout_constraintStart_toStartOf="@+id/image"
+                    app:layout_constraintEnd_toEndOf="@+id/image"
+                    app:layout_constraintTop_toTopOf="@+id/image"
+                    app:layout_constraintBottom_toBottomOf="@+id/image"
+                    android:src="@mipmap/bofang_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_marginStart="@dimen/dimen10"
+                    android:layout_marginTop="@dimen/dimen8"
+                    android:src="@mipmap/xiaotouxiang_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/image"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="@dimen/dimen20"
+                    android:layout_height="@dimen/dimen23" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:includeFontPadding="false"
+                    android:layout_marginTop="@dimen/dimen2"
+                    app:layout_constraintTop_toTopOf="@+id/icon"
+                    android:layout_marginStart="@dimen/dimen11"
+                    app:layout_constraintStart_toEndOf="@+id/icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="誉都商城官方"
+                    android:textColor="#ff9a9a9a"
+                    android:textSize="@dimen/dimen12" />
+
+                <TextView
+                    android:id="@+id/title"
+                    app:layout_constraintTop_toTopOf="@+id/image"
+                    app:layout_constraintStart_toStartOf="@+id/image"
+                    app:layout_constraintEnd_toEndOf="@+id/image"
+                    android:layout_margin="@dimen/dimen10"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="温馨公寓房屋设计案例"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/dimen12"
+                    />
+
+                <ImageView
+                    android:scaleType="center"
+                    android:src="@mipmap/join_more"
+                    app:layout_constraintTop_toTopOf="@+id/name"
+                    app:layout_constraintBottom_toBottomOf="@+id/name"
+                    app:layout_constraintEnd_toEndOf="@+id/image"
+                    android:layout_width="@dimen/dimen30"
+                    android:layout_height="@dimen/dimen30"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

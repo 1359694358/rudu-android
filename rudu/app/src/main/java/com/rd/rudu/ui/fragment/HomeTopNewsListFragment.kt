@@ -10,6 +10,7 @@ import com.google.android.app.adapter.BaseViewHolder
 import com.google.android.app.widget.BaseFragment
 import com.rd.rudu.R
 import com.rd.rudu.databinding.AdapterTopnewsitem1Binding
+import com.rd.rudu.databinding.AdapterTopnewsitem2Binding
 import com.rd.rudu.databinding.FragmentHomeTopnewslistBinding
 
 //头条
@@ -35,4 +36,7 @@ class HomeTopNewsListFragment : BaseFragment<FragmentHomeTopnewslistBinding>() {
     {
 
     }
+
+     class NewsListItemStyle2Holder(context: Context,layoutId: Int=R.layout.adapter_topnewsitem2) :
+         BaseViewHolder<AdapterTopnewsitem2Binding>(context, layoutId)
 }
