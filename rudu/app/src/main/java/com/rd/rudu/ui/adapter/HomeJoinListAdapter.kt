@@ -20,6 +20,8 @@ import com.google.android.app.widget.LoopPager
 import com.google.android.app.widget.RoundBackgroundColorSpan
 import com.rd.rudu.R
 import com.rd.rudu.databinding.*
+import com.rd.rudu.ui.activity.JoinCompanyActivity
+import org.jetbrains.anko.startActivity
 
 interface HomeJoinItemType
 {
@@ -75,6 +77,11 @@ class CompanyItemHolder(layoutId: Int, context: Context) : BaseViewHolder<Adapte
     context,
     layoutId
 )
+{
+    init {
+        itemView.setOnClickListener { itemView.context.startActivity<JoinCompanyActivity>() }
+    }
+}
 
 class BannerViewHolder(layoutId: Int, context: Context) :
     BaseViewHolder<AdapterJoinBannerBinding>(context, layoutId), LoopPager.OnLooperPagerHandle {

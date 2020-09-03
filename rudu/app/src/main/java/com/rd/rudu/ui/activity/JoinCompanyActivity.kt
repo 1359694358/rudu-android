@@ -26,5 +26,8 @@ class JoinCompanyActivity: BaseActivity<ActivityJoincomanyBinding>() {
     {
         super.onCreate(savedInstanceState)
         toolbarBinding?.root?.setBackgroundColor(Color.TRANSPARENT)
+        toolbarBinding?.backBtn?.setImageResource(R.mipmap.icon_back_b)
+        toolbarBinding?.titleText?.setTextColor(Color.WHITE)
+        setTitle("招商加盟")
     }
 }

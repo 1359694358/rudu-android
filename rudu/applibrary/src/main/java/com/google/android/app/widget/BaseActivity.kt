@@ -51,12 +51,12 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
             }
             if(!getFitSystemWindow())
             {
-                toolbarBindingView.rootView.viewTreeObserver.addOnDrawListener {
-                    var lp=toolbarBindingView.rootView.layoutParams
+                toolbarBinding?.root?.viewTreeObserver?.addOnDrawListener {
+                    var lp=toolbarBinding?.root?.layoutParams
                     if(lp is ViewGroup.MarginLayoutParams)
                     {
                         lp.topMargin=StatusBarUtil.getStatusBarHeight(this)
-                        toolbarBindingView.requestLayout()
+                        toolbarBinding?.root?.requestLayout()
                     }
                 }
             }
