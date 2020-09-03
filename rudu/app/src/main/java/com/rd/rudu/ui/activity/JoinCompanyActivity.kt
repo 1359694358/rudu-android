@@ -3,6 +3,7 @@ package com.rd.rudu.ui.activity
 import android.graphics.Color
 import android.os.Bundle
 import com.google.android.app.utils.StatusBarUtil
+import com.google.android.app.utils.ViewUtils
 import com.google.android.app.widget.BaseActivity
 import com.rd.rudu.R
 import com.rd.rudu.databinding.ActivityJoincomanyBinding
@@ -31,7 +32,7 @@ class JoinCompanyActivity: BaseActivity<ActivityJoincomanyBinding>()
     {
         super.onCreate(savedInstanceState)
         toolbarBinding?.root?.setBackgroundColor(Color.TRANSPARENT)
-        toolbarBinding?.backBtn?.setImageResource(R.mipmap.icon_back_b)
+        toolbarBinding?.backBtn?.setImageDrawable(ViewUtils.setDrawableColor(this,Color.WHITE,R.mipmap.icon_back_b))
         toolbarBinding?.titleText?.setTextColor(Color.WHITE)
         setTitle("招商加盟")
 //        SoftHideKeyBoardUtil.assistActivity(this)

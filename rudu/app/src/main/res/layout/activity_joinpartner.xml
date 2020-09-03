@@ -110,6 +110,7 @@
                         android:textSize="@dimen/dimen12"
                         />
                     <EditText
+                        android:textCursorDrawable="@drawable/edit_cursor"
                         android:id="@+id/name"
                         android:paddingTop="@dimen/dimen14"
                         android:paddingBottom="@dimen/dimen10"
@@ -140,6 +141,7 @@
                         android:textSize="@dimen/dimen12"
                         />
                     <EditText
+                        android:textCursorDrawable="@drawable/edit_cursor"
                         android:id="@+id/type"
                         android:paddingTop="@dimen/dimen14"
                         android:paddingBottom="@dimen/dimen10"
@@ -169,6 +171,7 @@
                         android:textSize="@dimen/dimen12"
                         />
                     <EditText
+                        android:textCursorDrawable="@drawable/edit_cursor"
                         android:background="@android:color/white"
                         android:paddingTop="@dimen/dimen14"
                         android:paddingBottom="@dimen/dimen10"
@@ -198,6 +201,8 @@
                         android:textSize="@dimen/dimen12"
                         />
                     <EditText
+                        android:textCursorDrawable="@drawable/edit_cursor"
+                        
                         android:id="@+id/phone"
                         android:background="@android:color/white"
                         android:paddingTop="@dimen/dimen14"
