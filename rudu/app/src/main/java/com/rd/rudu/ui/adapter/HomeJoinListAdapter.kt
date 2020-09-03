@@ -20,6 +20,7 @@ import com.google.android.app.widget.LoopPager
 import com.google.android.app.widget.RoundBackgroundColorSpan
 import com.rd.rudu.R
 import com.rd.rudu.databinding.*
+import com.rd.rudu.ui.activity.JoinCityPartnerActivity
 import com.rd.rudu.ui.activity.JoinCompanyActivity
 import org.jetbrains.anko.startActivity
 
@@ -28,9 +29,9 @@ interface HomeJoinItemType
     fun getJoinItemType():Pair<Int,Int>
 }
 
-class HomeJoinItem(var joinType: Pair<Int,Int>):HomeJoinItemType
+class HomeJoinItem(var joinType: Pair<Int,Int>,var title:String?=""):HomeJoinItemType
 {
-
+    var imageResId:Int=0
     override fun getJoinItemType(): Pair<Int, Int> {
         return joinType
     }
@@ -39,15 +40,16 @@ class HomeJoinItem(var joinType: Pair<Int,Int>):HomeJoinItemType
 
 val JOIN_TYPE_BANNER=Pair(1,LayoutSpanCount)
 val JOIN_TYPE_IMAGE1=Pair(2,LayoutSpanCount)
-val JOIN_TYPE_IMAGE2=Pair(3,LayoutSpanCount)
-val JOIN_TYPE_INTRO=Pair(4,LayoutSpanCount)
-val JOIN_TYPE_ZHANHUI_HEADER=Pair(5,LayoutSpanCount)
-val JOIN_TYPE_ZHANHUI_ITEM=Pair(6,OnlyOneSpan)
-val JOIN_TYPE_BANGDANG=Pair(7,LayoutSpanCount)
-val JOIN_TYPE_HaoHuoTuiJianHeader=Pair(8,LayoutSpanCount)
-val JOIN_TYPE_HaoHuoTuiJianItem=Pair(9,LayoutSpanCount)
-val JOIN_TYPE_XinXianChangHeader=Pair(10,LayoutSpanCount)
-val JOIN_TYPE_XinXianChangItem=Pair(11,OnlyOneSpan)
+val JOIN_TYPE_JOINPARTNER=Pair(3,LayoutSpanCount)
+val JOIN_TYPE_INVITESHOP=Pair(4,LayoutSpanCount)
+val JOIN_TYPE_INTRO=Pair(5,LayoutSpanCount)
+val JOIN_TYPE_ZHANHUI_HEADER=Pair(6,LayoutSpanCount)
+val JOIN_TYPE_ZHANHUI_ITEM=Pair(7,OnlyOneSpan)
+val JOIN_TYPE_BANGDANG=Pair(8,LayoutSpanCount)
+val JOIN_TYPE_HaoHuoTuiJianHeader=Pair(9,LayoutSpanCount)
+val JOIN_TYPE_HaoHuoTuiJianItem=Pair(10,LayoutSpanCount)
+val JOIN_TYPE_XinXianChangHeader=Pair(11,LayoutSpanCount)
+val JOIN_TYPE_XinXianChangItem=Pair(12,OnlyOneSpan)
 
 
 fun buildJoinList():List<HomeJoinItemType>
@@ -55,8 +57,10 @@ fun buildJoinList():List<HomeJoinItemType>
     var list= mutableListOf<HomeJoinItemType>()
     list.add(HomeJoinItem(JOIN_TYPE_BANNER))
     list.add(HomeJoinItem(JOIN_TYPE_IMAGE1))
-    list.add(HomeJoinItem(JOIN_TYPE_IMAGE2))
-    list.add(HomeJoinItem(JOIN_TYPE_IMAGE2))
+    var partener=HomeJoinItem(JOIN_TYPE_JOINPARTNER,"城市合伙人加盟")
+    partener.imageResId=R.mipmap.city_partner_item
+    list.add(partener)
+    list.add(HomeJoinItem(JOIN_TYPE_INVITESHOP,"品牌招商入驻"))
     list.add(HomeJoinItem(JOIN_TYPE_INTRO))
     list.add(HomeJoinItem(JOIN_TYPE_ZHANHUI_HEADER))
     list.add(HomeJoinItem(JOIN_TYPE_ZHANHUI_ITEM))
@@ -144,8 +148,29 @@ class BannerViewHolder(layoutId: Int, context: Context) :
     }
 }
 
-class JoinImage2Holder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinImageBinding>(context, layoutId)
+class JoinPartnerHolder(layoutId: Int, context: Context) :
+    BaseViewHolder<AdapterJoinPartnerBinding>(context, layoutId)
+{
+    init {
+        itemView.setOnClickListener {
+            itemView.context.startActivity<JoinCityPartnerActivity>()
+        }
+    }
+    fun setData(data:HomeJoinItem)
+    {
+    }
+}
+
+class InviteShopHolder(context: Context) :
+    BaseViewHolder<AdapterJoinPartnerBinding>(context, R.layout.adapter_join_inviteshop)
+{
+    init {
+
+    }
+    fun setData(data:HomeJoinItem)
+    {
+    }
+}
 
 class JoinIntroHolder(layoutId: Int, context: Context) :
     BaseViewHolder<AdapterJoinIntroBinding>(context, layoutId)
@@ -233,8 +258,10 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
                 BannerViewHolder(R.layout.adapter_join_banner,context)
             JOIN_TYPE_IMAGE1.first->
                 CompanyItemHolder(R.layout.adapter_join_company,context)
-            JOIN_TYPE_IMAGE2.first->
-                JoinImage2Holder(R.layout.adapter_join_image,context)
+            JOIN_TYPE_JOINPARTNER.first->
+                JoinPartnerHolder(R.layout.adapter_join_partner,context)
+            JOIN_TYPE_INVITESHOP.first->
+                InviteShopHolder(context)
             JOIN_TYPE_INTRO.first->
                 JoinIntroHolder(R.layout.adapter_join_intro,context)
             JOIN_TYPE_ZHANHUI_HEADER.first,JOIN_TYPE_HaoHuoTuiJianHeader.first->
@@ -267,6 +294,10 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
                 {
                     holder.contentViewBinding.jianjie.text="好货推荐"
                 }
+            }
+            is JoinPartnerHolder->
+            {
+                holder.setData(getItemData(position))
             }
             is JoinBangDangHolder->
             {

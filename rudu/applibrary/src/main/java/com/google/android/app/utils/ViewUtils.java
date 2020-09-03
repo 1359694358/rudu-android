@@ -6,6 +6,7 @@ import android.content.ContextWrapper;
 import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringDef;
@@ -69,6 +70,22 @@ public class ViewUtils
         newDrawable.invalidateSelf();
         return (T) newDrawable;
     }
+
+    public static Drawable setDrawableColor(int color,Drawable drawable)
+    {
+        drawable.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        drawable.invalidateSelf();
+        return drawable;
+    }
+
+    public static Drawable setDrawableColor(Context context,int color,@DrawableRes int drawableRes)
+    {
+        Drawable drawable=ContextCompat.getDrawable(context,drawableRes);
+        drawable.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        drawable.invalidateSelf();
+        return drawable;
+    }
+
 
     public static <T extends Drawable> T tintDrawable(ColorStateList colorStateList, Drawable drawable) {
         Drawable newDrawable = DrawableCompat.wrap(drawable);

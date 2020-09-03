@@ -118,6 +118,13 @@ public abstract class BaseRecyclerAdapter <T> extends RecyclerView.Adapter imple
             return data.get(position);
         return null;
     }
+
+    public <Type> Type getItemData(int position) {
+        if (data != null && getItemCount() > 0 && position < getItemCount())
+            return (Type) data.get(position);
+        return null;
+    }
+
     @CallSuper
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position)
