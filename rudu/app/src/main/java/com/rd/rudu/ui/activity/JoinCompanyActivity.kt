@@ -2,6 +2,7 @@ package com.rd.rudu.ui.activity
 
 import android.graphics.Color
 import android.os.Bundle
+import com.google.android.app.utils.SoftHideKeyBoardUtil
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.widget.BaseActivity
 import com.rd.rudu.R
@@ -29,5 +30,6 @@ class JoinCompanyActivity: BaseActivity<ActivityJoincomanyBinding>() {
         toolbarBinding?.backBtn?.setImageResource(R.mipmap.icon_back_b)
         toolbarBinding?.titleText?.setTextColor(Color.WHITE)
         setTitle("招商加盟")
+        SoftHideKeyBoardUtil.assistActivity(this)
     }
 }
