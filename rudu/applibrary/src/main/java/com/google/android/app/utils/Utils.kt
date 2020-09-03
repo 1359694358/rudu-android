@@ -78,8 +78,12 @@ fun WebView.setWebSetting() {
 }
 
 
-fun saveAny(key:String, obj:Any)
+fun saveAny(key:String, obj:Any?)
 {
+    if(obj==null)
+    {
+        MMKV.defaultMMKV().remove(key)
+    }
     var bos= ByteArrayOutputStream()
     var oos= ObjectOutputStream(bos)
     oos.writeObject(obj)

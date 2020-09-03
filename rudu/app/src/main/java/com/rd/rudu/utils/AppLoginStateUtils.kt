@@ -9,7 +9,7 @@ import com.rd.rudu.net.AppApi
 import com.youzan.androidsdk.YouzanSDK
 
 
-fun saveAppToken(token:String)
+fun saveAppToken(token:String?)
 {
     saveAny(AppApi.Token,token)
 }

@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.utils.ToastUtil
 import com.google.android.app.utils.imageloader.ImageLoader
+import com.google.android.app.utils.logd
 import com.google.android.app.widget.BaseFragment
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType
@@ -36,6 +37,12 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         refreshUserInfo()
+        userViewModel.loginObserver.observe(this, Observer {
+            if(it?.yes()==true) {
+                logd("登录成功")
+                refreshUserInfo()
+            }
+        })
         userViewModel.changeAvatarObserver.observe(this, Observer {
             loadingDialog?.dismiss()
             if(it?.yes()==true)
@@ -94,9 +101,6 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
     fun refreshUserInfo()
     {
         var loginResult=LoginResultBean.LoginResult.getLoginResult()

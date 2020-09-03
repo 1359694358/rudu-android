@@ -56,11 +56,11 @@ class UserViewModel: ViewModel()
                         loginObserver.postValue(it)
                         return@subscribe
                     }
-                    if(it.yes()&&it.data?.user?.yzLoginResponse?.yes()==true)
+                    if(it.yes()&&it.data?.yzLoginResponse?.yes()==true)
                     {
                         loginObserver.postValue(it)
-                        if(it.data?.user?.yzLoginResponse?.data!=null)
-                            youzanTokenObserver.postValue(it.data?.user?.yzLoginResponse)
+                        if(it.data?.yzLoginResponse?.data!=null)
+                            youzanTokenObserver.postValue(it.data?.yzLoginResponse)
                     }
                     else
                     {

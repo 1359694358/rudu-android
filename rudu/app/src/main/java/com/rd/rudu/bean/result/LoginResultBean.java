@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import com.google.android.app.utils.UtilsKt;
 import com.rd.rudu.bean.result.YouZanTokenBean;
 
-public class LoginResultBean extends BaseResultBean<LoginResultBean.LoginUserDataWrapper> {
+public class LoginResultBean extends BaseResultBean<LoginResultBean.LoginResult> {
 
     //    "id": 3,
 //        "userId": null,
@@ -130,4 +130,6 @@ public class LoginResultBean extends BaseResultBean<LoginResultBean.LoginUserDat
         public String token;
         public LoginResult user;
     }
+
+    public String token;
 }

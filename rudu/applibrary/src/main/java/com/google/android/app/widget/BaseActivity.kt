@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Process
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import androidx.annotation.CallSuper
@@ -47,6 +48,17 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
             toolbarBinding=DataBindingUtil.findBinding(toolbarBindingView)
             toolbarBinding?.backBtn?.setOnClickListener {
                 backHandle()
+            }
+            if(!getFitSystemWindow())
+            {
+                toolbarBindingView.rootView.viewTreeObserver.addOnDrawListener {
+                    var lp=toolbarBindingView.rootView.layoutParams
+                    if(lp is ViewGroup.MarginLayoutParams)
+                    {
+                        lp.topMargin=StatusBarUtil.getStatusBarHeight(this)
+                        toolbarBindingView.requestLayout()
+                    }
+                }
             }
         }
     }

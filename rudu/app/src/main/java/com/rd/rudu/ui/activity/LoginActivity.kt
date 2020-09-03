@@ -117,8 +117,8 @@ class LoginActivity: BaseActivity<ActivityLoginlayoutBinding>()
                 else
                 {
                     logd("登录成功")
-                    LoginResultBean.LoginResult.setLoginResult(it.data.user)
-                    saveAppToken(it.data.token)
+                    LoginResultBean.LoginResult.setLoginResult(it.data)
+                    saveAppToken(it.token)
                     finish()
                 }
             }

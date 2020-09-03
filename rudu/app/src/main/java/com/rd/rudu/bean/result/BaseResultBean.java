@@ -7,6 +7,6 @@ public class BaseResultBean<T> {
     public T data;
 
     public boolean yes() {
-        return code>=0;
+        return code==0;
     }
 }
