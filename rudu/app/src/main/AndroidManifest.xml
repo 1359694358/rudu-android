@@ -97,7 +97,7 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".ui.activity.JoinCompanyActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustPan"
             android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
             android:screenOrientation="portrait"/>
     </application>
