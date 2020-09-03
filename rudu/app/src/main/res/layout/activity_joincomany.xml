@@ -299,8 +299,8 @@
                         android:textSize="@dimen/dimen12"
                         />
                     <TextView
-                        app:layout_constraintTop_toBottomOf="@+id/sexChoose"
-                        android:layout_marginTop="@dimen/dimen16"
+                        app:layout_constraintTop_toTopOf="@+id/joinPhone"
+                        app:layout_constraintBottom_toBottomOf="@+id/joinPhone"
                         android:layout_marginEnd="@dimen/dimen47"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_width="wrap_content"
