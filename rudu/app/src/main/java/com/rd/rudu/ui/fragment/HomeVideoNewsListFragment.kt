@@ -36,5 +36,5 @@ class HomeVideoNewsListFragment : BaseFragment<FragmentHomeVideonewslistBinding>
     }
 
     class VideoListItemStyleHolder(context: Context,layoutId: Int=R.layout.adapter_topvideoitem) :
-        BaseViewHolder<AdapterTopvideoitemBinding>(context, layoutId)
+        BaseViewHolder<AdapterTopvideoitemBinding>(context, layoutId,true)
 }

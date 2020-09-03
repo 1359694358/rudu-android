@@ -37,11 +37,11 @@ class HomeTopNewsListFragment : BaseFragment<FragmentHomeTopnewslistBinding>() {
     }
 
     class NewsListItemStyle1Holder(context: Context,layoutId: Int=R.layout.adapter_topnewsitem1) :
-        BaseViewHolder<AdapterTopnewsitem1Binding>(context, layoutId)
+        BaseViewHolder<AdapterTopnewsitem1Binding>(context, layoutId,true)
     {
 
     }
 
      class NewsListItemStyle2Holder(context: Context,layoutId: Int=R.layout.adapter_topnewsitem2) :
-         BaseViewHolder<AdapterTopnewsitem2Binding>(context, layoutId)
+         BaseViewHolder<AdapterTopnewsitem2Binding>(context, layoutId,true)
 }

@@ -107,7 +107,6 @@
         <androidx.cardview.widget.CardView
             android:layout_marginStart="@dimen/dimen12"
             app:cardCornerRadius="@dimen/dimen5"
-            android:visibility=""
             app:layout_constraintDimensionRatio="h,86:72"
             android:id="@+id/imageContainer3"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
