@@ -184,9 +184,9 @@
                             app:layout_constraintTop_toTopOf="parent"
                             android:src="@mipmap/zhaoshangruzhu_tr"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintWidth_percent="0.48"
-                            app:layout_constraintDimensionRatio="h,158:87"
+                            app:layout_constraintWidth_percent="0.47"
                             android:layout_width="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             android:layout_height="0dp"/>
                         <TextView
                             android:id="@+id/tishengbaoguang"
@@ -195,22 +195,25 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             android:layout_width="0dp"
-                            app:layout_constraintWidth_percent="0.52"
+                            app:layout_constraintWidth_percent="0.53"
                             android:layout_height="wrap_content"
                             android:text="提升曝光"
                             android:textColor="#ff343434"
                             android:textSize="@dimen/dimen14"
                             />
                         <TextView
+                            android:layout_marginEnd="@dimen/dimen34"
                             app:layout_constraintTop_toBottomOf="@+id/tishengbaoguang"
-                            android:padding="@dimen/dimen15"
+                            android:paddingStart="@dimen/dimen15"
+                            android:paddingTop="@dimen/dimen15"
+                            android:paddingBottom="@dimen/dimen15"
                             app:layout_constraintStart_toStartOf="parent"
                             android:layout_width="0dp"
-                            app:layout_constraintWidth_percent="0.5"
+                            app:layout_constraintEnd_toEndOf="@+id/tishengbaoguang"
                             android:layout_height="wrap_content"
                             android:text="多平台流量引入，多维度曝光，引流快人一步"
                             android:textColor="#9A9A9A"
-                            android:textSize="@dimen/dimen14"
+                            android:textSize="@dimen/dimen12"
                             />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
@@ -227,11 +230,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ImageView
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             android:src="@mipmap/zhaoshangruzhu_tl"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintWidth_percent="0.48"
-                            app:layout_constraintDimensionRatio="h,158:87"
+                            app:layout_constraintWidth_percent="0.47"
                             android:layout_width="0dp"
                             android:scaleType="fitXY"
                             android:adjustViewBounds="true"
@@ -244,7 +247,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             android:layout_width="0dp"
-                            app:layout_constraintWidth_percent="0.52"
+                            app:layout_constraintWidth_percent="0.53"
                             android:layout_height="wrap_content"
                             android:text="双向共赢"
                             android:textColor="#ff343434"
@@ -252,15 +255,18 @@
                             />
                         <TextView
                             app:layout_constraintTop_toBottomOf="@+id/shuangxianggongying"
-                            android:padding="@dimen/dimen15"
+                            android:paddingEnd="@dimen/dimen15"
+                            android:paddingTop="@dimen/dimen15"
+                            android:paddingBottom="@dimen/dimen15"
                             android:gravity="end"
                             app:layout_constraintEnd_toEndOf="parent"
                             android:layout_width="0dp"
-                            app:layout_constraintWidth_percent="0.5"
+                            android:layout_marginStart="@dimen/dimen34"
+                            app:layout_constraintStart_toStartOf="@+id/shuangxianggongying"
                             android:layout_height="wrap_content"
                             android:text="多平台流量引入，多维度 曝光，引流快人一步"
                             android:textColor="#9A9A9A"
-                            android:textSize="@dimen/dimen14"
+                            android:textSize="@dimen/dimen12"
                             />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
