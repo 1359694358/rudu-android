@@ -105,6 +105,11 @@
             android:windowSoftInputMode="adjustPan"
             android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.activity.JoinBrandActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -20,6 +20,7 @@ import com.google.android.app.widget.LoopPager
 import com.google.android.app.widget.RoundBackgroundColorSpan
 import com.rd.rudu.R
 import com.rd.rudu.databinding.*
+import com.rd.rudu.ui.activity.JoinBrandActivity
 import com.rd.rudu.ui.activity.JoinCityPartnerActivity
 import com.rd.rudu.ui.activity.JoinCompanyActivity
 import org.jetbrains.anko.startActivity
@@ -165,7 +166,9 @@ class InviteShopHolder(context: Context) :
     BaseViewHolder<AdapterJoinPartnerBinding>(context, R.layout.adapter_join_inviteshop)
 {
     init {
-
+        itemView.setOnClickListener {
+            itemView.context.startActivity<JoinBrandActivity>()
+        }
     }
     fun setData(data:HomeJoinItem)
     {

@@ -1,6 +1,5 @@
 package com.rd.rudu.ui.adapter
 
-import android.graphics.Canvas
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
