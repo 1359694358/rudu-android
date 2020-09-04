@@ -58,6 +58,8 @@
 
                 <ImageView
                     android:id="@+id/icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="@dimen/dimen10"
                     android:layout_marginStart="@dimen/dimen10"
                     android:layout_marginTop="@dimen/dimen8"
                     android:src="@mipmap/xiaotouxiang_icon"

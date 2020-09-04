@@ -11,9 +11,11 @@ import com.google.android.app.widget.BaseFragment
 import com.rd.rudu.R
 import com.rd.rudu.databinding.AdapterTopvideoitemBinding
 import com.rd.rudu.databinding.FragmentHomeVideonewslistBinding
+import com.rd.rudu.ui.adapter.NewsListItemDecoration
 
 //头条
-class HomeVideoNewsListFragment : BaseFragment<FragmentHomeVideonewslistBinding>() {
+class HomeVideoNewsListFragment : BaseFragment<FragmentHomeVideonewslistBinding>()
+{
     val adapter:HomeVideoNewsListAdapter by lazy { HomeVideoNewsListAdapter(requireActivity()) }
     override fun getLayoutResId(): Int
     {
@@ -23,6 +25,7 @@ class HomeVideoNewsListFragment : BaseFragment<FragmentHomeVideonewslistBinding>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         contentBinding.recyclerView.adapter=adapter
+        contentBinding.recyclerView.addItemDecoration(NewsListItemDecoration())
         adapter.add("1")
         adapter.add("1")
         adapter.add("1")
@@ -30,11 +33,13 @@ class HomeVideoNewsListFragment : BaseFragment<FragmentHomeVideonewslistBinding>
     }
 }
 
- class HomeVideoNewsListAdapter(context: Context) : BaseRecyclerAdapter<String>(context) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+class HomeVideoNewsListAdapter(context: Context) : BaseRecyclerAdapter<String>(context)
+{
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
+    {
         return VideoListItemStyleHolder(context)
     }
 
     class VideoListItemStyleHolder(context: Context,layoutId: Int=R.layout.adapter_topvideoitem) :
-        BaseViewHolder<AdapterTopvideoitemBinding>(context, layoutId,true)
+            BaseViewHolder<AdapterTopvideoitemBinding>(context, layoutId,true)
 }

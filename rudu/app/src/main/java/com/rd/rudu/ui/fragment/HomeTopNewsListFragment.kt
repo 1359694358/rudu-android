@@ -12,18 +12,22 @@ import com.rd.rudu.R
 import com.rd.rudu.databinding.AdapterTopnewsitem1Binding
 import com.rd.rudu.databinding.AdapterTopnewsitem2Binding
 import com.rd.rudu.databinding.FragmentHomeTopnewslistBinding
+import com.rd.rudu.ui.adapter.NewsListItemDecoration
 
 //头条
-class HomeTopNewsListFragment : BaseFragment<FragmentHomeTopnewslistBinding>() {
+class HomeTopNewsListFragment : BaseFragment<FragmentHomeTopnewslistBinding>()
+{
     val adapter:HomeTopNewsListAdapter by lazy { HomeTopNewsListAdapter(requireActivity()) }
     override fun getLayoutResId(): Int
     {
         return R.layout.fragment_home_topnewslist
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
         super.onViewCreated(view, savedInstanceState)
         contentBinding.recyclerView.adapter=adapter
+        contentBinding.recyclerView.addItemDecoration(NewsListItemDecoration())
         adapter.add("1")
         adapter.add("1")
         adapter.add("1")
@@ -31,8 +35,10 @@ class HomeTopNewsListFragment : BaseFragment<FragmentHomeTopnewslistBinding>() {
     }
 }
 
- class HomeTopNewsListAdapter(context: Context) : BaseRecyclerAdapter<String>(context) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+ class HomeTopNewsListAdapter(context: Context) : BaseRecyclerAdapter<String>(context)
+ {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
+    {
         return NewsListItemStyle1Holder(context)
     }
 
