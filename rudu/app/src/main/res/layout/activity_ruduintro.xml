@@ -260,8 +260,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="联系我们"
+                        android:textStyle="bold"
                         android:textColor="#343434"
-                        android:textSize="@dimen/dimen14" />
+                        android:textSize="@dimen/dimen13" />
 
                     <View
                         android:id="@+id/line4"
