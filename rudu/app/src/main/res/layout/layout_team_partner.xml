@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingEnd="@dimen/dimen10"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/rudu_team_partener"
+            android:id="@+id/userLogo"
+            android:layout_width="0dp"
+            app:layout_constraintDimensionRatio="w,86:125"
+            android:layout_height="match_parent"/>
+        <LinearLayout
+            android:background="#80047BE4"
+            app:layout_constraintBottom_toBottomOf="@+id/userLogo"
+            app:layout_constraintStart_toStartOf="@+id/userLogo"
+            app:layout_constraintEnd_toEndOf="@+id/userLogo"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <TextView
+                app:layout_constraintBottom_toTopOf="@+id/userName"
+                android:paddingTop="@dimen/dimen5"
+                android:paddingStart="@dimen/dimen5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="市场部经理"
+                android:textColor="#ffffffff"
+                android:textSize="12sp"
+                />
+            <TextView
+                android:paddingTop="@dimen/dimen3"
+                android:paddingStart="@dimen/dimen5"
+                android:paddingBottom="@dimen/dimen5"
+                android:id="@+id/userName"
+                app:layout_constraintStart_toStartOf="@+id/userLogo"
+                app:layout_constraintEnd_toEndOf="@+id/userLogo"
+                app:layout_constraintBottom_toBottomOf="@+id/userLogo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="陈洪思"
+                android:textColor="#ffffffff"
+                android:textSize="10sp"
+                />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

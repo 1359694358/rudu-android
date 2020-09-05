@@ -20,10 +20,7 @@ import com.google.android.app.widget.LoopPager
 import com.google.android.app.widget.RoundBackgroundColorSpan
 import com.rd.rudu.R
 import com.rd.rudu.databinding.*
-import com.rd.rudu.ui.activity.ExhibitionInfoActivity
-import com.rd.rudu.ui.activity.JoinBrandActivity
-import com.rd.rudu.ui.activity.JoinCityPartnerActivity
-import com.rd.rudu.ui.activity.JoinCompanyActivity
+import com.rd.rudu.ui.activity.*
 import org.jetbrains.anko.startActivity
 
 interface HomeJoinItemType
@@ -178,7 +175,13 @@ class InviteShopHolder(context: Context) :
 
 class JoinIntroHolder(layoutId: Int, context: Context) :
     BaseViewHolder<AdapterJoinIntroBinding>(context, layoutId)
-
+{
+    init {
+        itemView.setOnClickListener {
+            it.context.startActivity<RuduIntroActivity>()
+        }
+    }
+}
 class JoinZhanHuiHeaderHolder(layoutId: Int, context: Context) :
     BaseViewHolder<AdapterJoinGridHeaderBinding>(context, layoutId)
 
