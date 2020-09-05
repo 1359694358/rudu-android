@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginStart="@dimen/dimen15"
+            android:paddingBottom="@dimen/dimen15"
+            android:layout_marginEnd="@dimen/dimen15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/order_rectbg"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dimen14"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/mingxingdangping"
+                android:layout_marginStart="@dimen/dimen9"
+                android:layout_marginTop="@dimen/dimen13"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="明星单品"
+                android:textColor="#343434"
+                android:textSize="@dimen/dimen14" />
+
+            <View
+                android:id="@+id/line3"
+                android:layout_margin="@dimen/dimen9"
+                app:layout_constraintTop_toBottomOf="@+id/mingxingdangping"
+                app:layout_constraintStart_toStartOf="@+id/mingxingdangping"
+                android:background="#E6E6E6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen1" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/shafa"
+                android:paddingStart="@dimen/dimen10"
+                app:layout_constraintTop_toBottomOf="@+id/line3"
+                android:layout_marginTop="@dimen/dimen10"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@mipmap/shafa_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent="0.52"
+                    android:layout_width="0dp"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="0dp"
+                    app:layout_constraintWidth_percent="0.48"
+                    android:layout_marginTop="@dimen/dimen20"
+                    android:id="@+id/shafa01"
+                    android:paddingStart="@dimen/dimen20"
+                    android:layout_height="wrap_content"
+                    android:text="01"
+                    android:textColor="#ff9a9a9a"
+                    android:textSize="@dimen/dimen12"
+                    />
+                <TextView
+                    android:id="@+id/shafa02"
+                    android:paddingStart="@dimen/dimen20"
+                    android:paddingEnd="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen19"
+                    app:layout_constraintTop_toBottomOf="@+id/shafa01"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="0dp"
+                    app:layout_constraintWidth_percent="0.48"
+                    android:layout_height="wrap_content"
+                    android:text="真皮沙发"
+                    android:textColor="#ff343434"
+                    android:textSize="@dimen/dimen12" />
+
+                <TextView
+                    app:layout_constraintTop_toBottomOf="@+id/shafa02"
+                    android:paddingEnd="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen10"
+                    android:paddingBottom="@dimen/dimen15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/dimen20"
+                    app:layout_constraintStart_toStartOf="@+id/shafa02"
+                    android:layout_height="wrap_content"
+                    android:text="Simple space needs delicate and unique decoration"
+                    android:textColor="#9A9A9A"
+                    android:textSize="@dimen/dimen6" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/chuan"
+                android:paddingStart="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen10"
+                app:layout_constraintTop_toBottomOf="@+id/shafa"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@mipmap/shuangrenchuanicon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_percent="0.52"
+                    android:layout_width="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/chuan01"
+                    android:paddingStart="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen20"
+                    android:paddingEnd="@dimen/dimen20"
+                    android:gravity="end"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="0dp"
+                    app:layout_constraintWidth_percent="0.48"
+                    android:layout_height="wrap_content"
+                    android:text="02"
+                    android:textColor="#ff9a9a9a"
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:id="@+id/chuan02"
+                    android:gravity="end"
+                    android:paddingEnd="@dimen/dimen20"
+                    android:paddingStart="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen19"
+                    app:layout_constraintTop_toBottomOf="@+id/chuan01"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="0dp"
+                    app:layout_constraintWidth_percent="0.48"
+                    android:layout_height="wrap_content"
+                    android:text="实木双人床"
+                    android:textColor="#ff343434"
+                    android:textSize="@dimen/dimen12" />
+
+                <TextView
+                    android:gravity="end"
+                    android:layout_marginEnd="@dimen/dimen20"
+                    app:layout_constraintTop_toBottomOf="@+id/chuan02"
+                    android:paddingStart="@dimen/dimen37"
+                    android:paddingTop="@dimen/dimen10"
+                    android:paddingBottom="@dimen/dimen15"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="0dp"
+                    app:layout_constraintEnd_toEndOf="@+id/chuan02"
+                    android:layout_height="wrap_content"
+                    android:text="Simple space needs delicate and unique decoration"
+                    android:textColor="#9A9A9A"
+                    android:textSize="@dimen/dimen6" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintTop_toBottomOf="@+id/chuan"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:paddingStart="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen10"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@mipmap/canzhuoyiicon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent="0.52"
+                    android:layout_width="0dp"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/zhuoyi01"
+                    android:padding="@dimen/dimen20"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="03"
+                    app:layout_constraintWidth_percent="0.48"
+                    android:textColor="#ff9a9a9a"
+                    android:textSize="@dimen/dimen12"
+                    />
+
+                <TextView
+                    android:id="@+id/zhuoyi02"
+                    android:paddingEnd="@dimen/dimen15"
+                    android:paddingStart="@dimen/dimen20"
+                    app:layout_constraintTop_toBottomOf="@+id/zhuoyi01"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="0dp"
+                    app:layout_constraintWidth_percent="0.48"
+                    android:layout_height="wrap_content"
+                    android:text="餐桌椅"
+                    android:textColor="#ff343434"
+                    android:textSize="@dimen/dimen12" />
+
+                <TextView
+                    app:layout_constraintTop_toBottomOf="@+id/zhuoyi02"
+                    android:paddingEnd="@dimen/dimen29"
+                    android:paddingTop="@dimen/dimen10"
+                    android:paddingBottom="@dimen/dimen15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/dimen20"
+                    app:layout_constraintStart_toStartOf="@+id/zhuoyi02"
+                    android:layout_height="wrap_content"
+                    android:text="Simple space needs delicate and unique decoration"
+                    android:textColor="#9A9A9A"
+                    android:textSize="@dimen/dimen6" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

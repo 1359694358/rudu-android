@@ -59,4 +59,8 @@
     <dimen name="dimen25">25dp</dimen>
     <dimen name="dimen77">77dp</dimen>
     <dimen name="dimen34">34dp</dimen>
+    <dimen name="dimen106">106dp</dimen>
+    <dimen name="dimen168">168dp</dimen>
+    <dimen name="dimen37">37dp</dimen>
+    <dimen name="dimen36">36dp</dimen>
 </resources>

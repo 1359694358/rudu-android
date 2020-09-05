@@ -20,6 +20,7 @@ import com.google.android.app.widget.LoopPager
 import com.google.android.app.widget.RoundBackgroundColorSpan
 import com.rd.rudu.R
 import com.rd.rudu.databinding.*
+import com.rd.rudu.ui.activity.ExhibitionInfoActivity
 import com.rd.rudu.ui.activity.JoinBrandActivity
 import com.rd.rudu.ui.activity.JoinCityPartnerActivity
 import com.rd.rudu.ui.activity.JoinCompanyActivity
@@ -183,7 +184,14 @@ class JoinZhanHuiHeaderHolder(layoutId: Int, context: Context) :
 
 class JoinZhanHuiItemHolder(layoutId: Int, context: Context) :
     BaseViewHolder<AdapterJoinGridItemBinding>(context, layoutId)
-
+{
+    init
+    {
+        itemView.setOnClickListener {
+            it.context.startActivity<ExhibitionInfoActivity>()
+        }
+    }
+}
 class JoinBangDangHolder(layoutId: Int, context: Context) :
     BaseViewHolder<AdapterJoinBangdangBinding>(context, layoutId)
 {

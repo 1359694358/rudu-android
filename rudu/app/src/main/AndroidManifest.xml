@@ -110,6 +110,11 @@
             android:windowSoftInputMode="adjustPan"
             android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.activity.ExhibitionInfoActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
