@@ -101,13 +101,14 @@
                     <TextView
                         android:includeFontPadding="false"
                         android:id="@+id/teamTitle"
+                        android:textStyle="bold"
                         android:layout_marginStart="@dimen/dimen10"
                         android:layout_marginTop="@dimen/dimen19"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="招商加盟"
+                        android:text="精英团队"
                         android:textColor="#ff343434"
                         android:textSize="@dimen/dimen14"
                         />
@@ -130,7 +131,6 @@
                         android:layout_width="0dp"
                         android:layout_marginTop="@dimen/dimen9"
                         android:layout_height="@dimen/dimen125"
-                        android:text="城市合伙人是誉都商城的合作方式，为广大的装企会员提供更多的增值服务。如果您有兴趣，请填写以下信息，期待您的加入！"
                         android:textColor="#ff9a9a9a"
                         android:textSize="@dimen/dimen12"
                         >
@@ -144,6 +144,145 @@
                             <include layout="@layout/layout_team_partner"/>
                         </LinearLayout>
                     </HorizontalScrollView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dimen9"
+                    android:layout_marginStart="@dimen/dimen14"
+                    android:layout_marginEnd="@dimen/dimen14"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
+                        android:src="@mipmap/jiameng_detail_itembg"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintDimensionRatio="h,320:191"
+                        android:layout_width="match_parent"
+                        app:layout_constraintBottom_toBottomOf="@+id/teamSummary"
+                        android:layout_height="0dp"/>
+                    <TextView
+                        android:includeFontPadding="false"
+                        android:id="@+id/youshi"
+                        android:textStyle="bold"
+                        android:layout_marginStart="@dimen/dimen10"
+                        android:layout_marginTop="@dimen/dimen19"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="公司优势"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/dimen13"
+                        />
+                    <View
+                        android:id="@+id/youshiLine"
+                        android:background="#DCDCDC"
+                        android:layout_marginEnd="@dimen/dimen10"
+                        android:layout_marginTop="@dimen/dimen9"
+                        app:layout_constraintTop_toBottomOf="@+id/youshi"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/youshi"
+                        android:layout_width="0dp"
+                        android:layout_height="1px"/>
+                    <TextView
+                        android:includeFontPadding="false"
+                        app:layout_constraintStart_toStartOf="@+id/youshi"
+                        app:layout_constraintTop_toBottomOf="@+id/youshiLine"
+                        android:layout_marginTop="@dimen/dimen15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我们的服务"
+                        android:id="@+id/ourService"
+                        android:textColor="#222222"
+                        android:textSize="@dimen/dimen12"
+                        />
+                    <TextView
+                        android:id="@+id/serviceSummary"
+                        android:includeFontPadding="false"
+                        app:layout_constraintTop_toBottomOf="@+id/ourService"
+                        app:layout_constraintStart_toStartOf="@+id/youshiLine"
+                        app:layout_constraintEnd_toEndOf="@+id/youshiLine"
+                        android:layout_width="0dp"
+                        android:layout_marginTop="@dimen/dimen9"
+                        android:layout_height="wrap_content"
+                        android:text="针对客户的需求，誉都提供从专业的方案深化，创意和可行性的方案整合，全方位一体化的完美服务。"
+                        android:textColor="#999999"
+                        android:textSize="@dimen/dimen12"
+                        />
+
+                    <TextView
+                        android:includeFontPadding="false"
+                        app:layout_constraintStart_toStartOf="@+id/youshi"
+                        app:layout_constraintTop_toBottomOf="@+id/serviceSummary"
+                        android:layout_marginTop="@dimen/dimen13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我们的团队"
+                        android:id="@+id/ourTeam"
+                        android:textColor="#222222"
+                        android:textSize="@dimen/dimen12"
+                        />
+                    <TextView
+                        android:id="@+id/teamSummary"
+                        android:includeFontPadding="false"
+                        android:paddingBottom="@dimen/dimen20"
+                        app:layout_constraintTop_toBottomOf="@+id/ourTeam"
+                        app:layout_constraintStart_toStartOf="@+id/youshiLine"
+                        app:layout_constraintEnd_toEndOf="@+id/youshiLine"
+                        android:layout_width="0dp"
+                        android:layout_marginTop="@dimen/dimen9"
+                        android:layout_height="wrap_content"
+                        android:text="选择誉都，选择我们拥有多年的行业经验和专业水准的团队，全力为您的项目提供合理的成本控制和成熟的项目管理，严格的质量把控和完善的售后保障。"
+                        android:textColor="#999999"
+                        android:textSize="@dimen/dimen12"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <include layout="@layout/layout_mainproduct"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_marginStart="@dimen/dimen15"
+                    android:paddingBottom="@dimen/dimen15"
+                    android:layout_marginEnd="@dimen/dimen15"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/order_rectbg"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dimen14"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/contractus"
+                        android:layout_marginStart="@dimen/dimen9"
+                        android:layout_marginTop="@dimen/dimen13"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="联系我们"
+                        android:textColor="#343434"
+                        android:textSize="@dimen/dimen14" />
+
+                    <View
+                        android:id="@+id/line4"
+                        android:layout_margin="@dimen/dimen9"
+                        app:layout_constraintTop_toBottomOf="@+id/contractus"
+                        app:layout_constraintStart_toStartOf="@+id/contractus"
+                        android:background="#E6E6E6"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen1" />
+                    <TextView
+                        android:id="@+id/contractInfo"
+                        app:layout_constraintStart_toStartOf="@+id/line4"
+                        app:layout_constraintEnd_toEndOf="@+id/line4"
+                        app:layout_constraintTop_toBottomOf="@+id/line4"
+                        android:layout_marginTop="@dimen/dimen15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="联系电话：1866666666"
+                        android:textColor="#ff9a9a9a"
+                        android:textSize="@dimen/dimen12"
+                        />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </ScrollView>

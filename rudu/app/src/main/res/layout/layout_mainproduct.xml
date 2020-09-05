@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginStart="@dimen/dimen15"
+            android:layout_marginEnd="@dimen/dimen15"
+            android:paddingBottom="@dimen/dimen16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/order_rectbg"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dimen14"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/zhanhuititle"
+                android:layout_marginStart="@dimen/dimen9"
+                android:layout_marginTop="@dimen/dimen13"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="主打产品"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:textSize="@dimen/dimen13" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_margin="@dimen/dimen9"
+                app:layout_constraintTop_toBottomOf="@+id/zhanhuititle"
+                app:layout_constraintStart_toStartOf="@+id/zhanhuititle"
+                android:background="#E6E6E6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen1" />
+
+            <ImageView
+                android:layout_marginStart="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen10"
+                android:src="@mipmap/zhanhuijiajuicon"
+                android:id="@+id/image1"
+                app:layout_constraintEnd_toStartOf="@+id/image2"
+                app:layout_constraintDimensionRatio="h,149:96"
+                app:layout_constraintTop_toBottomOf="@+id/line2"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+
+            <TextView
+                android:id="@+id/title1"
+                app:layout_constraintTop_toBottomOf="@+id/image1"
+                android:layout_marginTop="@dimen/dimen7"
+                android:paddingBottom="@dimen/dimen7"
+                app:layout_constraintStart_toStartOf="@+id/image1"
+                app:layout_constraintEnd_toStartOf="@+id/price1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="现代实木妆台组合"
+                android:textColor="#999999"
+                android:textSize="@dimen/dimen12" />
+
+            <TextView
+                android:id="@+id/price1"
+                app:layout_constraintTop_toTopOf="@+id/title1"
+                app:layout_constraintEnd_toEndOf="@+id/image1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥1299"
+                android:textColor="#ffff251a"
+                android:textSize="@dimen/dimen10"
+                />
+
+            <ImageView
+                android:layout_marginEnd="@dimen/dimen10"
+                android:layout_marginStart="@dimen/dimen14"
+                android:src="@mipmap/zhanhuicizhuanicon"
+                android:id="@+id/image2"
+                app:layout_constraintStart_toEndOf="@+id/image1"
+                app:layout_constraintDimensionRatio="h,149:96"
+                app:layout_constraintTop_toTopOf="@+id/image1"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+
+            <TextView
+                app:layout_constraintTop_toBottomOf="@+id/image2"
+                android:layout_marginTop="@dimen/dimen7"
+                android:paddingBottom="@dimen/dimen7"
+                android:id="@+id/title2"
+                app:layout_constraintStart_toStartOf="@+id/image2"
+                app:layout_constraintEnd_toStartOf="@+id/price2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="北欧风真皮双人床"
+                android:textColor="#999999"
+                android:textSize="@dimen/dimen12" />
+
+
+            <TextView
+                android:id="@+id/price2"
+                app:layout_constraintTop_toTopOf="@+id/title2"
+                app:layout_constraintEnd_toEndOf="@+id/image2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥1299"
+                android:textColor="#ffff251a"
+                android:textSize="@dimen/dimen10"
+                />
+
+            <ImageView
+                android:layout_marginStart="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen10"
+                android:src="@mipmap/zhanhuiweiyuicon"
+                android:id="@+id/image3"
+                app:layout_constraintEnd_toStartOf="@+id/image4"
+                app:layout_constraintDimensionRatio="h,149:96"
+                app:layout_constraintTop_toBottomOf="@+id/title1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen7"
+                android:paddingBottom="@dimen/dimen7"
+                android:text="现代实木餐桌组合"
+                android:textColor="#999999"
+                android:id="@+id/title3"
+                android:textSize="@dimen/dimen12"
+                app:layout_constraintEnd_toStartOf="@+id/price3"
+                app:layout_constraintStart_toStartOf="@+id/image3"
+                app:layout_constraintTop_toBottomOf="@+id/image3" />
+
+            <TextView
+                android:id="@+id/price3"
+                app:layout_constraintTop_toTopOf="@+id/title3"
+                app:layout_constraintEnd_toEndOf="@+id/image3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥1299"
+                android:textColor="#ffff251a"
+                android:textSize="@dimen/dimen10"
+                />
+
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dimen14"
+                android:layout_marginEnd="@dimen/dimen10"
+                android:src="@mipmap/zhanhuidengjuicon"
+                app:layout_constraintDimensionRatio="h,149:96"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image3"
+                app:layout_constraintTop_toTopOf="@+id/image3" />
+
+            <TextView
+                android:id="@+id/title4"
+                app:layout_constraintTop_toBottomOf="@+id/image4"
+                android:layout_marginTop="@dimen/dimen7"
+                android:paddingBottom="@dimen/dimen7"
+                app:layout_constraintStart_toStartOf="@+id/image4"
+                app:layout_constraintEnd_toStartOf="@+id/price4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="#999999"
+                android:textColor="#999999"
+                android:textSize="@dimen/dimen12" />
+            <TextView
+                android:id="@+id/price4"
+                app:layout_constraintTop_toTopOf="@+id/title4"
+                app:layout_constraintEnd_toEndOf="@+id/image4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥1299"
+                android:textColor="#ffff251a"
+                android:textSize="@dimen/dimen10"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

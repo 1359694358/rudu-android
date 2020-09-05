@@ -176,35 +176,6 @@
                         android:textSize="@dimen/dimen12"
                         />
 
-                    <TextView
-                        app:layout_constraintBottom_toBottomOf="@+id/zhanhuijiaju"
-                        android:gravity="center"
-                        android:background="#4C000000"
-                        android:paddingTop="@dimen/dimen7"
-                        android:paddingBottom="@dimen/dimen7"
-                        app:layout_constraintStart_toStartOf="@+id/zhanhuijiaju"
-                        app:layout_constraintEnd_toEndOf="@+id/zhanhuijiaju"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="卫浴系列"
-                        android:textColor="#ffffffff"
-                        android:textSize="@dimen/dimen12"
-                        />
-                    <TextView
-                        app:layout_constraintBottom_toBottomOf="@+id/zhanhuicizhuan"
-                        android:gravity="center"
-                        android:background="#4C000000"
-                        android:paddingTop="@dimen/dimen7"
-                        android:paddingBottom="@dimen/dimen7"
-                        app:layout_constraintStart_toStartOf="@+id/zhanhuicizhuan"
-                        app:layout_constraintEnd_toEndOf="@+id/zhanhuicizhuan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="瓷砖系列"
-                        android:textColor="#ffffffff"
-                        android:textSize="@dimen/dimen12"
-                        />
-
 
                     <ImageView
                         android:layout_marginStart="@dimen/dimen10"
@@ -325,7 +296,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="合作品牌"
+                        android:text="联系我们"
                         android:textColor="#343434"
                         android:textSize="@dimen/dimen14" />
 
@@ -345,7 +316,7 @@
                         android:layout_marginTop="@dimen/dimen15"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="中国建材家居网"
+                        android:text="联系电话：1866666666"
                         android:textColor="#ff9a9a9a"
                         android:textSize="@dimen/dimen12"
                         />
