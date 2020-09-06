@@ -6,10 +6,7 @@ import com.google.android.app.utils.ExceptionHandler
 import com.google.android.app.utils.logw
 import com.google.android.app.utils.readAny
 import com.rd.rudu.BuildConfig
-import com.rd.rudu.bean.request.LoginEntity
-import com.rd.rudu.bean.request.MerchantsApplyEntity
-import com.rd.rudu.bean.request.PartnerApplyEntity
-import com.rd.rudu.bean.request.SmsCodeEntity
+import com.rd.rudu.bean.request.*
 import io.reactivex.Observable
 import io.reactivex.plugins.RxJavaPlugins
 import okhttp3.*
@@ -85,6 +82,9 @@ interface ServerApi
 
     @POST("/api/customer/savePartnerApply")
     fun savePartnerApply(@Body data:PartnerApplyEntity):Observable<JSONObject>
+
+    @POST("/api/customer/saveBrandApply")
+    fun saveBrandApply(@Body data: BrandApplyEntity):Observable<JSONObject>
 }
 
 object AppApi

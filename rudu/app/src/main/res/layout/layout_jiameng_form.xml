@@ -88,7 +88,7 @@
                 android:hint="请填写商家地址"
                 android:textColorHint="#ff9a9a9a"
                 android:background="@android:color/white"
-                android:textColor="#ff9a9a9a"
+                android:textColor="#ff343434"
                 android:textSize="@dimen/dimen12" />
 
             <View
@@ -119,7 +119,7 @@
                 android:hint="请填写商家类型"
                 android:textColorHint="#ff9a9a9a"
                 android:background="@android:color/white"
-                android:textColor="#ff9a9a9a"
+                android:textColor="#ff343434"
                 android:textSize="@dimen/dimen12" />
 
             <View
@@ -139,6 +139,7 @@
                 android:textSize="@dimen/dimen12" />
 
             <EditText
+                android:id="@+id/shopName"
                 android:textCursorDrawable="@drawable/edit_cursor"
                 android:background="@android:color/white"
                 android:paddingTop="@dimen/dimen14"
@@ -147,7 +148,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="请填写商家名称"
-                android:textColor="#ff9a9a9a"
+                android:textColor="#ff343434"
                 android:textColorHint="#ff9a9a9a"
                 android:textSize="@dimen/dimen12" />
 
@@ -170,7 +171,9 @@
 
             <EditText
                 android:textCursorDrawable="@drawable/edit_cursor"
-
+                android:digits="0123456789"
+                android:maxLines="1"
+                android:inputType="number"
                 android:id="@+id/phone"
                 android:background="@android:color/white"
                 android:paddingTop="@dimen/dimen14"
@@ -179,7 +182,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="请填写联系电话"
-                android:textColor="#ff9a9a9a"
+                android:textColor="#ff343434"
                 android:textColorHint="#ff9a9a9a"
                 android:textSize="@dimen/dimen12" />
 

@@ -185,7 +185,7 @@ class InviteShopHolder(context: Context) :
 {
     init {
         itemView.setOnClickListener {
-            itemView.context.startActivity<JoinBrandActivity>()
+            itemView.context.startActivity<JoinBrandActivity>(Pair(Intent.ACTION_ATTACH_DATA, contentViewBinding.data))
         }
     }
     fun setData(data: JoinBrandInfoResultBean)

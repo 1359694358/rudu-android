@@ -2,6 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <variable
+            name="data"
+            type="com.rd.rudu.bean.result.JoinBrandInfoResultBean.JoinBrandInfoItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,6 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
+                        url="@{data.topUrl}"
                         android:id="@+id/bannerImage"
                         android:scaleType="fitXY"
                         android:adjustViewBounds="true"
@@ -41,7 +45,7 @@
                         android:paddingEnd="@dimen/dimen14"
                         android:gravity="center"
                         android:background="@mipmap/wenan_bg"
-                        android:text="越早驻入 越快赚钱"
+                        android:text="@{data.topTitle}"
                         android:textSize="@dimen/dimen16"
                         android:textColor="@android:color/white"
                         app:layout_constraintTop_toTopOf="@+id/bannerImage"
@@ -164,7 +168,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="平台优势"
+                        android:text="@{data.introTitle}"
                         android:textColor="#343434"
                         android:textSize="@dimen/dimen14"
                         />
@@ -181,6 +185,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ImageView
+                            url="@{data.introOnePic}"
                             android:scaleType="fitXY"
                             android:adjustViewBounds="true"
                             app:layout_constraintTop_toTopOf="parent"
@@ -199,7 +204,7 @@
                             android:layout_width="0dp"
                             app:layout_constraintWidth_percent="0.53"
                             android:layout_height="wrap_content"
-                            android:text="提升曝光"
+                            android:text="@{data.introOneTitle}"
                             android:textColor="#ff343434"
                             android:textSize="@dimen/dimen14"
                             />
@@ -213,7 +218,7 @@
                             android:layout_width="0dp"
                             app:layout_constraintEnd_toEndOf="@+id/tishengbaoguang"
                             android:layout_height="wrap_content"
-                            android:text="多平台流量引入，多维度曝光，引流快人一步"
+                            android:text="@{data.introOneDesc}"
                             android:textColor="#9A9A9A"
                             android:textSize="@dimen/dimen12"
                             />
@@ -232,6 +237,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ImageView
+                            url="@{data.introTwoPic}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             android:src="@mipmap/zhaoshangruzhu_tl"
@@ -251,7 +257,7 @@
                             android:layout_width="0dp"
                             app:layout_constraintWidth_percent="0.53"
                             android:layout_height="wrap_content"
-                            android:text="双向共赢"
+                            android:text="@{data.introTwoTitle}"
                             android:textColor="#ff343434"
                             android:textSize="@dimen/dimen14"
                             />
@@ -266,7 +272,7 @@
                             android:layout_marginStart="@dimen/dimen34"
                             app:layout_constraintStart_toStartOf="@+id/shuangxianggongying"
                             android:layout_height="wrap_content"
-                            android:text="多平台流量引入，多维度 曝光，引流快人一步"
+                            android:text="@{data.introTwoDesc}"
                             android:textColor="#9A9A9A"
                             android:textSize="@dimen/dimen12"
                             />

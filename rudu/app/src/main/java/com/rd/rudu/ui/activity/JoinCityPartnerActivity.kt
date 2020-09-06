@@ -73,6 +73,7 @@ class JoinCityPartnerActivity: BaseActivity<ActivityJoinpartnerBinding>() {
                         {
                             if(isFinishing||isDestroyed)
                                 return@subscribe
+                            contentBinding.shangjiaForm.submit.isClickable=true
                             hideLoadingDialog()
                             if(it?.yes()==true)
                             {
@@ -88,6 +89,7 @@ class JoinCityPartnerActivity: BaseActivity<ActivityJoinpartnerBinding>() {
                         {
                             if(isFinishing||isDestroyed)
                                 return@subscribe
+                            contentBinding.shangjiaForm.submit.isClickable=true
                             hideLoadingDialog()
                             ToastUtil.show(this,"报名失败，请稍候再试")
                         }

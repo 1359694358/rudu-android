@@ -50,7 +50,7 @@ public class JoinBrandInfoResultBean extends BaseResultBean<JoinBrandInfoResultB
         public String introTitle;
         public String introOneTitle;
         public String introOneDesc;
-        public String intrOnePic;
+        public String introOnePic;
         public String introTwoTitle;
         public String introTwoDesc;
         public String introTwoPic;
