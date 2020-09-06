@@ -90,13 +90,18 @@ fun buildJoinList():List<HomeJoinItemType>
     return list
 }
 
-class CompanyItemHolder(layoutId: Int, context: Context) : BaseViewHolder<AdapterJoinCompanyBinding>(
+class CompanyItemHolder(context: Context) : BaseViewHolder<AdapterJoinCompanyBinding>(
     context,
-    layoutId
+    R.layout.adapter_join_company
 )
 {
     init {
         itemView.setOnClickListener { itemView.context.startActivity<JoinCompanyActivity>() }
+    }
+
+    fun setData(data:JoinMerChantsBean)
+    {
+        contentViewBinding.data=data.data
     }
 }
 
@@ -105,7 +110,8 @@ class BannerViewHolder(context: Context) :
     init {
         contentViewBinding.banner.onLooperPagerHandle=this
         contentViewBinding.banner.setOnItemClickListener { banner, position, tag ->
-
+            var data=banner.items[position].data as JoinBannerResultBean.JoinBannerItem
+            WebViewActivity.startActivity(itemView.context,data.linkUrl)
         }
     }
 
@@ -218,18 +224,15 @@ class JoinZhanHuiItemHolder(context: Context) :
         contentViewBinding.exhibition=data
     }
 }
-class JoinBangDangHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinBangdangBinding>(context, layoutId)
+class JoinBangDangHolder(context: Context) :
+    BaseViewHolder<AdapterJoinBangdangBinding>(context, R.layout.adapter_join_bangdang)
 {
     val adapter:HomeJoinBangDangAdapter by lazy { HomeJoinBangDangAdapter(context) }
-    fun setData()
+    fun setData(data:JoinBlastResultBean)
     {
         adapter.data.clear()
-        adapter.data.add("1")
-        adapter.data.add("1")
-        adapter.data.add("1")
-        adapter.data.add("1")
-        adapter.data.add("1")
+        adapter.data.addAll(data.data)
+        adapter.notifyDataSetChanged()
         contentViewBinding.bangdangList.adapter=adapter
     }
 }
@@ -294,7 +297,7 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
             JOIN_TYPE_BANNER.first->
                 BannerViewHolder(context)
             JOIN_TYPE_IMAGE1.first->
-                CompanyItemHolder(R.layout.adapter_join_company,context)
+                CompanyItemHolder(context)
             JOIN_TYPE_JOINPARTNER.first->
                 JoinPartnerHolder(context)
             JOIN_TYPE_INVITESHOP.first->
@@ -304,7 +307,7 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
             JOIN_TYPE_ZHANHUI_HEADER.first,JOIN_TYPE_HaoHuoTuiJianHeader.first->
                 JoinZhanHuiHeaderHolder(R.layout.adapter_join_grid_header,context)
             JOIN_TYPE_BANGDANG.first->
-                JoinBangDangHolder(R.layout.adapter_join_bangdang,context)
+                JoinBangDangHolder(context)
             JOIN_TYPE_ZHANHUI_ITEM.first->
                 JoinZhanHuiItemHolder(context)
             JOIN_TYPE_HaoHuoTuiJianItem.first->
@@ -332,13 +335,17 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
                     holder.contentViewBinding.jianjie.text="好货推荐"
                 }
             }
+            is CompanyItemHolder->
+            {
+                holder.setData(getItemData(position))
+            }
             is JoinPartnerHolder->
             {
                 holder.setData(getItemData(position))
             }
             is JoinBangDangHolder->
             {
-                holder.setData()
+                holder.setData(getItemData(position))
             }
             is InviteShopHolder->
             {

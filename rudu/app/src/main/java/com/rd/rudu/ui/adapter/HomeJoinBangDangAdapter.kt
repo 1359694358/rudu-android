@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.app.adapter.BaseRecyclerAdapter
 import com.google.android.app.adapter.BaseViewHolder
 import com.rd.rudu.R
+import com.rd.rudu.bean.result.JoinBlastResultBean
 import com.rd.rudu.databinding.AdapterJoinBangdangItemBinding
 
-class HomeJoinBangDangAdapter(context: Context) : BaseRecyclerAdapter<String>(context) {
+class HomeJoinBangDangAdapter(context: Context) : BaseRecyclerAdapter<JoinBlastResultBean.JoinBlastResultItem>(context) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return JoinBangDangItemHolder(R.layout.adapter_join_bangdang_item,context)
     }

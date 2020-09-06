@@ -64,7 +64,6 @@ dependencies {
     api 'com.scwang.smartrefresh:SmartRefreshLayout:+'
     api(name:"AppfacShareModuleV2",ext:"aar")
 
-    implementation 'com.sjianjun:rxjava-coroutine-scheduler:0.0.9'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:+'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:+'
 }

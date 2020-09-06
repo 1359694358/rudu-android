@@ -15,6 +15,7 @@ import com.google.android.app.widget.BaseFragment
 import com.rd.rudu.R
 import com.rd.rudu.databinding.FragmentHomeyouzanBinding
 import com.rd.rudu.ui.activity.LoginActivity
+import com.rd.rudu.ui.activity.WebViewActivity
 import com.rd.rudu.utils.clearLoginState
 import com.rd.rudu.vm.UserViewModel
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient
@@ -55,13 +56,18 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>()
 
     private fun addObserver()
     {
-        contentBinding.titleBar.viewTreeObserver.addOnDrawListener {
-            if(contentBinding.titleBar.layoutParams!=null&&contentBinding.titleBar.layoutParams is ViewGroup.MarginLayoutParams)
-            {
-                (contentBinding.titleBar.layoutParams as ViewGroup.MarginLayoutParams).topMargin= StatusBarUtil.getStatusBarHeight(requireActivity())
-                contentBinding.titleBar.requestLayout()
-            }
+        if(requireActivity() is WebViewActivity)
+        {
+            contentBinding.titleBar.visibility=View.GONE
         }
+        else
+            contentBinding.titleBar.viewTreeObserver.addOnDrawListener {
+                if(contentBinding.titleBar.layoutParams!=null&&contentBinding.titleBar.layoutParams is ViewGroup.MarginLayoutParams)
+                {
+                    (contentBinding.titleBar.layoutParams as ViewGroup.MarginLayoutParams).topMargin= StatusBarUtil.getStatusBarHeight(requireActivity())
+                    contentBinding.titleBar.requestLayout()
+                }
+            }
         contentBinding.mView.setWebChromeClient(object : WebChromeClient() {
             override fun onShowCustomView(
                 view: View?,
@@ -120,8 +126,8 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>()
             {
                 if(needLogin)
                 {
-                        clearLoginState()
-                        startActivity<LoginActivity>()
+                    clearLoginState()
+                    startActivity<LoginActivity>()
                 }
             }
         })

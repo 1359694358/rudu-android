@@ -2,11 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <variable
+            name="data"
+            type="com.rd.rudu.bean.result.JoinMerChantsBean.ChantsData" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            url="@{data.bannerUrl}"
             android:id="@+id/image"
             android:layout_marginTop="@dimen/dimen9"
             android:src="@mipmap/join_image"
@@ -25,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:text="招商加盟 合作共赢"
+            android:text="@{data.mainTitle}"
             android:textColor="#ffffffff"
             android:textSize="17dp"
             android:id="@+id/topTitle"
@@ -37,7 +41,7 @@
             android:layout_marginTop="@dimen/dimen6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="誉都商城线上交易平台"
+            android:text="@{data.subTitle}"
             android:textColor="#ffffffff"
             android:textSize="10dp"
             />
