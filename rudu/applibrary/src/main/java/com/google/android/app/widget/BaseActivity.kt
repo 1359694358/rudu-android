@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Process
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
@@ -18,6 +19,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.app.DefaultApp
 import com.google.android.app.R
+import com.google.android.app.databinding.AppQmuiLoadingBinding
 import com.google.android.app.databinding.AppToolbarBinding
 import com.google.android.app.utils.StatusBarUtil
 
@@ -46,6 +48,7 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.w("AppActivity", "onCreate: ${javaClass.simpleName}" )
         contentBinding=DataBindingUtil.inflate(layoutInflater,getLayoutResId(),null,false)
 
         val contentFrameLayout = FrameLayout(this)
@@ -267,6 +270,26 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
                 )
             }
         }
+    }
+
+    private lateinit var loadingView: AppQmuiLoadingBinding
+
+    fun showLoading()
+    {
+        if(!this::loadingView.isInitialized)
+        {
+            loadingView= AppQmuiLoadingBinding.inflate(layoutInflater, window.decorView as ViewGroup?,true)
+        }
+        loadingView.root.visibility=View.VISIBLE
+    }
+
+    fun hideLoading()
+    {
+        if(!this::loadingView.isInitialized)
+        {
+            loadingView= AppQmuiLoadingBinding.inflate(layoutInflater, window.decorView as ViewGroup?,true)
+        }
+        loadingView.root.visibility=View.GONE
     }
 }
 interface OnKeyBackHandle

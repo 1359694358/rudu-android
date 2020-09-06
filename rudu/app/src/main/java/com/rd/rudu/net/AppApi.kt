@@ -71,6 +71,9 @@ interface ServerApi
 
     @GET("/api/customer/getJoinBlast")
     fun getJoinBlast():Observable<JSONObject>
+
+    @GET("/api/customer/getJoinMerchantsIntro")
+    fun getJoinMerchantsIntro():Observable<JSONObject>
 }
 
 object AppApi

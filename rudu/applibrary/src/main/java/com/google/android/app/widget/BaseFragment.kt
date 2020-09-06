@@ -2,6 +2,7 @@ package com.google.android.app.widget
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ abstract class BaseFragment<T: ViewDataBinding>() : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        Log.w("AppFragment", "onCreateView: ${javaClass.simpleName}" )
         contentBinding = DataBindingUtil.inflate(layoutInflater, getLayoutResId(), null, false)
         return contentBinding.root
     }

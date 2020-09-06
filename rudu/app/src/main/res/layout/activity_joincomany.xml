@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="contractInfo"
+            type="com.rd.rudu.bean.result.JoinMerchantsContactResultBean.JoinMerchantsContactInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -391,6 +393,7 @@
                         android:layout_height="1px"/>
 
                     <ImageView
+                        url="@{contractInfo.picOne}"
                         android:id="@+id/qrcodeLeft"
                         android:layout_marginTop="@dimen/dimen25"
                         app:layout_constraintEnd_toStartOf="@+id/qrcodeRight"
@@ -407,12 +410,13 @@
                         android:layout_marginTop="@dimen/dimen5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="官方公众号"
+                        android:text="@{contractInfo.titleOne}"
                         android:textColor="#ff222222"
                         android:textSize="@dimen/dimen10"
                         />
                     <ImageView
                         android:id="@+id/qrcodeRight"
+                        url="@{contractInfo.picTwo}"
                         android:layout_marginStart="@dimen/dimen24"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toEndOf="@+id/qrcodeLeft"
@@ -431,7 +435,7 @@
                         android:layout_marginTop="@dimen/dimen5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="官方微博"
+                        android:text="@{contractInfo.titleTwo}"
                         android:textColor="#ff222222"
                         android:textSize="@dimen/dimen10"
                         />
@@ -442,7 +446,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/join_contract_bottom"
+                        android:text="@{@string/join_contract_bottom.format(contractInfo.contacts,contractInfo.phone,contractInfo.address)}"
                         android:textColor="#ff9a9a9a"
                         android:gravity="center"
                         android:textSize="@dimen/dimen10"
@@ -457,7 +461,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="期待您的加盟！"
+                        android:text="@{contractInfo.slogan}"
                         android:paddingBottom="@dimen/dimen15"
                         android:textColor="#ff343434"
                         android:textSize="@dimen/dimen12"
