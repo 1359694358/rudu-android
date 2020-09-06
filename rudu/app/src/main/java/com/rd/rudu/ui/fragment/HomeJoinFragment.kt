@@ -25,6 +25,7 @@ class HomeJoinFragment(var jointViewModel: JoinViewModel): BaseFragment<Fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
+        showLoading()
         contentBinding.recyclerView.adapter=adapter
 //        adapter.addAll(buildJoinList())
         adapter.notifyDataSetChanged()
@@ -45,6 +46,7 @@ class HomeJoinFragment(var jointViewModel: JoinViewModel): BaseFragment<Fragment
         jointViewModel.joinObserver.observeSticky(this, Observer {
             contentBinding.refreshLayout.finishLoadMore()
             contentBinding.refreshLayout.finishRefresh()
+            hideLoading()
             if(it!=null)
             {
                 adapter.data.clear()

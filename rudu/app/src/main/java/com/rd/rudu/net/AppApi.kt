@@ -75,8 +75,8 @@ interface ServerApi
 
 object AppApi
 {
-    var ReadTimeOut = 500L
-    var ConnectTimeOut = 500L
+    var ReadTimeOut = 5L
+    var ConnectTimeOut = 5L
     const val Token="Authorization"
     val serverApi:ServerApi
     init {

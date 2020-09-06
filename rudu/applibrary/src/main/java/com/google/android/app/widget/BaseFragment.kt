@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.app.DefaultApp
+import com.google.android.app.databinding.AppQmuiLoadingBinding
 
 abstract class BaseFragment<T: ViewDataBinding>() : Fragment() {
     protected lateinit var contentBinding: T
@@ -45,4 +46,25 @@ abstract class BaseFragment<T: ViewDataBinding>() : Fragment() {
     protected fun <T : ViewModel> getViewModelByApplication(modelClazz: Class<T>): T {
         return (requireActivity().applicationContext as DefaultApp).getAppViewModelProvider(requireActivity()).get(modelClazz)
     }
+
+    private lateinit var loadingView:AppQmuiLoadingBinding
+
+    fun showLoading()
+    {
+        if(!this::loadingView.isInitialized)
+        {
+            loadingView= AppQmuiLoadingBinding.inflate(layoutInflater, view as ViewGroup?,true)
+        }
+        loadingView.root.visibility=View.VISIBLE
+    }
+
+    fun hideLoading()
+    {
+        if(!this::loadingView.isInitialized)
+        {
+            loadingView= AppQmuiLoadingBinding.inflate(layoutInflater, view as ViewGroup?,true)
+        }
+        loadingView.root.visibility=View.GONE
+    }
+
 }
