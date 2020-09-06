@@ -173,6 +173,7 @@
                 android:textCursorDrawable="@drawable/edit_cursor"
                 android:digits="0123456789"
                 android:maxLines="1"
+                android:maxLength="11"
                 android:inputType="number"
                 android:id="@+id/phone"
                 android:background="@android:color/white"
