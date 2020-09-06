@@ -19,10 +19,7 @@ import com.google.android.app.adapter.BaseViewHolder
 import com.google.android.app.widget.LoopPager
 import com.google.android.app.widget.RoundBackgroundColorSpan
 import com.rd.rudu.R
-import com.rd.rudu.bean.result.JoinBannerResultBean
-import com.rd.rudu.bean.result.JoinBrandInfoResultBean
-import com.rd.rudu.bean.result.JoinIntroInfoResultBean
-import com.rd.rudu.bean.result.JoinPartnerIntroResultBean
+import com.rd.rudu.bean.result.*
 import com.rd.rudu.databinding.*
 import com.rd.rudu.ui.activity.*
 import org.jetbrains.anko.collections.forEachByIndex
@@ -207,14 +204,18 @@ class JoinIntroHolder(context: Context) :
 class JoinZhanHuiHeaderHolder(layoutId: Int, context: Context) :
     BaseViewHolder<AdapterJoinGridHeaderBinding>(context, layoutId)
 
-class JoinZhanHuiItemHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinGridItemBinding>(context, layoutId)
+class JoinZhanHuiItemHolder(context: Context) :
+    BaseViewHolder<AdapterJoinGridItemBinding>(context, R.layout.adapter_join_grid_item)
 {
     init
     {
         itemView.setOnClickListener {
             it.context.startActivity<ExhibitionInfoActivity>()
         }
+    }
+    fun setData(data: JoinExhibitionResultBean.JoinExhibitionResult)
+    {
+        contentViewBinding.exhibition=data
     }
 }
 class JoinBangDangHolder(layoutId: Int, context: Context) :
@@ -305,7 +306,7 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
             JOIN_TYPE_BANGDANG.first->
                 JoinBangDangHolder(R.layout.adapter_join_bangdang,context)
             JOIN_TYPE_ZHANHUI_ITEM.first->
-                JoinZhanHuiItemHolder(R.layout.adapter_join_grid_item,context)
+                JoinZhanHuiItemHolder(context)
             JOIN_TYPE_HaoHuoTuiJianItem.first->
                 HomeJoinHaoHuoTuiJianHolder(R.layout.adapter_join_tuijian_item,context)
             JOIN_TYPE_XinXianChangHeader.first->
@@ -343,11 +344,19 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
             {
                 holder.setData(getItemData(position))
             }
+            is JoinZhanHuiItemHolder->
+            {
+                holder.setData(getItemData(position))
+            }
             is JoinIntroHolder->
             {
                 holder.setData(getItemData(position))
             }
             is BannerViewHolder->
+            {
+                holder.setData(getItemData(position))
+            }
+            is JoinZhanHuiItemHolder->
             {
                 holder.setData(getItemData(position))
             }

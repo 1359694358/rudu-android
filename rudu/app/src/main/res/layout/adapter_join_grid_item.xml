@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="exhibition"
+            type="com.rd.rudu.bean.result.JoinExhibitionResultBean.JoinExhibitionResult" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,6 +35,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp">
                 <ImageView
+                    url="@{exhibition.bannerUrl}"
                     android:scaleType="fitXY"
                     android:adjustViewBounds="true"
                     android:src="@mipmap/join_zhanhui_item"
@@ -47,7 +50,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageContainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="誉都商城新品展会"
+                android:text="@{exhibition.title}"
                 android:textColor="#ff333333"
                 android:textSize="13dp"
                 />
@@ -59,7 +62,7 @@
                 android:layout_marginTop="@dimen/dimen9"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="2020-08-07"
+                android:text="@{exhibition.exDate}"
                 android:textColor="#ff999999"
                 android:textSize="11dp"
                 />

@@ -5,6 +5,8 @@ import com.rd.rudu.ui.adapter.HomeJoinListAdapterKt;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
+
 import kotlin.Pair;
 
 //"id": 1,
@@ -22,7 +24,7 @@ public class JoinMerChantsBean extends BaseResultBean<JoinMerChantsBean.ChantsDa
     public Pair<Integer, Integer> getJoinItemType() {
         return HomeJoinListAdapterKt.JOIN_TYPE_IMAGE1;
     }
-    public class ChantsData
+    public class ChantsData implements Serializable
     {
         public String id;
         public String mainTitle;

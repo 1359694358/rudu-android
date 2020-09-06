@@ -7,6 +7,7 @@ import com.google.android.app.utils.logw
 import com.rd.rudu.bean.result.*
 import com.rd.rudu.net.AppApi
 import com.rd.rudu.ui.adapter.HomeJoinItemType
+import com.rd.rudu.ui.adapter.*
 import io.reactivex.Observable
 
 class JoinViewModel: ViewModel()
@@ -22,8 +23,9 @@ class JoinViewModel: ViewModel()
         var chengshiHehuoren=AppApi.serverApi.getJoinPartnerIntro().compose(TransUtils.ioTransformer<JoinPartnerIntroResultBean>())
         var brandBean=AppApi.serverApi.getJoinBrandInfo().compose(TransUtils.ioTransformer<JoinBrandInfoResultBean>())
         var ruduIntro=AppApi.serverApi.getJoinIntroInfo().compose(TransUtils.ioTransformer<JoinIntroInfoResultBean>())
+        var joinExhibitionResult=AppApi.serverApi.getJoinExhibition().compose(TransUtils.ioTransformer<JoinExhibitionResultBean>())
 
-        var observableList= arrayOf(banner,merchants,chengshiHehuoren,brandBean,ruduIntro)
+        var observableList= arrayOf(banner,merchants,chengshiHehuoren,brandBean,ruduIntro,joinExhibitionResult)
 
 
         Observable.zipArray({responseList->
@@ -35,6 +37,10 @@ class JoinViewModel: ViewModel()
                     if(item.yes()&&item is HomeJoinItemType&&item.data!=null)
                     {
                         resultList.add(item)
+                        if(item is JoinExhibitionResultBean)
+                        {
+                            resultList.addAll(item.data)
+                        }
                     }
                 }
             }

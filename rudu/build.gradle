@@ -21,6 +21,9 @@ allprojects {
         maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         jcenter { url "https://jcenter.bintray.com/" }
         maven {url 'https://dl.bintray.com/youzanyun/maven/'}
+        maven {
+            url "https://raw.githubusercontent.com/SJJ-dot/repo/master/repository"
+        }
     }
 }
 

@@ -65,6 +65,12 @@ interface ServerApi
     //yudu简介
     @GET("/api/customer/getJoinIntroInfo")
     fun getJoinIntroInfo():Observable<JSONObject>
+
+    @GET("/api/customer/getJoinExhibition")
+    fun getJoinExhibition():Observable<JSONObject>
+
+    @GET("/api/customer/getJoinBlast")
+    fun getJoinBlast():Observable<JSONObject>
 }
 
 object AppApi

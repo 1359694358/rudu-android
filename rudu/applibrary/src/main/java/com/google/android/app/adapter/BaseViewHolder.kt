@@ -19,6 +19,7 @@ open class BaseViewHolder<B : ViewDataBinding>(
     @LayoutRes layoutId: Int,
     widthMatchParent:Boolean=false
 ) : RecyclerView.ViewHolder(DataBindingUtil.inflate<ViewDataBinding>(ContextCompat.getSystemService(context, LayoutInflater::class.java)!!, layoutId, null, false).root) {
+
     var contentViewBinding: B = DataBindingUtil.getBinding(itemView)!!
     init {
         if(widthMatchParent)
