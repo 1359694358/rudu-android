@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="intro"
+            type="com.rd.rudu.bean.result.JoinIntroInfoResultBean.JoinIntroInfoListData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +27,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="誉都简介"
+                android:text="@{intro.title}"
                 android:textColor="#ff333333"
                 android:textSize="15dp"
                 />
@@ -49,6 +51,7 @@
                 android:layout_width="@dimen/dimen105"
                 android:layout_height="@dimen/dimen86">
                 <ImageView
+                    url="@{intro.introDesc}"
                     android:scaleType="fitXY"
                     android:adjustViewBounds="true"
                     android:src="@mipmap/join_mall_logo"
@@ -62,7 +65,7 @@
                 android:layout_marginStart="@dimen/dimen13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="誉都商城"
+                android:text="@{intro.introTitle}"
                 android:textColor="#ff333333"
                 android:textSize="13dp"
                 />
@@ -73,7 +76,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="@dimen/dimen10"
                 android:layout_height="wrap_content"
-                android:text="誉都商城专注建材家居，品质保证。"
+                android:text="@{intro.introDesc}"
                 android:textColor="#ff999999"
                 android:textSize="11dp"
                 />

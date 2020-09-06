@@ -17,11 +17,13 @@ class JoinViewModel: ViewModel()
     fun loadJoinNavListData()
     {
         //列表顺序 从上到下
-        var banner=AppApi.serverApi.getJoinBanner().compose(TransUtils.jsonTransform<JoinBannerResultBean>())
-        var merchants=AppApi.serverApi.getJoinMerchants().compose(TransUtils.jsonTransform<JoinMerChantsBean>())
-        var chengshiHehuoren=AppApi.serverApi.getJoinPartnerIntro().compose(TransUtils.jsonTransform<JoinPartnerIntroResultBean>())
-        var brandBean=AppApi.serverApi.getJoinBrandInfo().compose(TransUtils.jsonTransform<JoinBrandInfoResultBean>())
-        var observableList= arrayOf(banner,merchants,chengshiHehuoren,brandBean)
+        var banner=AppApi.serverApi.getJoinBanner().compose(TransUtils.ioTransformer<JoinBannerResultBean>())
+        var merchants=AppApi.serverApi.getJoinMerchants().compose(TransUtils.ioTransformer<JoinMerChantsBean>())
+        var chengshiHehuoren=AppApi.serverApi.getJoinPartnerIntro().compose(TransUtils.ioTransformer<JoinPartnerIntroResultBean>())
+        var brandBean=AppApi.serverApi.getJoinBrandInfo().compose(TransUtils.ioTransformer<JoinBrandInfoResultBean>())
+        var ruduIntro=AppApi.serverApi.getJoinIntroInfo().compose(TransUtils.ioTransformer<JoinIntroInfoResultBean>())
+
+        var observableList= arrayOf(banner,merchants,chengshiHehuoren,brandBean,ruduIntro)
         Observable.zipArray({responseList->
             var resultList= arrayListOf<HomeJoinItemType>()
             responseList.forEachIndexed { _, item ->

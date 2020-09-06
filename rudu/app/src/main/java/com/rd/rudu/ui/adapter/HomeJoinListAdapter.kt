@@ -21,6 +21,7 @@ import com.google.android.app.widget.RoundBackgroundColorSpan
 import com.rd.rudu.R
 import com.rd.rudu.bean.result.JoinBannerResultBean
 import com.rd.rudu.bean.result.JoinBrandInfoResultBean
+import com.rd.rudu.bean.result.JoinIntroInfoResultBean
 import com.rd.rudu.bean.result.JoinPartnerIntroResultBean
 import com.rd.rudu.databinding.*
 import com.rd.rudu.ui.activity.*
@@ -189,13 +190,18 @@ class InviteShopHolder(context: Context) :
     }
 }
 
-class JoinIntroHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinIntroBinding>(context, layoutId)
+class JoinIntroHolder(context: Context) :
+    BaseViewHolder<AdapterJoinIntroBinding>(context, R.layout.adapter_join_intro)
 {
     init {
         itemView.setOnClickListener {
             it.context.startActivity<RuduIntroActivity>()
         }
+    }
+
+    fun setData(data: JoinIntroInfoResultBean)
+    {
+
     }
 }
 class JoinZhanHuiHeaderHolder(layoutId: Int, context: Context) :
@@ -293,7 +299,7 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
             JOIN_TYPE_INVITESHOP.first->
                 InviteShopHolder(context)
             JOIN_TYPE_INTRO.first->
-                JoinIntroHolder(R.layout.adapter_join_intro,context)
+                JoinIntroHolder(context)
             JOIN_TYPE_ZHANHUI_HEADER.first,JOIN_TYPE_HaoHuoTuiJianHeader.first->
                 JoinZhanHuiHeaderHolder(R.layout.adapter_join_grid_header,context)
             JOIN_TYPE_BANGDANG.first->

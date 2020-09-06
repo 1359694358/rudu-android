@@ -55,6 +55,17 @@ object TransUtils {
         }
     }
 
+    @JvmStatic
+    inline fun <reified T> ioTransformer(): ObservableTransformer<JSONObject, T> {
+        return ObservableTransformer { upstream ->
+            upstream.subscribeOn(Schedulers.io()).map { s ->
+                Log.w("TransUtils","$s")
+                gson.fromJson("$s",T::class.java)
+            }
+        }
+    }
+
+
 
     fun schedulersCompletableTransformer(): CompletableTransformer {
         return CompletableTransformer { upstream ->

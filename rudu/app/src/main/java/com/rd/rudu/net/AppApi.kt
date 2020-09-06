@@ -61,6 +61,10 @@ interface ServerApi
     //品牌招商入驻
     @GET("/api/customer/getJoinBrandInfo")
     fun getJoinBrandInfo():Observable<JSONObject>
+
+    //yudu简介
+    @GET("/api/customer/getJoinIntroInfo")
+    fun getJoinIntroInfo():Observable<JSONObject>
 }
 
 object AppApi
