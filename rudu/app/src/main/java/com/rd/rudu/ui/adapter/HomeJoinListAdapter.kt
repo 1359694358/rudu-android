@@ -20,6 +20,8 @@ import com.google.android.app.widget.LoopPager
 import com.google.android.app.widget.RoundBackgroundColorSpan
 import com.rd.rudu.R
 import com.rd.rudu.bean.result.JoinBannerResultBean
+import com.rd.rudu.bean.result.JoinBrandInfoResultBean
+import com.rd.rudu.bean.result.JoinPartnerIntroResultBean
 import com.rd.rudu.databinding.*
 import com.rd.rudu.ui.activity.*
 import org.jetbrains.anko.collections.forEachByIndex
@@ -159,29 +161,31 @@ class BannerViewHolder(context: Context) :
     }
 }
 
-class JoinPartnerHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinPartnerBinding>(context, layoutId)
+class JoinPartnerHolder(context: Context) :
+    BaseViewHolder<AdapterJoinPartnerBinding>(context, R.layout.adapter_join_partner)
 {
     init {
         itemView.setOnClickListener {
             itemView.context.startActivity<JoinCityPartnerActivity>()
         }
     }
-    fun setData(data:HomeJoinItem)
+    fun setData(data:JoinPartnerIntroResultBean)
     {
+        contentViewBinding.data=data.data
     }
 }
 
 class InviteShopHolder(context: Context) :
-    BaseViewHolder<AdapterJoinPartnerBinding>(context, R.layout.adapter_join_inviteshop)
+    BaseViewHolder<AdapterJoinInviteshopBinding>(context, R.layout.adapter_join_inviteshop)
 {
     init {
         itemView.setOnClickListener {
             itemView.context.startActivity<JoinBrandActivity>()
         }
     }
-    fun setData(data:HomeJoinItem)
+    fun setData(data: JoinBrandInfoResultBean)
     {
+        contentViewBinding.data=data.data
     }
 }
 
@@ -285,7 +289,7 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
             JOIN_TYPE_IMAGE1.first->
                 CompanyItemHolder(R.layout.adapter_join_company,context)
             JOIN_TYPE_JOINPARTNER.first->
-                JoinPartnerHolder(R.layout.adapter_join_partner,context)
+                JoinPartnerHolder(context)
             JOIN_TYPE_INVITESHOP.first->
                 InviteShopHolder(context)
             JOIN_TYPE_INTRO.first->
@@ -328,6 +332,10 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
             is JoinBangDangHolder->
             {
                 holder.setData()
+            }
+            is InviteShopHolder->
+            {
+                holder.setData(getItemData(position))
             }
             is BannerViewHolder->
             {

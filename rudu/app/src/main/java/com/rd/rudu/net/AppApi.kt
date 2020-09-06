@@ -54,6 +54,13 @@ interface ServerApi
     //招商加盟信息
     @GET("/api/customer/getJoinMerchants")
     fun getJoinMerchants():Observable<JSONObject>
+
+    @GET("/api/customer/getJoinPartnerIntro")
+    fun getJoinPartnerIntro():Observable<JSONObject>
+
+    //品牌招商入驻
+    @GET("/api/customer/getJoinBrandInfo")
+    fun getJoinBrandInfo():Observable<JSONObject>
 }
 
 object AppApi
