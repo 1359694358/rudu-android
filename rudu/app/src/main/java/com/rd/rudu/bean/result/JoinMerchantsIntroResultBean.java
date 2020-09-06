@@ -1,6 +1,8 @@
 package com.rd.rudu.bean.result;
 
-public class JoinMerchantsIntroResultBean extends BaseResultBean<JoinMerchantsIntroResultBean.JoinMerchantsIntroItem>
+import java.util.List;
+
+public class JoinMerchantsIntroResultBean extends BaseResultBean<List<JoinMerchantsIntroResultBean.JoinMerchantsIntroItem>>
 {
 
     public class JoinMerchantsIntroItem

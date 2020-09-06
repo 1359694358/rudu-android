@@ -7,10 +7,12 @@ import androidx.lifecycle.Observer
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.utils.ViewUtils
 import com.google.android.app.utils.getSerializableExtras
+import com.google.android.app.utils.imageloader.ImageLoader
 import com.google.android.app.widget.BaseActivity
 import com.rd.rudu.R
 import com.rd.rudu.bean.result.JoinMerChantsBean
 import com.rd.rudu.databinding.ActivityJoincomanyBinding
+import com.rd.rudu.databinding.LayoutZhaoshangIntroitemBinding
 import com.rd.rudu.vm.JoinMerchantsVM
 
 class JoinCompanyActivity: BaseActivity<ActivityJoincomanyBinding>()
@@ -41,14 +43,19 @@ class JoinCompanyActivity: BaseActivity<ActivityJoincomanyBinding>()
         toolbarBinding?.root?.setBackgroundColor(Color.TRANSPARENT)
         toolbarBinding?.backBtn?.setImageDrawable(ViewUtils.setDrawableColor(this,Color.WHITE,R.mipmap.icon_back_b))
         toolbarBinding?.titleText?.setTextColor(Color.WHITE)
-        setTitle("招商加盟")
+        title = "招商加盟"
         joinMerchantsVM.joinMerchantsObs.observe(this, Observer{
             hideLoading()
+            it.first.data.forEach {item->
+                var introBinding=LayoutZhaoshangIntroitemBinding.inflate(layoutInflater,contentBinding.merchantsIntro,true)
+                introBinding.introInfo=item
+            }
+            contentBinding.contractInfo= it.second.data
         })
         joinMerchantsVM.loadData()
         var data: JoinMerChantsBean.ChantsData?=intent.getSerializableExtras(Intent.ACTION_ATTACH_DATA)
         data?.let {
-
+            ImageLoader.loader.load(contentBinding.bannerImage,it.topUrl)
         }
     }
 }
