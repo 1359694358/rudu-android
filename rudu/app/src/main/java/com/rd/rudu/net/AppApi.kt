@@ -44,17 +44,22 @@ interface ServerApi
     @POST("api/ap_user/bindPhone")
     fun socialLoginBind(@Body loginEntity: LoginEntity):Observable<JSONObject>*/
 
-    @GET("api/ap_user/getAppVersion")
+    @GET("/api/ap_user/getAppVersion")
     fun checkUpdate():Observable<JSONObject>
+
+    //加盟banner
+    @GET("/api/customer/getJoinSwipers")
+    fun getJoinBanner():Observable<JSONObject>
+
+    //招商加盟信息
+    @GET("/api/customer/getJoinMerchants")
+    fun getJoinMerchants():Observable<JSONObject>
 }
 
 object AppApi
 {
     var ReadTimeOut = 500L
     var ConnectTimeOut = 500L
-    //服务器接口地址修改就改这
-//    val Host="https://m.runtae.com"
-//    val Host="http://www.huimiao.wang"
     const val Token="Authorization"
     val serverApi:ServerApi
     init {

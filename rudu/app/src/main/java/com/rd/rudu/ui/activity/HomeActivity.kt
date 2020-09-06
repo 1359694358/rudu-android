@@ -14,11 +14,14 @@ import com.rd.rudu.ui.fragment.HomeJoinFragment
 import com.rd.rudu.ui.fragment.HomeMineFragment
 import com.rd.rudu.ui.fragment.HomeTopNewsFragment
 import com.rd.rudu.ui.fragment.HomeWebFragment
+import com.rd.rudu.vm.JoinViewModel
 
-class HomeActivity: BaseActivity<ActivityHomeBinding>() {
+class HomeActivity: BaseActivity<ActivityHomeBinding>()
+{
     val Interval=3000
     var time = System.currentTimeMillis()-Interval
     var fragmentMap= mutableMapOf<Int,Fragment>()
+    val joinViewModel: JoinViewModel by lazy { getViewModelByApplication<JoinViewModel>() }
     override fun getLayoutResId(): Int {
         return R.layout.activity_home
     }
@@ -46,24 +49,18 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
         pushFragment()
         checkedTableIndex(0)
         addCheckedListener()
+        joinViewModel.loadJoinNavListData()
     }
 
     private fun pushFragment()
     {
         fragmentMap[0]=HomeWebFragment.newInstance(resources.getString(R.string.youzan_storeurl))
-        fragmentMap[1]= HomeJoinFragment()
+        fragmentMap[1]= HomeJoinFragment(joinViewModel)
         fragmentMap[2]= HomeTopNewsFragment()
-        fragmentMap[3]= HomeJoinFragment()
+        fragmentMap[3]= HomeJoinFragment(joinViewModel)
         fragmentMap[4]= HomeMineFragment()
-      /*  var iterator=fragmentMap.iterator()
-        var tran=supportFragmentManager.beginTransaction()
-        while (iterator.hasNext())
-        {
-            var item=iterator.next()
-            tran.add(R.id.fragmentContainer,item.value)
-        }
-        tran.commitAllowingStateLoss()*/
     }
+
 
     private fun addCheckedListener()
     {

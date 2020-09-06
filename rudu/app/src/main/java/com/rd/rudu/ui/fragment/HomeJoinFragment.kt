@@ -3,15 +3,19 @@ package com.rd.rudu.ui.fragment
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.widget.BaseFragment
 import com.rd.rudu.R
 import com.rd.rudu.databinding.FragmentHomejoinBinding
+import com.rd.rudu.ui.adapter.HomeJoinItemType
 import com.rd.rudu.ui.adapter.HomeJoinListAdapter
 import com.rd.rudu.ui.adapter.buildJoinList
+import com.rd.rudu.vm.JoinViewModel
 
-class HomeJoinFragment: BaseFragment<FragmentHomejoinBinding>()
+class HomeJoinFragment(var jointViewModel: JoinViewModel): BaseFragment<FragmentHomejoinBinding>()
 {
+
     override fun getLayoutResId(): Int
     {
         return R.layout.fragment_homejoin
@@ -28,7 +32,7 @@ class HomeJoinFragment: BaseFragment<FragmentHomejoinBinding>()
 
         }
         contentBinding.refreshLayout.setOnRefreshListener {
-
+            jointViewModel.loadJoinNavListData()
         }
         contentBinding.refreshLayout.setEnableLoadMore(false)
         contentBinding.titleBar.viewTreeObserver.addOnDrawListener {
@@ -38,5 +42,16 @@ class HomeJoinFragment: BaseFragment<FragmentHomejoinBinding>()
                 contentBinding.titleBar.requestLayout()
             }
         }
+        jointViewModel.joinObserver.observeSticky(this, Observer {
+            contentBinding.refreshLayout.finishLoadMore()
+            contentBinding.refreshLayout.finishRefresh()
+            if(it!=null)
+            {
+                adapter.data.clear()
+                adapter.data.addAll(jointViewModel.buildJoinListData(it))
+                adapter.notifyDataSetChanged()
+            }
+        })
     }
+
 }

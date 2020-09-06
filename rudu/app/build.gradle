@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -48,14 +49,14 @@ android {
 
     buildTypes {
         release {
-            buildConfigField "String","Host",'"https://m.runtae.com"'
+            buildConfigField "String","Host",'"https://www.rudu668.com"'
             minifyEnabled false
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             signingConfig signingConfigs.release
-            buildConfigField "String","Host",'"http://www.huimiao.wang"'
+            buildConfigField "String","Host",'"https://www.rudu668.com"'
         }
     }
     compileOptions {

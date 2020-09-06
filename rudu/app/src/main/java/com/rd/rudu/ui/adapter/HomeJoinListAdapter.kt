@@ -19,9 +19,37 @@ import com.google.android.app.adapter.BaseViewHolder
 import com.google.android.app.widget.LoopPager
 import com.google.android.app.widget.RoundBackgroundColorSpan
 import com.rd.rudu.R
+import com.rd.rudu.bean.result.JoinBannerResultBean
 import com.rd.rudu.databinding.*
 import com.rd.rudu.ui.activity.*
+import org.jetbrains.anko.collections.forEachByIndex
 import org.jetbrains.anko.startActivity
+
+@JvmField
+val JOIN_TYPE_BANNER=Pair(1,LayoutSpanCount)
+@JvmField
+val JOIN_TYPE_IMAGE1=Pair(2,LayoutSpanCount)
+@JvmField
+val JOIN_TYPE_JOINPARTNER=Pair(3,LayoutSpanCount)
+@JvmField
+val JOIN_TYPE_INVITESHOP=Pair(4,LayoutSpanCount)
+@JvmField
+val JOIN_TYPE_INTRO=Pair(5,LayoutSpanCount)
+@JvmField
+val JOIN_TYPE_ZHANHUI_HEADER=Pair(6,LayoutSpanCount)
+@JvmField
+val JOIN_TYPE_ZHANHUI_ITEM=Pair(7,OnlyOneSpan)
+@JvmField
+val JOIN_TYPE_BANGDANG=Pair(8,LayoutSpanCount)
+@JvmField
+val JOIN_TYPE_HaoHuoTuiJianHeader=Pair(9,LayoutSpanCount)
+@JvmField
+val JOIN_TYPE_HaoHuoTuiJianItem=Pair(10,LayoutSpanCount)
+@JvmField
+val JOIN_TYPE_XinXianChangHeader=Pair(11,LayoutSpanCount)
+@JvmField
+val JOIN_TYPE_XinXianChangItem=Pair(12,OnlyOneSpan)
+
 
 interface HomeJoinItemType
 {
@@ -36,20 +64,6 @@ class HomeJoinItem(var joinType: Pair<Int,Int>,var title:String?=""):HomeJoinIte
     }
 
 }
-
-val JOIN_TYPE_BANNER=Pair(1,LayoutSpanCount)
-val JOIN_TYPE_IMAGE1=Pair(2,LayoutSpanCount)
-val JOIN_TYPE_JOINPARTNER=Pair(3,LayoutSpanCount)
-val JOIN_TYPE_INVITESHOP=Pair(4,LayoutSpanCount)
-val JOIN_TYPE_INTRO=Pair(5,LayoutSpanCount)
-val JOIN_TYPE_ZHANHUI_HEADER=Pair(6,LayoutSpanCount)
-val JOIN_TYPE_ZHANHUI_ITEM=Pair(7,OnlyOneSpan)
-val JOIN_TYPE_BANGDANG=Pair(8,LayoutSpanCount)
-val JOIN_TYPE_HaoHuoTuiJianHeader=Pair(9,LayoutSpanCount)
-val JOIN_TYPE_HaoHuoTuiJianItem=Pair(10,LayoutSpanCount)
-val JOIN_TYPE_XinXianChangHeader=Pair(11,LayoutSpanCount)
-val JOIN_TYPE_XinXianChangItem=Pair(12,OnlyOneSpan)
-
 
 fun buildJoinList():List<HomeJoinItemType>
 {
@@ -86,8 +100,8 @@ class CompanyItemHolder(layoutId: Int, context: Context) : BaseViewHolder<Adapte
     }
 }
 
-class BannerViewHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinBannerBinding>(context, layoutId), LoopPager.OnLooperPagerHandle {
+class BannerViewHolder(context: Context) :
+    BaseViewHolder<AdapterJoinBannerBinding>(context, R.layout.adapter_join_banner), LoopPager.OnLooperPagerHandle {
     init {
         contentViewBinding.banner.onLooperPagerHandle=this
         contentViewBinding.banner.setOnItemClickListener { banner, position, tag ->
@@ -95,14 +109,12 @@ class BannerViewHolder(layoutId: Int, context: Context) :
         }
     }
 
-    fun setData()
+    fun setData(data:JoinBannerResultBean)
     {
-        if(contentViewBinding.banner.items.size>0)
-            return
         contentViewBinding.banner.cleanAll()
-        contentViewBinding.banner.addItem(0, Any())
-        contentViewBinding.banner.addItem(1,Any())
-        contentViewBinding.banner.addItem(2,Any())
+        data.data.forEachIndexed { index, joinBannerItem ->
+            contentViewBinding.banner.addItem(index,joinBannerItem)
+        }
         contentViewBinding.indicator.removeAllViews()
         for(index in 0 until contentViewBinding.banner.items.size)
         {
@@ -131,7 +143,7 @@ class BannerViewHolder(layoutId: Int, context: Context) :
     override fun displayImage(context: Context?, path: LoopPager.ImageItem?, view: View?)
     {
         var binding:AdapterJoinBannerItemBinding?=DataBindingUtil.getBinding(view!!)
-
+        binding?.bannerItem= path!!.data as JoinBannerResultBean.JoinBannerItem?
     }
 
     override fun onLoopPageSelectedReallyReallyIndex(position:Int)
@@ -269,7 +281,7 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
         return when(viewType)
         {
             JOIN_TYPE_BANNER.first->
-                BannerViewHolder(R.layout.adapter_join_banner,context)
+                BannerViewHolder(context)
             JOIN_TYPE_IMAGE1.first->
                 CompanyItemHolder(R.layout.adapter_join_company,context)
             JOIN_TYPE_JOINPARTNER.first->
@@ -319,7 +331,7 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
             }
             is BannerViewHolder->
             {
-                holder.setData()
+                holder.setData(getItemData(position))
             }
             is HomeJoinMiddleTitleHolder->
             {

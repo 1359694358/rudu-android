@@ -98,10 +98,15 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
         return ViewModelProviders.of(this).get(modelClazz)
     }
 
+    protected inline fun <reified T: ViewModel> getViewModel()= ViewModelProviders.of(this).get(T::class.java)
+
     protected fun <T: ViewModel> getViewModelByApplication(modelClazz:Class<T>): T
     {
         return (applicationContext as DefaultApp).getAppViewModelProvider(this).get(modelClazz)
     }
+
+    protected inline fun <reified T: ViewModel> getViewModelByApplication()=(applicationContext as DefaultApp).getAppViewModelProvider(this).get(T::class.java)
+
     override fun finish() {
         hideKeyBroad()
         super.finish()

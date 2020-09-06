@@ -412,6 +412,7 @@ public class LoopPager extends RelativeLayout implements OnPageChangeListener {
                     return view;
                 }
             } catch (Exception e) {
+                e.printStackTrace();
             }
             return null;
         }
