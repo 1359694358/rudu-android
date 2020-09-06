@@ -5,15 +5,18 @@ import com.google.android.app.net.MutableLiveDataX
 import com.google.android.app.net.TransUtils
 import com.google.android.app.utils.loge
 import com.google.android.app.utils.logw
+import com.rd.rudu.bean.request.MerchantsApplyEntity
+import com.rd.rudu.bean.result.BaseResultBean
 import com.rd.rudu.bean.result.JoinMerchantsContactResultBean
 import com.rd.rudu.bean.result.JoinMerchantsIntroResultBean
 import com.rd.rudu.net.AppApi
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
-
+//招商加盟页面
 class JoinMerchantsVM: ViewModel()
 {
     val joinMerchantsObs=MutableLiveDataX< Pair<JoinMerchantsIntroResultBean, JoinMerchantsContactResultBean>>()
+    val joinSubmitObs=MutableLiveDataX<BaseResultBean<String>?>()
 
     fun loadData()
     {
@@ -31,6 +34,21 @@ class JoinMerchantsVM: ViewModel()
                         {
 //                            joinMerchantsObs.postValue(it)
                             loge("error ${it.message}")
+                        }
+                )
+    }
+
+    fun saveMerchantsApply(entity: MerchantsApplyEntity)
+    {
+        AppApi.serverApi.saveMerchantsApply(entity)
+                .compose(TransUtils.ioTransformer<BaseResultBean<String>>())
+                .subscribe(
+                        {
+                            joinSubmitObs.postValue(it)
+                        }
+                        ,
+                        {
+                            joinSubmitObs.postValue(null)
                         }
                 )
     }

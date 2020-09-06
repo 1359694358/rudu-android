@@ -7,6 +7,7 @@ import com.google.android.app.utils.logw
 import com.google.android.app.utils.readAny
 import com.rd.rudu.BuildConfig
 import com.rd.rudu.bean.request.LoginEntity
+import com.rd.rudu.bean.request.MerchantsApplyEntity
 import com.rd.rudu.bean.request.SmsCodeEntity
 import io.reactivex.Observable
 import io.reactivex.plugins.RxJavaPlugins
@@ -77,6 +78,9 @@ interface ServerApi
 
     @GET("/api/customer/getJoinMerchantsContact")
     fun getJoinMerchantsContact():Observable<JSONObject>
+
+    @POST("api/customer/saveMerchantsApply")
+    fun saveMerchantsApply(@Body data: MerchantsApplyEntity):Observable<JSONObject>
 }
 
 object AppApi

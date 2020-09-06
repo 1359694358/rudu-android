@@ -152,10 +152,11 @@
                         android:textSize="@dimen/dimen12"
                         />
                     <EditText
+                        android:id="@+id/area"
                         android:textCursorDrawable="@drawable/edit_cursor"
                         app:layout_constraintTop_toTopOf="@+id/joinAreaLabel"
                         app:layout_constraintBottom_toBottomOf="@+id/joinAreaLabel"
-                        android:textColor="#DCDCDC"
+                        android:textColor="#ff343434"
                         android:textColorHint="#DCDCDC"
                         android:textSize="@dimen/dimen12"
                         android:background="@drawable/app_join_edit_border"
@@ -204,7 +205,7 @@
                         android:id="@+id/joinName"
                         app:layout_constraintTop_toTopOf="@+id/joinNameLabel"
                         app:layout_constraintBottom_toBottomOf="@+id/joinNameLabel"
-                        android:textColor="#DCDCDC"
+                        android:textColor="#ff343434"
                         android:textColorHint="#DCDCDC"
                         android:textSize="@dimen/dimen12"
                         android:background="@drawable/app_join_edit_border"
@@ -229,6 +230,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <RadioButton
+                            android:id="@+id/male"
+                            android:checked="true"
                             android:button="@drawable/app_join_sexselector"
                             android:text=" 先生"
                             android:textSize="@dimen/dimen12"
@@ -236,6 +239,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                         <RadioButton
+                            android:id="@+id/female"
                             android:layout_marginStart="@dimen/dimen22"
                             android:button="@drawable/app_join_sexselector"
                             android:text=" 女士"
@@ -279,7 +283,7 @@
                         android:inputType="number"
                         android:id="@+id/joinPhone"
                         android:layout_marginTop="@dimen/dimen16"
-                        android:textColor="#DCDCDC"
+                        android:textColor="#ff343434"
                         android:textColorHint="#DCDCDC"
                         android:textSize="@dimen/dimen12"
                         android:background="@drawable/app_join_edit_border"
@@ -298,6 +302,7 @@
 
                     <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
                         android:text="提交申请"
+                        android:id="@+id/submit"
                         android:layout_marginTop="@dimen/dimen15"
                         android:layout_marginBottom="@dimen/dimen15"
                         app:layout_constraintBottom_toBottomOf="parent"
