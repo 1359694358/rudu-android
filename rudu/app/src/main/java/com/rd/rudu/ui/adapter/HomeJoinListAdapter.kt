@@ -1,6 +1,7 @@
 package com.rd.rudu.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.text.SpannableStringBuilder
 import android.text.style.*
@@ -96,7 +97,7 @@ class CompanyItemHolder(context: Context) : BaseViewHolder<AdapterJoinCompanyBin
 )
 {
     init {
-        itemView.setOnClickListener { itemView.context.startActivity<JoinCompanyActivity>() }
+        itemView.setOnClickListener { itemView.context.startActivity<JoinCompanyActivity>(Pair(Intent.ACTION_ATTACH_DATA,contentViewBinding.data)) }
     }
 
     fun setData(data:JoinMerChantsBean)

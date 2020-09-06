@@ -11,10 +11,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebView.setWebContentsDebuggingEnabled
 import com.tencent.mmkv.MMKV
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
-import java.io.ObjectInputStream
-import java.io.ObjectOutputStream
+import java.io.*
 
 fun Context.startActivity(activity: String) {
     val intent = Intent()
@@ -38,7 +35,7 @@ inline fun  Any.logw(message:String) = Log.w(javaClass.simpleName, message)
 
 inline fun  Any.logw(message:Any) =  Log.w(javaClass.simpleName, message.toString())
 inline fun  Any.loge(error: Throwable, message: () -> String) = Log.d(javaClass.simpleName, message(), error)
-
+inline fun  Any.loge(message:Any) =  Log.e(javaClass.simpleName, message.toString())
 inline fun  Any.loge(error: Throwable, message:String?="") = Log.d(javaClass.simpleName, message, error)
 
 
@@ -126,4 +123,8 @@ fun <T : Parcelable> getCacheData(key: String, clazz: Class<T>): T?
 fun clearCache(key:String)
 {
     MMKV.defaultMMKV().removeValueForKey(key)
+}
+
+fun <T:Serializable>Intent.getSerializableExtras(name: String?): T? {
+    return getSerializableExtra(name) as T?
 }

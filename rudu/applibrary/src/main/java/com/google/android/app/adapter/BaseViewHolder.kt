@@ -44,7 +44,7 @@ open class BaseViewHolder<B : ViewDataBinding>(
             }
             catch (e:Exception)
             {
-                e.printStackTrace()
+                e.message
             }
             if(URLUtil.isNetworkUrl(url))
             {
