@@ -201,7 +201,7 @@ class JoinIntroHolder(context: Context) :
 
     fun setData(data: JoinIntroInfoResultBean)
     {
-
+        contentViewBinding.intro=data.data
     }
 }
 class JoinZhanHuiHeaderHolder(layoutId: Int, context: Context) :
@@ -340,6 +340,10 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
                 holder.setData()
             }
             is InviteShopHolder->
+            {
+                holder.setData(getItemData(position))
+            }
+            is JoinIntroHolder->
             {
                 holder.setData(getItemData(position))
             }

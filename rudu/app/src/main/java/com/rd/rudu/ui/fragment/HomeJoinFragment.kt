@@ -26,7 +26,7 @@ class HomeJoinFragment(var jointViewModel: JoinViewModel): BaseFragment<Fragment
     {
         super.onViewCreated(view, savedInstanceState)
         contentBinding.recyclerView.adapter=adapter
-        adapter.addAll(buildJoinList())
+//        adapter.addAll(buildJoinList())
         adapter.notifyDataSetChanged()
         contentBinding.refreshLayout.setOnLoadMoreListener {
 

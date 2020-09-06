@@ -1,19 +1,16 @@
 package com.google.android.app.net;
 
 
-import android.app.Activity
 import android.util.Log
 import com.google.gson.Gson
-import org.json.JSONObject
-
-import io.reactivex.CompletableTransformer
-import io.reactivex.FlowableTransformer
-import io.reactivex.ObservableTransformer
+import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.json.JSONObject
+
 
 object TransUtils {
-     val gson=Gson()
+    val gson=Gson()
     @JvmStatic
     fun <T> jsonTransform(classRef: Class<T>): ObservableTransformer<JSONObject, T> {
         return ObservableTransformer { upstream ->
@@ -55,13 +52,14 @@ object TransUtils {
         }
     }
 
+    //处理了多个并发 和 单个出错情况的返回
     @JvmStatic
     inline fun <reified T> ioTransformer(): ObservableTransformer<JSONObject, T> {
         return ObservableTransformer { upstream ->
             upstream.subscribeOn(Schedulers.io()).map { s ->
                 Log.w("TransUtils","$s")
                 gson.fromJson("$s",T::class.java)
-            }
+            }.onErrorReturnItem(T::class.java.newInstance())
         }
     }
 

@@ -24,11 +24,13 @@ class JoinViewModel: ViewModel()
         var ruduIntro=AppApi.serverApi.getJoinIntroInfo().compose(TransUtils.ioTransformer<JoinIntroInfoResultBean>())
 
         var observableList= arrayOf(banner,merchants,chengshiHehuoren,brandBean,ruduIntro)
+
+
         Observable.zipArray({responseList->
             var resultList= arrayListOf<HomeJoinItemType>()
             responseList.forEachIndexed { _, item ->
                 logw("item:$item")
-                if(item is BaseResultBean<*>)
+                if(item!=null&&item is BaseResultBean<*>)
                 {
                     if(item.yes()&&item is HomeJoinItemType&&item.data!=null)
                     {
@@ -37,7 +39,7 @@ class JoinViewModel: ViewModel()
                 }
             }
             return@zipArray resultList
-        },true,observableList.size,observableList)
+        },false,observableList.size,observableList)
             .compose(TransUtils.schedulersTransformer())
             .subscribe(
                 {

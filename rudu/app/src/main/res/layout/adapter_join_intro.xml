@@ -51,7 +51,7 @@
                 android:layout_width="@dimen/dimen105"
                 android:layout_height="@dimen/dimen86">
                 <ImageView
-                    url="@{intro.introDesc}"
+                    app:url="@{intro.introPic}"
                     android:scaleType="fitXY"
                     android:adjustViewBounds="true"
                     android:src="@mipmap/join_mall_logo"
