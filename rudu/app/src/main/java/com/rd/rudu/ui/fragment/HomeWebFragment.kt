@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.utils.logd
 import com.google.android.app.widget.BaseFragment
+import com.google.android.app.widget.OnKeyBackHandle
 import com.rd.rudu.R
 import com.rd.rudu.databinding.FragmentHomeyouzanBinding
 import com.rd.rudu.ui.activity.LoginActivity
@@ -28,8 +29,7 @@ import com.youzan.androidsdk.event.AbsChooserEvent
 import org.jetbrains.anko.support.v4.startActivity
 
 //首页有赞
-class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>()
-{
+class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandle {
     companion object
     {
         const val WebUrl="WebUrl"
@@ -59,6 +59,7 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>()
         if(requireActivity() is WebViewActivity)
         {
             contentBinding.titleBar.visibility=View.GONE
+            (requireActivity() as WebViewActivity).addFragmentKeyBackHandle(this)
         }
         else
             contentBinding.titleBar.viewTreeObserver.addOnDrawListener {
@@ -81,6 +82,10 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>()
                 super.onReceivedTitle(p0, p1)
                 p1?.let {
 //                    setTitle(it)
+                    if(requireActivity() is WebViewActivity)
+                    {
+                        requireActivity().title = it
+                    }
                 }
             }
         })
@@ -140,5 +145,20 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>()
         {
             contentBinding.mView.receiveFile(requestCode,data)
         }
+    }
+
+    override fun processKeyBack(): Boolean
+    {
+        if(contentBinding.mView.pageCanGoBack()||contentBinding.mView.canGoBack())
+        {
+            contentBinding.mView.goBack()
+            return true
+        }
+        return false
+    }
+
+    override fun onDestroy()
+    {
+        super.onDestroy()
     }
 }

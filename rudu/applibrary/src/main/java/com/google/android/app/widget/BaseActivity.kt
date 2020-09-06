@@ -20,13 +20,30 @@ import com.google.android.app.DefaultApp
 import com.google.android.app.R
 import com.google.android.app.databinding.AppToolbarBinding
 import com.google.android.app.utils.StatusBarUtil
-import com.qmuiteam.qmui.arch.QMUIActivity
 
 
 abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
 {
+    private val keyBackList= mutableListOf<OnKeyBackHandle>()
     lateinit var contentBinding:T
     var toolbarBinding: AppToolbarBinding?=null
+
+    fun addFragmentKeyBackHandle(listener:OnKeyBackHandle)
+    {
+        if(!keyBackList.contains(listener))
+        {
+            keyBackList.add(listener)
+        }
+    }
+
+    fun removeFragmentKeyBackHandle(listener:OnKeyBackHandle)
+    {
+        if(keyBackList.contains(listener))
+        {
+            keyBackList.remove(listener)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         contentBinding=DataBindingUtil.inflate(layoutInflater,getLayoutResId(),null,false)
@@ -68,7 +85,7 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
         finish()
     }
 
-    fun setTitle(title:String)
+    override fun setTitle(title:CharSequence)
     {
         toolbarBinding?.titleText?.text=title
     }
@@ -107,8 +124,16 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
 
     protected inline fun <reified T: ViewModel> getViewModelByApplication()=(applicationContext as DefaultApp).getAppViewModelProvider(this).get(T::class.java)
 
+
+    override fun onBackPressed() {
+        var result=keyBackList.find { it.processKeyBack() }
+        if(result==null)
+            super.onBackPressed()
+    }
+
     override fun finish() {
         hideKeyBroad()
+        keyBackList.clear()
         super.finish()
     }
     protected fun hideKeyBroad()
@@ -144,56 +169,56 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
     }
 
 
-   /* @CallSuper
-    override fun onRequestPermissionsResult(
-            requestCode: Int,
-            permissions: Array<String>,
-            grantResults: IntArray
-    ) {
-        if(System.currentTimeMillis()<0)//肯定不会执行的 为了不代码显示错误
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        val fm = supportFragmentManager
-        var fragments: List<Fragment?>? = null
-        try {
-            fragments = fm.fragments
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        if (fragments == null) return
-        for (frag in fragments) {
-            frag?.let { handlePermissonsResult(it, requestCode, permissions, grantResults) }
-        }
-    }
+    /* @CallSuper
+     override fun onRequestPermissionsResult(
+             requestCode: Int,
+             permissions: Array<String>,
+             grantResults: IntArray
+     ) {
+         if(System.currentTimeMillis()<0)//肯定不会执行的 为了不代码显示错误
+             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+         val fm = supportFragmentManager
+         var fragments: List<Fragment?>? = null
+         try {
+             fragments = fm.fragments
+         } catch (e: Exception) {
+             e.printStackTrace()
+         }
+         if (fragments == null) return
+         for (frag in fragments) {
+             frag?.let { handlePermissonsResult(it, requestCode, permissions, grantResults) }
+         }
+     }
 
-    fun handlePermissonsResult(
-            frag: Fragment,
-            requestCode: Int,
-            permissions: Array<String>,
-            grantResults: IntArray
-    ) {
-        frag.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        var frags: List<Fragment?>? = null
-        try {
-            frags = frag.childFragmentManager.fragments
-        } catch (e: Exception) {
-        }
-        if (frags != null) {
-            for (f in frags) {
-                if (f != null && f.activity != null) handlePermissonsResult(
-                        f,
-                        requestCode,
-                        permissions,
-                        grantResults
-                )
-            }
-        }
-    }*/
+     fun handlePermissonsResult(
+             frag: Fragment,
+             requestCode: Int,
+             permissions: Array<String>,
+             grantResults: IntArray
+     ) {
+         frag.onRequestPermissionsResult(requestCode, permissions, grantResults)
+         var frags: List<Fragment?>? = null
+         try {
+             frags = frag.childFragmentManager.fragments
+         } catch (e: Exception) {
+         }
+         if (frags != null) {
+             for (f in frags) {
+                 if (f != null && f.activity != null) handlePermissonsResult(
+                         f,
+                         requestCode,
+                         permissions,
+                         grantResults
+                 )
+             }
+         }
+     }*/
 
     @CallSuper
     override fun onActivityResult(
-            requestCode: Int,
-            resultCode: Int,
-            data: Intent?
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
     ) {
         super.onActivityResult(requestCode, resultCode, data)
         val fm = supportFragmentManager
@@ -218,13 +243,13 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
      * @param data
      */
     fun handleResult(
-            frag: Fragment, requestCode: Int, resultCode: Int,
-            data: Intent?
+        frag: Fragment, requestCode: Int, resultCode: Int,
+        data: Intent?
     ) {
         if (frag.activity != null) frag.onActivityResult(
-                requestCode and 0xffff,
-                resultCode,
-                data
+            requestCode and 0xffff,
+            resultCode,
+            data
         )
         var frags: List<Fragment?>? = null
         try {
@@ -235,12 +260,16 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
         if (frags != null) {
             for (f in frags) {
                 if (f != null && f.activity != null) handleResult(
-                        f,
-                        requestCode,
-                        resultCode,
-                        data
+                    f,
+                    requestCode,
+                    resultCode,
+                    data
                 )
             }
         }
     }
+}
+interface OnKeyBackHandle
+{
+    fun processKeyBack():Boolean
 }
