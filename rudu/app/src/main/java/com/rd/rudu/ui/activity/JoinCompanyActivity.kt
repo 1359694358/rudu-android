@@ -77,9 +77,13 @@ class JoinCompanyActivity: BaseActivity<ActivityJoincomanyBinding>()
             var entity=MerchantsApplyEntity(contentBinding.joinName.editableText.toString(),
             if(contentBinding.female.isChecked)"1" else "0",contentBinding.area.editableText.toString(),contentBinding.joinPhone.editableText.toString())
             joinMerchantsVM.saveMerchantsApply(entity)
+            contentBinding.submit.isClickable=false
+            showLoadingDialog()
         }
 
         joinMerchantsVM.joinSubmitObs.observe(this, Observer {
+            contentBinding.submit.isClickable=true
+            hideLoadingDialog()
             if(it?.yes()==true)
             {
                 ToastUtil.show(this,"提交申请成功")

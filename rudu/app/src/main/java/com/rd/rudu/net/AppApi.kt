@@ -8,6 +8,7 @@ import com.google.android.app.utils.readAny
 import com.rd.rudu.BuildConfig
 import com.rd.rudu.bean.request.LoginEntity
 import com.rd.rudu.bean.request.MerchantsApplyEntity
+import com.rd.rudu.bean.request.PartnerApplyEntity
 import com.rd.rudu.bean.request.SmsCodeEntity
 import io.reactivex.Observable
 import io.reactivex.plugins.RxJavaPlugins
@@ -81,6 +82,9 @@ interface ServerApi
 
     @POST("api/customer/saveMerchantsApply")
     fun saveMerchantsApply(@Body data: MerchantsApplyEntity):Observable<JSONObject>
+
+    @POST("/api/customer/savePartnerApply")
+    fun savePartnerApply(@Body data:PartnerApplyEntity):Observable<JSONObject>
 }
 
 object AppApi

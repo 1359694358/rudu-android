@@ -1,10 +1,19 @@
 package com.rd.rudu.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
+import com.google.android.app.net.TransUtils
+import com.google.android.app.utils.ToastUtil
+import com.google.android.app.utils.Utility
 import com.google.android.app.utils.ViewUtils
+import com.google.android.app.utils.getSerializableExtras
 import com.google.android.app.widget.BaseActivity
 import com.rd.rudu.R
+import com.rd.rudu.bean.request.PartnerApplyEntity
+import com.rd.rudu.bean.result.BaseResultBean
+import com.rd.rudu.bean.result.JoinPartnerIntroResultBean
 import com.rd.rudu.databinding.ActivityJoinpartnerBinding
+import com.rd.rudu.net.AppApi
 
 class JoinCityPartnerActivity: BaseActivity<ActivityJoinpartnerBinding>() {
     override fun getLayoutResId(): Int
@@ -18,5 +27,70 @@ class JoinCityPartnerActivity: BaseActivity<ActivityJoinpartnerBinding>() {
         var color=0xFF222222.toInt()
         toolbarBinding?.titleText?.setTextColor(color)
         toolbarBinding?.backBtn?.setImageDrawable(ViewUtils.setDrawableColor(this,color,R.mipmap.icon_back_b))
+        var data: JoinPartnerIntroResultBean.JoinPartnerIntro?=intent.getSerializableExtras(Intent.ACTION_ATTACH_DATA)
+        data?.let {
+            contentBinding.data=it
+        }
+        contentBinding.shangjiaForm.submit.setOnClickListener {
+            submitHandle()
+        }
+    }
+
+    fun submitHandle()
+    {
+        if(contentBinding.shangjiaForm.name.editableText.isEmpty())
+        {
+            ToastUtil.show(this,"姓名不能为空")
+            return
+        }
+        if(contentBinding.shangjiaForm.type.editableText.isEmpty())
+        {
+            ToastUtil.show(this,"商家类型不能为空")
+            return
+        }
+        if(contentBinding.shangjiaForm.shopName.editableText.isEmpty())
+        {
+            ToastUtil.show(this,"商家类型不能为空")
+            return
+        }
+        if(!Utility.isMobileNO(contentBinding.shangjiaForm.phone.editableText.toString()))
+        {
+            ToastUtil.show(this,"请输入正确的手机号")
+            return
+        }
+        val entity=PartnerApplyEntity(
+                contentBinding.shangjiaForm.name.editableText.toString(),
+                contentBinding.shangjiaForm.type.editableText.toString(),
+                contentBinding.shangjiaForm.shopName.editableText.toString(),
+                contentBinding.shangjiaForm.phone.editableText.toString()
+        )
+        contentBinding.shangjiaForm.submit.isClickable=false
+        showLoadingDialog()
+        AppApi.serverApi.savePartnerApply(entity)
+                .compose(TransUtils.ioTransformer<BaseResultBean<String>>())
+                .compose(TransUtils.schedulersTransformer())
+                .subscribe(
+                        {
+                            if(isFinishing||isDestroyed)
+                                return@subscribe
+                            hideLoadingDialog()
+                            if(it?.yes()==true)
+                            {
+                                ToastUtil.show(this,"报名成功")
+                                finish()
+                            }
+                            else
+                            {
+                                ToastUtil.show(this,"报名失败，请稍候再试")
+                            }
+                        }
+                        ,
+                        {
+                            if(isFinishing||isDestroyed)
+                                return@subscribe
+                            hideLoadingDialog()
+                            ToastUtil.show(this,"报名失败，请稍候再试")
+                        }
+                )
     }
 }

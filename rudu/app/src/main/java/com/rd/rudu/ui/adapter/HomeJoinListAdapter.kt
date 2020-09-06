@@ -171,7 +171,7 @@ class JoinPartnerHolder(context: Context) :
 {
     init {
         itemView.setOnClickListener {
-            itemView.context.startActivity<JoinCityPartnerActivity>()
+            itemView.context.startActivity<JoinCityPartnerActivity>(Pair(Intent.ACTION_ATTACH_DATA,contentViewBinding.data))
         }
     }
     fun setData(data:JoinPartnerIntroResultBean)

@@ -22,6 +22,7 @@ import com.google.android.app.R
 import com.google.android.app.databinding.AppQmuiLoadingBinding
 import com.google.android.app.databinding.AppToolbarBinding
 import com.google.android.app.utils.StatusBarUtil
+import com.qmuiteam.qmui.widget.dialog.QMUITipDialog
 
 
 abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
@@ -290,6 +291,24 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
             loadingView= AppQmuiLoadingBinding.inflate(layoutInflater, window.decorView as ViewGroup?,true)
         }
         loadingView.root.visibility=View.GONE
+    }
+
+    private var loadingDialog: QMUITipDialog?=null
+    fun showLoadingDialog(title:CharSequence?="")
+    {
+        loadingDialog?.dismiss()
+        loadingDialog=null
+        loadingDialog = QMUITipDialog.Builder(this)
+                .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
+                .setTipWord(title)
+                .create()
+        loadingDialog?.show()
+    }
+
+    fun hideLoadingDialog()
+    {
+        loadingDialog?.dismiss()
+        loadingDialog=null
     }
 }
 interface OnKeyBackHandle

@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="data"
+            type="com.rd.rudu.bean.result.JoinPartnerIntroResultBean.JoinPartnerIntro" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
+                    url="@{data.topUrl}"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/city_partner"
@@ -48,7 +51,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="招商加盟"
+                        android:text="@{data.introTitle}"
                         android:textColor="#ff343434"
                         android:textSize="@dimen/dimen14"
                         />
@@ -71,7 +74,7 @@
                         android:layout_width="0dp"
                         android:layout_marginTop="@dimen/dimen9"
                         android:layout_height="wrap_content"
-                        android:text="城市合伙人是誉都商城的合作方式，为广大的装企会员提供更多的增值服务。如果您有兴趣，请填写以下信息，期待您的加入！"
+                        android:text="@{data.introDesc}"
                         android:textColor="#ff9a9a9a"
                         android:textSize="@dimen/dimen12"
                         />
