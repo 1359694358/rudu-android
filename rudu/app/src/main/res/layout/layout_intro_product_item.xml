@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="product"
+            type="com.rd.rudu.bean.result.JoinIntroMainsResultBean.JoinIntroMainsItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        clickOpenUrl="@{product.detailUrl}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            url="@{product.imageUrl}"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen10"
+            android:src="@mipmap/zhanhuijiajuicon"
+            android:id="@+id/image1"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintDimensionRatio="h,149:96"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <TextView
+            android:id="@+id/title1"
+            app:layout_constraintTop_toBottomOf="@+id/image1"
+            android:layout_marginTop="@dimen/dimen7"
+            android:paddingBottom="@dimen/dimen7"
+            app:layout_constraintStart_toStartOf="@+id/image1"
+            app:layout_constraintEnd_toStartOf="@+id/price1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{product.title}"
+            android:textColor="#999999"
+            android:textSize="@dimen/dimen12" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

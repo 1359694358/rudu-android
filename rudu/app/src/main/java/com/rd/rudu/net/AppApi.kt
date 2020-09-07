@@ -86,8 +86,17 @@ interface ServerApi
     @POST("/api/customer/saveBrandApply")
     fun saveBrandApply(@Body data: BrandApplyEntity):Observable<JSONObject>
 
+    //我们的团队人员
     @GET("/api/customer/getJoinIntroElite")
     fun getJoinIntroElite():Observable<JSONObject>
+
+    //介绍
+    @GET("/api/customer/getJoinIntroAdvantage")
+    fun getJoinIntroAdvantage():Observable<JSONObject>
+
+    //主打产品
+    @GET("/api/customer/getJoinIntroMains")
+    fun getJoinIntroMains():Observable<JSONObject>
 }
 
 object AppApi
