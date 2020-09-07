@@ -8,24 +8,35 @@
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         clickOpenUrl="@{product.detailUrl}"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <ImageView
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
             url="@{product.imageUrl}"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="@dimen/dimen10"
-            android:layout_marginTop="@dimen/dimen10"
             android:src="@mipmap/zhanhuijiajuicon"
             android:id="@+id/image1"
-            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintDimensionRatio="h,149:96"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="match_parent"
             android:layout_height="0dp" />
-
+        <TextView
+            android:id="@+id/price1"
+            app:layout_constraintTop_toTopOf="@+id/title1"
+            app:layout_constraintEnd_toEndOf="@+id/image1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥1299"
+            android:textColor="#ffff251a"
+            android:textSize="@dimen/dimen10"
+            />
         <TextView
             android:id="@+id/title1"
+            android:maxLines="1"
+            android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@+id/image1"
             android:layout_marginTop="@dimen/dimen7"
             android:paddingBottom="@dimen/dimen7"

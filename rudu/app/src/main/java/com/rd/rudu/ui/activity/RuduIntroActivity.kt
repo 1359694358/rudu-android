@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.app.adapter.BaseRecyclerAdapter
 import com.google.android.app.adapter.BaseViewHolder
@@ -19,6 +20,7 @@ import com.rd.rudu.databinding.ActivityRuduintroBinding
 import com.rd.rudu.databinding.LayoutIntroProductItemBinding
 import com.rd.rudu.databinding.LayoutTeamPartnerBinding
 import com.rd.rudu.databinding.LayoutZhaoshangIntroitemBinding
+import com.rd.rudu.ui.adapter.GridStyleItemDecoration
 import com.rd.rudu.vm.RuduIntroVM
 
 /**
@@ -62,6 +64,10 @@ class RuduIntroActivity : BaseActivity<ActivityRuduintroBinding>() {
                     introBinding.introInfo=item
                 }
                 var adapter=ProductListAdapter(it.product.data,this)
+                val lm=GridLayoutManager(this,2)
+                lm.orientation=GridLayoutManager.VERTICAL
+                contentBinding.productLayout.productList.addItemDecoration(GridStyleItemDecoration(resources.getDimensionPixelSize(R.dimen.dimen10)))
+                contentBinding.productLayout.productList.layoutManager=lm
                 contentBinding.productLayout.productList.adapter=adapter
             }
             else

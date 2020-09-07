@@ -13,7 +13,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_marginStart="@dimen/dimen15"
             android:layout_marginEnd="@dimen/dimen15"
-            android:paddingBottom="@dimen/dimen16"
+            android:paddingBottom="@dimen/dimen9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/order_rectbg"
@@ -45,15 +45,15 @@
 
             <com.google.android.app.widget.EmbedRecyclerView
                 android:layout_marginTop="@dimen/dimen10"
-                app:spanCount="2"
                 android:src="@mipmap/zhanhuijiajuicon"
                 android:id="@+id/productList"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 android:orientation="vertical"
+                android:layout_marginStart="@dimen/dimen9"
+                android:layout_marginEnd="@dimen/dimen9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/line2"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

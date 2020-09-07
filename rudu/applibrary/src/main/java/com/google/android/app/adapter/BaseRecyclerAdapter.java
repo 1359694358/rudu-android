@@ -39,10 +39,16 @@ public abstract class BaseRecyclerAdapter <T> extends RecyclerView.Adapter imple
         clickListener = listener;
     }
 
+    public boolean needHandleGridLayoutSpan()
+    {
+        return false;
+    }
 
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+        if(!needHandleGridLayoutSpan())
+            return;
         WrapperUtils.onAttachedToRecyclerView(this,recyclerView,false,new SpanSizeCallback()
         {
 

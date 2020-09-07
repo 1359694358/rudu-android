@@ -394,4 +394,8 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
     override fun getItemSpanCount(position: Int): Int {
         return getItem(position).getJoinItemType().second
     }
+
+    override fun needHandleGridLayoutSpan(): Boolean {
+        return true
+    }
 }

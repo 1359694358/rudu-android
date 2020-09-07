@@ -17,7 +17,7 @@ import com.google.android.app.utils.imageloader.ImageLoader
 open class BaseViewHolder<B : ViewDataBinding>(
     var context: Context,
     @LayoutRes layoutId: Int,
-    var layoutType:Int=None
+    layoutType:Int=None
 ) : RecyclerView.ViewHolder(DataBindingUtil.inflate<ViewDataBinding>(ContextCompat.getSystemService(context, LayoutInflater::class.java)!!, layoutId, null, false).root) {
 
     var contentViewBinding: B = DataBindingUtil.getBinding(itemView)!!
