@@ -43,6 +43,7 @@ public class GlideEngine implements ImageEngine {
         Glide.with(context)
                 .load(url)
                 .into(imageView);
+        int[] location=new int[2];
     }
 
     /**

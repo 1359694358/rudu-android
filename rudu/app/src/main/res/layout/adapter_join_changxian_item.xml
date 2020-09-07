@@ -9,14 +9,13 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@drawable/order_rectbg"
         android:layout_width="match_parent"
         clickOpenUrl="@{fresh.detailUrl}"
         android:layout_height="wrap_content">
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:paddingStart="@dimen/dimen9"
-            android:paddingEnd="@dimen/dimen9"
+            android:id="@+id/viewWrapper"
             android:layout_marginTop="@dimen/dimen9"
+            android:background="@drawable/order_rectbg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +36,6 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"/>
             <LinearLayout
-                android:background="@android:color/white"
                 android:orientation="vertical"
                 android:paddingTop="@dimen/dimen9"
                 android:paddingStart="@dimen/dimen10"

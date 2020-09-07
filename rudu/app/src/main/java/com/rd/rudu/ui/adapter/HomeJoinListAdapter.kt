@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.text.SpannableStringBuilder
-import android.text.style.*
+import android.text.style.AbsoluteSizeSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.StrikethroughSpan
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -23,7 +25,6 @@ import com.rd.rudu.R
 import com.rd.rudu.bean.result.*
 import com.rd.rudu.databinding.*
 import com.rd.rudu.ui.activity.*
-import org.jetbrains.anko.collections.forEachByIndex
 import org.jetbrains.anko.startActivity
 
 @JvmField
@@ -277,6 +278,27 @@ class HomeJoinMiddleTitleHolder(layoutId: Int, context: Context) :
 class HomeJoinChangXianItemHolder(layoutId: Int, context: Context) :
         BaseViewHolder<AdapterJoinChangxianItemBinding>(context, layoutId)
 {
+    init {
+        contentViewBinding.viewWrapper.viewTreeObserver.addOnGlobalLayoutListener {
+            val location = IntArray(2)
+            var lp=contentViewBinding.viewWrapper.layoutParams
+            if(lp is ViewGroup.MarginLayoutParams)
+            {
+                contentViewBinding.viewWrapper.getLocationOnScreen(location)
+                if(location[0]<(itemView.resources.displayMetrics.widthPixels/3))
+                {
+                    lp.leftMargin=0
+                    lp.rightMargin=context.resources.getDimensionPixelOffset(R.dimen.dimen7)
+                }
+                else
+                {
+                    lp.rightMargin=0
+                    lp.leftMargin=context.resources.getDimensionPixelOffset(R.dimen.dimen7)
+                }
+                contentViewBinding.viewWrapper.requestLayout()
+            }
+        }
+    }
     fun setData(data:JoinFreshResultBean.JoinFreshResultItem)
     {
         var currentPrice="99"
