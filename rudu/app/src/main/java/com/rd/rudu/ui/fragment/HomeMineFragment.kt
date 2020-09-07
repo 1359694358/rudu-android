@@ -2,9 +2,12 @@ package com.rd.rudu.ui.fragment
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.text.set
 import androidx.lifecycle.Observer
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.utils.ToastUtil
@@ -16,6 +19,7 @@ import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.qmuiteam.qmui.widget.dialog.QMUIBottomSheet
+import com.qmuiteam.qmui.widget.dialog.QMUIBottomSheetListItemModel
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog
 import com.rd.rudu.R
 import com.rd.rudu.bean.result.LoginResultBean
@@ -69,12 +73,18 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
             var loginResult=LoginResultBean.LoginResult.getLoginResult()
             if(loginResult.isLogin)
             {
+                var photoSPan=SpannableStringBuilder("拍摄")
+                photoSPan[0,photoSPan.length]=ForegroundColorSpan(ContextCompat.getColor(requireContext(),R.color.qmuibottomsheettxtcolor))
+                var takePhoto= QMUIBottomSheetListItemModel(photoSPan,"")
+                var uploadSpan=SpannableStringBuilder("上传")
+                uploadSpan[0,uploadSpan.length]=ForegroundColorSpan(ContextCompat.getColor(requireContext(),R.color.qmuibottomsheettxtcolor))
+                var upload=QMUIBottomSheetListItemModel(uploadSpan,"")
                 var bottomsheet= QMUIBottomSheet.BottomListSheetBuilder(requireActivity())
                         .setGravityCenter(true)
                         .setAddCancelBtn(true)
                         .setTitle("请选择上传方式")
-                        .addItem("拍摄")
-                        .addItem("上传")
+                        .addItem(takePhoto)
+                        .addItem(upload)
                         .setOnSheetItemClickListener { dialog, itemView, position, tag ->
                             dialog.dismiss()
                             if(position==0)

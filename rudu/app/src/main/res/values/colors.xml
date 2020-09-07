@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="currentPriceColor">#FF251A</color>
     <color name="originPriceColor">#888888</color>
+    <color name="qmuibottomsheettxtcolor">#047BE4</color>
 </resources>

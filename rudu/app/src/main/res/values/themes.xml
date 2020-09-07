@@ -12,8 +12,13 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:windowIsTranslucent">false</item>
+        <item name="qmui_skin_support_bottom_sheet_cancel_text_color">@color/qmuibottomsheettxtcolor</item>
+        <item name="qmui_skin_support_bottom_sheet_title_text_color">@color/qmuibottomsheettxtcolor</item>
     </style>
 
+    <style name="UploadDialogSheetTxtStyle">
+        <item name="android:textColor">@color/qmuibottomsheettxtcolor</item>
+    </style>
     <style name="Theme.Rudu.Home" parent="Theme.Rudu">
         <item name="android:windowFullscreen">true</item>
         <item name="android:fitsSystemWindows">false</item>
