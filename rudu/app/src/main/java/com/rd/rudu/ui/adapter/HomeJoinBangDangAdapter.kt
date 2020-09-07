@@ -61,7 +61,7 @@ class HomeJoinBangDangAdapter(context: Context) : BaseRecyclerAdapter<JoinBlastR
         }
         else
         {
-            priceFormat=priceFormat.replace(priceFormat.length-2,priceFormat.length-1,"")
+            priceFormat=priceFormat.replace(priceFormat.length-1,priceFormat.length,"")
         }
 
         holder.contentViewBinding.priceInfo.text=priceFormat
