@@ -199,7 +199,7 @@ class JoinIntroHolder(context: Context) :
 {
     init {
         itemView.setOnClickListener {
-            it.context.startActivity<RuduIntroActivity>()
+            it.context.startActivity<RuduIntroActivity>(Pair(Intent.ACTION_ATTACH_DATA,contentViewBinding.intro))
         }
     }
 

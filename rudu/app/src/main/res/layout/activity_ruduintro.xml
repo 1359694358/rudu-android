@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="intro"
+            type="com.rd.rudu.bean.result.JoinIntroInfoResultBean.JoinIntroInfoListData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
+                    url="@{intro.topPic}"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/ruduintrobanner"
@@ -49,7 +52,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="关于誉都"
+                        android:text="@{intro.moduleAboutTitle}"
                         android:textStyle="bold"
                         android:textColor="#ff343434"
                         android:textSize="@dimen/dimen14"
@@ -74,11 +77,12 @@
                         android:layout_marginEnd="@dimen/dimen13"
                         android:layout_marginTop="@dimen/dimen9"
                         android:layout_height="wrap_content"
-                        android:text="   誉都商城有限公司成立于2014年，专注“建材家居”十余载。 成立伊始在广州建立展柜制作厂，熟知展示家具的制作成本和生产工"
+                        android:text="@{intro.moduleAboutDesc}"
                         android:textColor="#ff9a9a9a"
                         android:textSize="@dimen/dimen12"
                         />
                     <ImageView
+                        url="@{intro.moduleAboutPic}"
                         android:layout_marginEnd="@dimen/dimen10"
                         android:id="@+id/introRightLogo"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -259,7 +263,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="联系我们"
+                        android:text="@{intro.moduleContactTitle}"
                         android:textStyle="bold"
                         android:textColor="#343434"
                         android:textSize="@dimen/dimen13" />
@@ -280,7 +284,7 @@
                         android:layout_marginTop="@dimen/dimen15"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="联系电话：1866666666"
+                        android:text="@{@string/about_rudu_contract(intro.moduleContactPhone,intro.moduleContactMail,intro.moduleContactAddress)}"
                         android:textColor="#ff9a9a9a"
                         android:textSize="@dimen/dimen12"
                         />

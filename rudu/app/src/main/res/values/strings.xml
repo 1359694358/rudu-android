@@ -24,4 +24,5 @@
     <string name="agree_str">点击登录即同意誉都商城用户协议</string>
     <string name="app_nologin_nick">HI~ 欢迎来到誉都商城</string>
     <string name="join_contract_bottom">联系人：%1$s\n联系电话：%2$s\n公司地址：%3$s</string>
+    <string name="about_rudu_contract">联系电话：%1$s\n联系邮箱：%2$s\n公司地址：%3$s</string>
 </resources>
