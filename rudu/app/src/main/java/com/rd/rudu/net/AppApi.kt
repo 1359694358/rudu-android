@@ -85,6 +85,9 @@ interface ServerApi
 
     @POST("/api/customer/saveBrandApply")
     fun saveBrandApply(@Body data: BrandApplyEntity):Observable<JSONObject>
+
+    @GET("/api/customer/getJoinIntroElite")
+    fun getJoinIntroElite():Observable<JSONObject>
 }
 
 object AppApi

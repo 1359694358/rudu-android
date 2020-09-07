@@ -139,13 +139,14 @@
                         android:textSize="@dimen/dimen12"
                         >
                         <LinearLayout
+                            android:id="@+id/teamItems"
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent">
+                           <!-- <include layout="@layout/layout_team_partner"/>
                             <include layout="@layout/layout_team_partner"/>
                             <include layout="@layout/layout_team_partner"/>
-                            <include layout="@layout/layout_team_partner"/>
-                            <include layout="@layout/layout_team_partner"/>
+                            <include layout="@layout/layout_team_partner"/>-->
                         </LinearLayout>
                     </HorizontalScrollView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
