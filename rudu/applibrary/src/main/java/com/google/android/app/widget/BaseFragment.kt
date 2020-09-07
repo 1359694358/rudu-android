@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.app.DefaultApp
+import com.google.android.app.R
 import com.google.android.app.databinding.AppQmuiLoadingBinding
 
 abstract class BaseFragment<T: ViewDataBinding>() : Fragment() {
@@ -58,6 +59,12 @@ abstract class BaseFragment<T: ViewDataBinding>() : Fragment() {
             loadingView= AppQmuiLoadingBinding.inflate(layoutInflater, view as ViewGroup?,true)
         }
         loadingView.root.visibility=View.VISIBLE
+        if(loadingView.root.layoutParams!=null&&loadingView.root.layoutParams is ViewGroup.MarginLayoutParams)
+        {
+            var lp = loadingView.root.layoutParams as ViewGroup.MarginLayoutParams
+            lp.topMargin=resources.getDimensionPixelOffset(R.dimen.dimen42)
+            loadingView.root.requestLayout()
+        }
     }
 
     fun hideLoading()

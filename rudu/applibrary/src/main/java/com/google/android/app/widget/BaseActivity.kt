@@ -282,6 +282,12 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
             loadingView= AppQmuiLoadingBinding.inflate(layoutInflater, window.decorView as ViewGroup?,true)
         }
         loadingView.root.visibility=View.VISIBLE
+        if(loadingView.root.layoutParams!=null&&loadingView.root.layoutParams is ViewGroup.MarginLayoutParams)
+        {
+            var lp=loadingView.root.layoutParams as ViewGroup.MarginLayoutParams
+            lp.topMargin=StatusBarUtil.getStatusBarHeight(this)+(if(toolbarBinding!=null)resources.getDimensionPixelOffset(R.dimen.dimen42) else 0)
+            loadingView.root.requestLayout()
+        }
     }
 
     fun hideLoading()
