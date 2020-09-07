@@ -9,7 +9,7 @@ import com.rd.rudu.net.AppApi
 import com.rd.rudu.ui.adapter.HomeJoinItemType
 import com.rd.rudu.ui.adapter.*
 import io.reactivex.Observable
-
+//首页加盟列表数据
 class JoinViewModel: ViewModel()
 {
     val joinObserver=MutableLiveDataX<List<HomeJoinItemType>?>()
@@ -33,9 +33,9 @@ class JoinViewModel: ViewModel()
                 brandBean,
                 ruduIntro,
                 joinExhibitionResult,
-                joinBlastResult/*,
+                joinBlastResult,
                 joinGoodsResult,
-                joinFreshResult*/)
+                joinFreshResult)
 
 
         Observable.zipArray({responseList->
@@ -48,6 +48,14 @@ class JoinViewModel: ViewModel()
                     {
                         resultList.add(item)
                         if(item is JoinExhibitionResultBean)
+                        {
+                            resultList.addAll(item.data)
+                        }
+                        else if(item is JoinGoodsResultBean)
+                        {
+                            resultList.addAll(item.data)
+                        }
+                        else if(item is JoinFreshResultBean)
                         {
                             resultList.addAll(item.data)
                         }

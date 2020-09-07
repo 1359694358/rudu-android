@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="goods"
+            type="com.rd.rudu.bean.result.JoinGoodsResultBean.JoinGoodsResultItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,6 +14,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            clickOpenUrl="@{goods.detailUrl}"
             android:background="@android:color/white"
             android:layout_width="match_parent"
             android:paddingEnd="@dimen/dimen9"
@@ -28,6 +31,7 @@
                 android:layout_height="@dimen/dimen120">
                 <ImageView
                     android:scaleType="fitXY"
+                    url="@{goods.imageUrl}"
                     android:adjustViewBounds="true"
                     android:src="@mipmap/join_mall_logo"
                     android:layout_width="match_parent"

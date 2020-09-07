@@ -92,8 +92,8 @@ fun buildJoinList():List<HomeJoinItemType>
 }
 
 class CompanyItemHolder(context: Context) : BaseViewHolder<AdapterJoinCompanyBinding>(
-    context,
-    R.layout.adapter_join_company
+        context,
+        R.layout.adapter_join_company
 )
 {
     init {
@@ -107,7 +107,7 @@ class CompanyItemHolder(context: Context) : BaseViewHolder<AdapterJoinCompanyBin
 }
 
 class BannerViewHolder(context: Context) :
-    BaseViewHolder<AdapterJoinBannerBinding>(context, R.layout.adapter_join_banner), LoopPager.OnLooperPagerHandle {
+        BaseViewHolder<AdapterJoinBannerBinding>(context, R.layout.adapter_join_banner), LoopPager.OnLooperPagerHandle {
     init {
         contentViewBinding.banner.onLooperPagerHandle=this
         contentViewBinding.banner.setOnItemClickListener { banner, position, tag ->
@@ -167,7 +167,7 @@ class BannerViewHolder(context: Context) :
 }
 
 class JoinPartnerHolder(context: Context) :
-    BaseViewHolder<AdapterJoinPartnerBinding>(context, R.layout.adapter_join_partner)
+        BaseViewHolder<AdapterJoinPartnerBinding>(context, R.layout.adapter_join_partner)
 {
     init {
         itemView.setOnClickListener {
@@ -181,7 +181,7 @@ class JoinPartnerHolder(context: Context) :
 }
 
 class InviteShopHolder(context: Context) :
-    BaseViewHolder<AdapterJoinInviteshopBinding>(context, R.layout.adapter_join_inviteshop)
+        BaseViewHolder<AdapterJoinInviteshopBinding>(context, R.layout.adapter_join_inviteshop)
 {
     init {
         itemView.setOnClickListener {
@@ -195,7 +195,7 @@ class InviteShopHolder(context: Context) :
 }
 
 class JoinIntroHolder(context: Context) :
-    BaseViewHolder<AdapterJoinIntroBinding>(context, R.layout.adapter_join_intro)
+        BaseViewHolder<AdapterJoinIntroBinding>(context, R.layout.adapter_join_intro)
 {
     init {
         itemView.setOnClickListener {
@@ -209,10 +209,10 @@ class JoinIntroHolder(context: Context) :
     }
 }
 class JoinZhanHuiHeaderHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinGridHeaderBinding>(context, layoutId)
+        BaseViewHolder<AdapterJoinGridHeaderBinding>(context, layoutId)
 
 class JoinZhanHuiItemHolder(context: Context) :
-    BaseViewHolder<AdapterJoinGridItemBinding>(context, R.layout.adapter_join_grid_item)
+        BaseViewHolder<AdapterJoinGridItemBinding>(context, R.layout.adapter_join_grid_item)
 {
     init
     {
@@ -226,7 +226,7 @@ class JoinZhanHuiItemHolder(context: Context) :
     }
 }
 class JoinBangDangHolder(context: Context) :
-    BaseViewHolder<AdapterJoinBangdangBinding>(context, R.layout.adapter_join_bangdang)
+        BaseViewHolder<AdapterJoinBangdangBinding>(context, R.layout.adapter_join_bangdang)
 {
     val adapter:HomeJoinBangDangAdapter by lazy { HomeJoinBangDangAdapter(context) }
     fun setData(data:JoinBlastResultBean)
@@ -239,37 +239,45 @@ class JoinBangDangHolder(context: Context) :
 }
 
 class HomeJoinHaoHuoTuiJianHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinTuijianItemBinding>(context, layoutId)
+        BaseViewHolder<AdapterJoinTuijianItemBinding>(context, layoutId)
 {
-    fun setData()
+    fun setData(data:JoinGoodsResultBean.JoinGoodsResultItem)
     {
-        var currentPrice="99"
-        var originPrice="139.9"
+        var currentPrice=data.price
+        var originPrice=data.origin
         var priceFormat= SpannableStringBuilder(context.resources.getString(R.string.price_format,currentPrice,originPrice))
         priceFormat[0,1]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen10))
         priceFormat[1,currentPrice.length+1]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen15))
         priceFormat[0,currentPrice.length+1]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.currentPriceColor))
-        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.originPriceColor))
-        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen12))
-        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=StrikethroughSpan()
+        if(originPrice?.length?:0>0)
+        {
+            priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.originPriceColor))
+            priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen12))
+            priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=StrikethroughSpan()
+        }
+        else
+        {
+            priceFormat=priceFormat.replace(priceFormat.length-1,priceFormat.length,"")
+        }
         contentViewBinding.priceInfo.text=priceFormat
 
-        var title="客厅瓷砖地砖通体大理石瓷砖仿玛瑙玉餐厅地板定制"
+        var title=data.title
         var titleFormat=SpannableStringBuilder("推荐 ${title}")
         titleFormat[0,2]= RoundBackgroundColorSpan(context,0xFFFF653C.toInt(), Color.WHITE)//,context.resources.getDimensionPixelOffset(R.dimen.dimen4),context.resources.getDimensionPixelOffset(R.dimen.dimen8))
         titleFormat[0,2]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen10))
         titleFormat[titleFormat.length-title.length,titleFormat.length]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen13))
         contentViewBinding.title.text=titleFormat
+        contentViewBinding.goods=data
     }
 }
 
 class HomeJoinMiddleTitleHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinMiddletitleBinding>(context, layoutId)
+        BaseViewHolder<AdapterJoinMiddletitleBinding>(context, layoutId)
 
 class HomeJoinChangXianItemHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinChangxianItemBinding>(context, layoutId)
+        BaseViewHolder<AdapterJoinChangxianItemBinding>(context, layoutId)
 {
-    fun setData()
+    fun setData(data:JoinFreshResultBean.JoinFreshResultItem)
     {
         var currentPrice="99"
         var originPrice="139.9"
@@ -277,17 +285,27 @@ class HomeJoinChangXianItemHolder(layoutId: Int, context: Context) :
         priceFormat[0,1]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen12))
         priceFormat[1,currentPrice.length+1]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen17))
         priceFormat[0,currentPrice.length+1]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.currentPriceColor))
-        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.originPriceColor))
-        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen12))
-        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=StrikethroughSpan()
-        contentViewBinding.priceInfo.text=priceFormat
 
-        var title="客厅瓷砖地砖通体大理石瓷砖仿玛瑙玉餐厅地板定制"
+        if(originPrice?.length?:0>0)
+        {
+            priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.originPriceColor))
+            priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen12))
+            priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=StrikethroughSpan()
+        }
+        else
+        {
+            priceFormat=priceFormat.replace(priceFormat.length-1,priceFormat.length,"")
+        }
+        contentViewBinding.priceInfo.text=priceFormat
+        contentViewBinding.imageContainer.radius=itemView.resources.getDimensionPixelOffset(R.dimen.dimen6)
+        contentViewBinding.imageContainer.topRadius=true
+        var title=data.title
         var titleFormat=SpannableStringBuilder("新品 ${title}")
         titleFormat[0,2]= RoundBackgroundColorSpan(context,0xFF81BDF1.toInt(), Color.WHITE)//,context.resources.getDimensionPixelOffset(R.dimen.dimen4),context.resources.getDimensionPixelOffset(R.dimen.dimen8))
         titleFormat[0,2]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen10))
         titleFormat[titleFormat.length-title.length,titleFormat.length]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen13))
         contentViewBinding.title.text=titleFormat
+        contentViewBinding.fresh=data
     }
 }
 
@@ -378,11 +396,11 @@ class HomeJoinListAdapter(context: Context) : BaseRecyclerAdapter<HomeJoinItemTy
             }
             is HomeJoinHaoHuoTuiJianHolder->
             {
-                holder.setData()
+                holder.setData(getItemData(position))
             }
             is HomeJoinChangXianItemHolder->
             {
-                holder.setData()
+                holder.setData(getItemData(position))
             }
         }
     }
