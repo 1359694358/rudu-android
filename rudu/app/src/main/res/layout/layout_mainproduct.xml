@@ -45,6 +45,7 @@
 
             <com.google.android.app.widget.EmbedRecyclerView
                 android:layout_marginTop="@dimen/dimen10"
+                app:spanCount="2"
                 android:src="@mipmap/zhanhuijiajuicon"
                 android:id="@+id/productList"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

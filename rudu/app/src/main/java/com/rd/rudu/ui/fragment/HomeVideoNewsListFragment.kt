@@ -41,5 +41,5 @@ class HomeVideoNewsListAdapter(context: Context) : BaseRecyclerAdapter<String>(c
     }
 
     class VideoListItemStyleHolder(context: Context,layoutId: Int=R.layout.adapter_topvideoitem) :
-            BaseViewHolder<AdapterTopvideoitemBinding>(context, layoutId,true)
+            BaseViewHolder<AdapterTopvideoitemBinding>(context, layoutId, WidthMatchParent)
 }

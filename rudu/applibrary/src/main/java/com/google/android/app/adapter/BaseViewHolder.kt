@@ -17,14 +17,18 @@ import com.google.android.app.utils.imageloader.ImageLoader
 open class BaseViewHolder<B : ViewDataBinding>(
     var context: Context,
     @LayoutRes layoutId: Int,
-    widthMatchParent:Boolean=false
+    var layoutType:Int=None
 ) : RecyclerView.ViewHolder(DataBindingUtil.inflate<ViewDataBinding>(ContextCompat.getSystemService(context, LayoutInflater::class.java)!!, layoutId, null, false).root) {
 
     var contentViewBinding: B = DataBindingUtil.getBinding(itemView)!!
     init {
-        if(widthMatchParent)
+        if(layoutType==WidthMatchParent)
         {
             itemView.layoutParams=RecyclerView.LayoutParams(-1,-2)
+        }
+        else if(layoutType== HeightMatchParent)
+        {
+            itemView.layoutParams=RecyclerView.LayoutParams(-2,-1)
         }
     }
     protected fun getLayoutInflater():LayoutInflater
@@ -33,6 +37,10 @@ open class BaseViewHolder<B : ViewDataBinding>(
     }
     companion object
     {
+        const val None=0
+        const val WidthMatchParent=1
+        const val HeightMatchParent=2
+        const val AllMatchParent=3
         @JvmStatic
         @BindingAdapter(value = ["url","res" ],requireAll = false)
         fun loadImage(image:ImageView,url:String?,@DrawableRes res:Int)
@@ -57,5 +65,3 @@ open class BaseViewHolder<B : ViewDataBinding>(
         }
     }
 }
-
-open class BaseViewHolderMP<B:ViewDataBinding>(context: Context, layoutId: Int, widthMatchParent: Boolean = true) : BaseViewHolder<B>(context, layoutId, widthMatchParent)

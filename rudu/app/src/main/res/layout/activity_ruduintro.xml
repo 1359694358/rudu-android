@@ -204,7 +204,7 @@
                         android:id="@+id/merchantsIntro"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-                <include layout="@layout/layout_mainproduct"/>
+                <include android:id="@+id/productLayout" layout="@layout/layout_mainproduct"/>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_marginStart="@dimen/dimen15"
                     android:paddingBottom="@dimen/dimen15"
