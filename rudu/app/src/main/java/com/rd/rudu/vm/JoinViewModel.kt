@@ -25,8 +25,17 @@ class JoinViewModel: ViewModel()
         var ruduIntro=AppApi.serverApi.getJoinIntroInfo().compose(TransUtils.ioTransformer<JoinIntroInfoResultBean>())
         var joinExhibitionResult=AppApi.serverApi.getJoinExhibition().compose(TransUtils.ioTransformer<JoinExhibitionResultBean>())
         var joinBlastResult=AppApi.serverApi.getJoinBlast().compose(TransUtils.ioTransformer<JoinBlastResultBean>())
-
-        var observableList= arrayOf(banner,merchants,chengshiHehuoren,brandBean,ruduIntro,joinExhibitionResult,joinBlastResult)
+        var joinGoodsResult=AppApi.serverApi.getJoinGGoods().compose(TransUtils.ioTransformer<JoinGoodsResultBean>())
+        var joinFreshResult=AppApi.serverApi.getJoinFresh().compose(TransUtils.ioTransformer<JoinFreshResultBean>())
+        var observableList= arrayOf(banner,
+                merchants,
+                chengshiHehuoren,
+                brandBean,
+                ruduIntro,
+                joinExhibitionResult,
+                joinBlastResult/*,
+                joinGoodsResult,
+                joinFreshResult*/)
 
 
         Observable.zipArray({responseList->

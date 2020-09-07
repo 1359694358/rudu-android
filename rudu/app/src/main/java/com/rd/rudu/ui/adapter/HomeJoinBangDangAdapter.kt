@@ -25,6 +25,7 @@ class HomeJoinBangDangAdapter(context: Context) : BaseRecyclerAdapter<JoinBlastR
         super.onBindViewHolder(holder, position)
         if(holder !is JoinBangDangItemHolder)
             return
+        holder.contentViewBinding.blast=getItem(position)
         holder.contentViewBinding.prizeIcon.visibility= View.VISIBLE
         when(position)
         {
@@ -45,20 +46,27 @@ class HomeJoinBangDangAdapter(context: Context) : BaseRecyclerAdapter<JoinBlastR
                 holder.contentViewBinding.prizeIcon.visibility= View.GONE
             }
         }
-
-        var currentPrice="99"
-        var originPrice="139.9"
+        var blastItem: JoinBlastResultBean.JoinBlastResultItem =getItem(position)
+        var currentPrice=blastItem.price
+        var originPrice=blastItem.origin
         var priceFormat=SpannableStringBuilder(context.resources.getString(R.string.price_format,currentPrice,originPrice))
         priceFormat[0,1]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen10))
         priceFormat[1,currentPrice.length+1]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen13))
         priceFormat[0,currentPrice.length+1]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.currentPriceColor))
-        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.originPriceColor))
-        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen10))
-        priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=StrikethroughSpan()
+        if(originPrice?.length?:0>0)
+        {
+            priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=ForegroundColorSpan(ContextCompat.getColor(context,R.color.originPriceColor))
+            priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen10))
+            priceFormat[priceFormat.length-originPrice.length-1,priceFormat.length]=StrikethroughSpan()
+        }
+        else
+        {
+            priceFormat=priceFormat.replace(priceFormat.length-2,priceFormat.length-1,"")
+        }
 
         holder.contentViewBinding.priceInfo.text=priceFormat
     }
 }
 
 class JoinBangDangItemHolder(layoutId: Int, context: Context) :
-    BaseViewHolder<AdapterJoinBangdangItemBinding>(context, layoutId)
+    BaseViewHolder<AdapterJoinBangdangItemBinding>(context, layoutId, HeightMatchParent)

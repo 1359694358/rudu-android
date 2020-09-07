@@ -3,11 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="blast"
+            type="com.rd.rudu.bean.result.JoinBlastResultBean.JoinBlastResultItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
+        clickOpenUrl="@{blast.detailUrl}"
         android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:paddingStart="@dimen/dimen4"
@@ -23,6 +26,7 @@
             android:layout_height="match_parent">
             <androidx.cardview.widget.CardView
                 android:scaleType="fitXY"
+                app:cardElevation="0dp"
                 android:id="@+id/imageContainer"
                 app:cardCornerRadius="@dimen/dimen6"
                 android:src="@mipmap/join_zhanhui_item"
@@ -33,6 +37,7 @@
                 app:layout_constraintDimensionRatio="w,86:105"
                 android:layout_height="0dp">
                 <ImageView
+                    url="@{blast.imageUrl}"
                     android:scaleType="fitXY"
                     android:adjustViewBounds="true"
                     android:src="@mipmap/join_zhanhui_item"
@@ -52,13 +57,15 @@
             <TextView
                 android:elevation="@dimen/dimen14"
                 android:id="@+id/title"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:layout_marginTop="@dimen/dimen5"
                 app:layout_constraintBottom_toTopOf="@+id/priceInfo"
                 app:layout_constraintStart_toStartOf="@+id/imageContainer"
                 app:layout_constraintEnd_toEndOf="@+id/imageContainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="北欧现代家居..."
+                android:text="@{blast.title}"
                 android:textColor="#212121"
                 android:textSize="11dp"
                 />
@@ -70,6 +77,7 @@
                 android:layout_marginTop="@dimen/dimen4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
                 android:text="2020-08-07"
                 android:textColor="#ff999999"
                 android:textSize="11dp"

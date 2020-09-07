@@ -97,6 +97,13 @@ interface ServerApi
     //主打产品
     @GET("/api/customer/getJoinIntroMains")
     fun getJoinIntroMains():Observable<JSONObject>
+    //好货推荐
+    @GET("/api/customer/getJoinGGoods")
+    fun getJoinGGoods():Observable<JSONObject>
+
+    //新品偿鲜
+    @GET("/api/customer/getJoinFresh")
+    fun getJoinFresh():Observable<JSONObject>
 }
 
 object AppApi
