@@ -26,7 +26,10 @@ import com.youzan.androidsdk.YouzanSDK
 import com.youzan.androidsdk.YouzanToken
 import com.youzan.androidsdk.event.AbsAuthEvent
 import com.youzan.androidsdk.event.AbsChooserEvent
+import com.youzan.androidsdk.event.AbsShareEvent
+import com.youzan.androidsdk.model.goods.GoodsShareModel
 import org.jetbrains.anko.support.v4.startActivity
+
 
 //首页有赞
 class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandle {
@@ -134,6 +137,23 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
                     clearLoginState()
                     startActivity<LoginActivity>()
                 }
+            }
+        })
+
+        contentBinding.mView.subscribe(object : AbsShareEvent() {
+            override fun call(view: Context, data: GoodsShareModel?) {
+                if(data==null)
+                    return
+                //调用系统默认的分享
+                val content = data.desc + " " + data.link
+                val sendIntent = Intent()
+                sendIntent.setPackage("com.tencent.mm")
+                sendIntent.action = Intent.ACTION_SEND
+                sendIntent.putExtra(Intent.EXTRA_TEXT, content)
+                sendIntent.putExtra(Intent.EXTRA_SUBJECT, data.title)
+                sendIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                sendIntent.type = "text/plain"
+                startActivity(sendIntent)
             }
         })
     }

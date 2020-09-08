@@ -2,12 +2,14 @@ package com.rd.rudu.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.google.android.app.utils.ViewUtils
 import com.google.android.app.utils.getSerializableExtras
 import com.google.android.app.widget.BaseActivity
 import com.rd.rudu.R
 import com.rd.rudu.bean.result.JoinExhibitionResultBean
 import com.rd.rudu.databinding.ActivityExhibitioninfoBinding
+import com.rd.rudu.vm.ExhibitionVM
 
 //展会 信息
 class ExhibitionInfoActivity: BaseActivity<ActivityExhibitioninfoBinding>()
@@ -29,8 +31,23 @@ class ExhibitionInfoActivity: BaseActivity<ActivityExhibitioninfoBinding>()
         data?.let {
             contentBinding.exhibition=it
             setTitle(it.title)
+            loadData(it)
         }
         showLoading()
+    }
+
+    val exhibitionVM:ExhibitionVM by lazy { getViewModel<ExhibitionVM>() }
+
+    private fun loadData(exhibitionData: JoinExhibitionResultBean.JoinExhibitionResult)
+    {
+        exhibitionVM.exhibitionObs.observe(this, Observer {
+            hideLoading()
+            if(it!=null)
+            {
+
+            }
+        })
+        exhibitionVM.loadExhibitionInfo(exhibitionData.id)
     }
 
 }
