@@ -154,6 +154,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <include
+                    android:id="@+id/starProductLayout"
                     layout="@layout/layout_exhibition_jiaju"
                     />
 

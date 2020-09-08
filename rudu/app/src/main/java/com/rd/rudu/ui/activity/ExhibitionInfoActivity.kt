@@ -16,6 +16,8 @@ import com.rd.rudu.bean.result.ExhibitionSpecialResultBean
 import com.rd.rudu.bean.result.JoinExhibitionResultBean
 import com.rd.rudu.databinding.ActivityExhibitioninfoBinding
 import com.rd.rudu.databinding.LayoutExhibitionGooditemBinding
+import com.rd.rudu.databinding.LayoutExhibitionstaritemLeftimageBinding
+import com.rd.rudu.databinding.LayoutExhibitionstaritemRightimageBinding
 import com.rd.rudu.vm.ExhibitionVM
 
 //展会 信息
@@ -54,6 +56,22 @@ class ExhibitionInfoActivity: BaseActivity<ActivityExhibitioninfoBinding>()
                 if(it.exhibitionNew.data!=null)
                     contentBinding.detail=it.exhibitionNew.data
                 contentBinding.specialProductList.adapter=SpecialProductListAdapter(it.specialExhibition.data,this)
+
+                it.starExhibition.data?.forEachIndexed { idx, item ->
+                    var index=(idx+1)
+                    if(idx%2==0)
+                    {
+                        val starBindingLeft=LayoutExhibitionstaritemLeftimageBinding.inflate(layoutInflater,contentBinding.starProductLayout.starList,true)
+                        starBindingLeft.number.text=if(index<10)"0${index}" else "$index"
+                        starBindingLeft.item=item
+                    }
+                    else
+                    {
+                        val starBindingRight=LayoutExhibitionstaritemRightimageBinding.inflate(layoutInflater,contentBinding.starProductLayout.starList,true)
+                        starBindingRight.number.text=if(index<10)"0${index}" else "$index"
+                        starBindingRight.item=item
+                    }
+                }
             }
         })
         exhibitionVM.loadExhibitionInfo(exhibitionData.id)

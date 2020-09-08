@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="com.rd.rudu.bean.result.ExhibitionStarResultBean.ExhibitionStarProduct" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/chuan"
+            android:paddingEnd="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen10"
+            app:layout_constraintTop_toBottomOf="@+id/shafa"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                url="@{item.picUrl}"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@mipmap/shuangrenchuanicon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.52"
+                android:layout_width="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="h,168:105"
+                android:layout_height="0dp" />
+
+            <TextView
+                android:id="@+id/number"
+                android:paddingStart="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen20"
+                android:paddingEnd="@dimen/dimen20"
+                android:gravity="end"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent="0.48"
+                android:layout_height="wrap_content"
+                android:text="02"
+                android:textColor="#ff9a9a9a"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/chuan02"
+                android:gravity="end"
+                android:paddingEnd="@dimen/dimen20"
+                android:paddingStart="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen19"
+                app:layout_constraintTop_toBottomOf="@+id/number"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent="0.48"
+                android:layout_height="wrap_content"
+                android:text="@{item.name}"
+                android:textColor="#ff343434"
+                android:textSize="@dimen/dimen12" />
+
+            <TextView
+                android:gravity="end"
+                android:layout_marginEnd="@dimen/dimen20"
+                app:layout_constraintTop_toBottomOf="@+id/chuan02"
+                android:paddingStart="@dimen/dimen37"
+                android:paddingTop="@dimen/dimen10"
+                android:paddingBottom="@dimen/dimen15"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                app:layout_constraintEnd_toEndOf="@+id/chuan02"
+                android:layout_height="wrap_content"
+                android:text="@{item.desc}"
+                android:textColor="#9A9A9A"
+                android:textSize="@dimen/dimen6" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
