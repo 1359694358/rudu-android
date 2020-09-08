@@ -218,7 +218,7 @@ class JoinZhanHuiItemHolder(context: Context) :
     init
     {
         itemView.setOnClickListener {
-            it.context.startActivity<ExhibitionInfoActivity>()
+            it.context.startActivity<ExhibitionInfoActivity>(Pair(Intent.ACTION_ATTACH_DATA,contentViewBinding.exhibition))
         }
     }
     fun setData(data: JoinExhibitionResultBean.JoinExhibitionResult)

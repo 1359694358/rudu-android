@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import kotlin.Pair;
-
+//展会信息的数据
 public class JoinExhibitionResultBean extends BaseResultBean<List<JoinExhibitionResultBean.JoinExhibitionResult>> implements HomeJoinItemType {
     @NotNull
     @Override

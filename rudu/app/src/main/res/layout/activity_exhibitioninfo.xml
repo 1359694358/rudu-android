@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="exhibition"
+            type="com.rd.rudu.bean.result.JoinExhibitionResultBean.JoinExhibitionResult" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,13 +28,21 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/bannerImage"
-                    android:scaleType="fitXY"
-                    android:adjustViewBounds="true"
-                    android:src="@mipmap/zhanhuixinxi_banner"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        url="@{exhibition.topUrl}"
+                        android:id="@+id/bannerImage"
+                        android:scaleType="fitXY"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:adjustViewBounds="true"
+                        app:layout_constraintDimensionRatio="h,360:182"
+                        android:src="@mipmap/zhanhuixinxi_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_marginStart="@dimen/dimen15"
                     android:layout_marginEnd="@dimen/dimen15"
@@ -42,10 +53,10 @@
                     android:layout_marginTop="@dimen/dimen14"
                     android:layout_height="wrap_content">
                     <TextView
+                        app:layout_constraintTop_toTopOf="parent"
                         android:id="@+id/xinpingtitle"
                         android:layout_marginStart="@dimen/dimen9"
                         android:layout_marginTop="@dimen/dimen13"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -272,7 +283,7 @@
                         android:layout_marginTop="@dimen/dimen15"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="中国建材家居网"
+                        android:text="@{exhibition.brand.replace(',','\n')}"
                         android:textColor="#ff9a9a9a"
                         android:textSize="@dimen/dimen12"
                         />
@@ -316,7 +327,7 @@
                         android:layout_marginTop="@dimen/dimen15"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="联系电话：1866666666"
+                        android:text="@{@string/about_rudu_contract(exhibition.contactPhone,exhibition.contactMail,exhibition.contactAddress)}"
                         android:textColor="#ff9a9a9a"
                         android:textSize="@dimen/dimen12"
                         />
