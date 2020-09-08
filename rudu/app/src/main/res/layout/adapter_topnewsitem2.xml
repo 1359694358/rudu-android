@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="data"
+            type="com.rd.rudu.bean.result.NewsInfoListResultBean.NewsInfoItem" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/dimen10"
+        clickOpenUrl="@{String.format(@string/newsurl,data.id)}"
         android:paddingEnd="@dimen/dimen10"
         android:paddingBottom="@dimen/dimen15"
         android:background="@android:color/white">
@@ -33,7 +35,7 @@
             app:layout_constraintStart_toEndOf="@+id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="誉都商城官方"
+            android:text="@{data.author}"
             android:textColor="#ff9a9a9a"
             android:textSize="@dimen/dimen12" />
 
@@ -51,7 +53,7 @@
             android:includeFontPadding="false"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dimen15"
-            android:text="为新航母做战备？歼15战机开始进行高强度训练"
+            android:text="@{data.title}"
             android:textColor="#ff343434"
             android:textSize="@dimen/dimen14" />
 
@@ -62,7 +64,7 @@
             app:layout_constraintStart_toStartOf="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2020-08-15"
+            android:text="@{data.releaseDate}"
             android:textColor="#ff9a9a9a"
             android:textSize="@dimen/dimen10" />
         <androidx.cardview.widget.CardView
@@ -78,6 +80,7 @@
             android:layout_height="0dp">
             <ImageView
                 android:id="@+id/image1"
+                url="@{data.picUrlOne}"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/join_zhanhui_item"
                 android:layout_width="match_parent"
@@ -98,6 +101,7 @@
             android:layout_height="0dp">
             <ImageView
                 android:id="@+id/image2"
+                url="@{data.picUrlTwo}"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/join_zhanhui_item"
                 android:layout_width="match_parent"
@@ -118,6 +122,7 @@
             android:layout_height="0dp">
             <ImageView
                 android:id="@+id/image3"
+                url="@{data.picUrlThree}"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/join_zhanhui_item"
                 android:layout_width="match_parent"

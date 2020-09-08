@@ -10,6 +10,7 @@ import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebView.setWebContentsDebuggingEnabled
+import com.google.android.app.net.MutableLiveDataX
 import com.tencent.mmkv.MMKV
 import java.io.*
 
@@ -127,4 +128,9 @@ fun clearCache(key:String)
 
 fun <T:Serializable>Intent.getSerializableExtras(name: String?): T? {
     return getSerializableExtra(name) as T?
+}
+
+fun <T> liveDataOf(): MutableLiveDataX<T>
+{
+    return MutableLiveDataX<T>()
 }

@@ -116,6 +116,10 @@ interface ServerApi
     //加盟-展会明星单品
     @GET("/api/customer/getJoinExhibitionStar")
     fun getJoinExhibitionStar(@Query("exId")exId:String):Observable<JSONObject>
+
+    //资讯列表
+    @GET("/api/customer/getNewsInfo")
+    fun getNewsInfo():Observable<JSONObject>
 }
 
 object AppApi

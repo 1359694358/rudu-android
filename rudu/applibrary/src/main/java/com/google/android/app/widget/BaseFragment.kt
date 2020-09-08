@@ -45,6 +45,7 @@ abstract class BaseFragment<T: ViewDataBinding>() : Fragment() {
     protected fun <T : ViewModel> getViewModel(modelClazz: Class<T>): T {
         return ViewModelProviders.of(this).get(modelClazz)
     }
+    protected inline fun <reified T: ViewModel> getViewModel()= ViewModelProviders.of(this).get(T::class.java)
 
     protected fun <T : ViewModel> getViewModelByApplication(modelClazz: Class<T>): T {
         return (requireActivity().applicationContext as DefaultApp).getAppViewModelProvider(requireActivity()).get(modelClazz)
