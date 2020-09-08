@@ -26,7 +26,9 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>()
         return R.layout.activity_home
     }
     override fun onBackPressed() {
-        backHandle()
+        var result=keyBackList.find { it.processKeyBack() }
+        if(result==null)
+            backHandle()
     }
 
     override fun backHandle() {

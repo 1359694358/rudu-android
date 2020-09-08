@@ -11,6 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.utils.logd
+import com.google.android.app.widget.BaseActivity
 import com.google.android.app.widget.BaseFragment
 import com.google.android.app.widget.OnKeyBackHandle
 import com.rd.rudu.R
@@ -61,12 +62,16 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
 
     private fun addObserver()
     {
+        if(requireActivity() is BaseActivity<*>)
+        {
+            (requireActivity() as BaseActivity<*>).addFragmentKeyBackHandle(this)
+        }
         if(requireActivity() is WebViewActivity)
         {
             contentBinding.titleBar.visibility=View.GONE
-            (requireActivity() as WebViewActivity).addFragmentKeyBackHandle(this)
         }
         else
+        {
             contentBinding.titleBar.viewTreeObserver.addOnDrawListener {
                 if(contentBinding.titleBar.layoutParams!=null&&contentBinding.titleBar.layoutParams is ViewGroup.MarginLayoutParams)
                 {
@@ -74,6 +79,7 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
                     contentBinding.titleBar.requestLayout()
                 }
             }
+        }
         contentBinding.mView.setWebChromeClient(object : WebChromeClient() {
             override fun onShowCustomView(
                 view: View?,

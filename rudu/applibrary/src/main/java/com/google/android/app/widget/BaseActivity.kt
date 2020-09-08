@@ -27,7 +27,7 @@ import com.qmuiteam.qmui.widget.dialog.QMUITipDialog
 
 abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
 {
-    private val keyBackList= mutableListOf<OnKeyBackHandle>()
+    protected val keyBackList= mutableListOf<OnKeyBackHandle>()
     lateinit var contentBinding:T
     var toolbarBinding: AppToolbarBinding?=null
 
