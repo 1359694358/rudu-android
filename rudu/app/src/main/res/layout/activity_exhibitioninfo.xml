@@ -6,6 +6,9 @@
         <variable
             name="exhibition"
             type="com.rd.rudu.bean.result.JoinExhibitionResultBean.JoinExhibitionResult" />
+        <variable
+            name="detail"
+            type="com.rd.rudu.bean.result.JoinExhibitionNewResultBean.JoinExhibitionNew" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,6 +87,7 @@
                         android:layout_width="@dimen/dimen168"
                         android:layout_height="@dimen/dimen106">
                         <ImageView
+                            url="@{detail.picUrl}"
                             android:scaleType="fitXY"
                             android:adjustViewBounds="true"
                             android:src="@mipmap/xinpinglogo"
@@ -100,7 +104,7 @@
                         android:layout_marginTop="@dimen/dimen10"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/dimen10"
-                        android:text="本次展品为誉都系列，经过了漫长的研发，推出了这系列展品。"
+                        android:text="@{detail.desc}"
                         android:textColor="#888888"
                         android:textSize="@dimen/dimen12"
                         />
@@ -136,108 +140,17 @@
                         android:background="#E6E6E6"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dimen1"/>
-                    <ImageView
-                        android:layout_marginStart="@dimen/dimen10"
-                        android:layout_marginTop="@dimen/dimen10"
-                        android:src="@mipmap/zhanhuijiajuicon"
-                        android:id="@+id/zhanhuijiaju"
-                        app:layout_constraintEnd_toStartOf="@+id/zhanhuicizhuan"
-                        app:layout_constraintDimensionRatio="h,154:97"
+                    <com.google.android.app.widget.EmbedRecyclerView
+                        android:layout_marginStart="@dimen/dimen9"
+                        android:layout_marginEnd="@dimen/dimen9"
+                        app:spanCount="2"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        android:orientation="vertical"
+                        android:id="@+id/specialProductList"
                         app:layout_constraintTop_toBottomOf="@+id/line2"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"/>
-                    <TextView
-                        app:layout_constraintBottom_toBottomOf="@+id/zhanhuijiaju"
-                        android:gravity="center"
-                        android:background="#4C000000"
-                        android:paddingTop="@dimen/dimen7"
-                        android:paddingBottom="@dimen/dimen7"
-                        app:layout_constraintStart_toStartOf="@+id/zhanhuijiaju"
-                        app:layout_constraintEnd_toEndOf="@+id/zhanhuijiaju"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="家居系列"
-                        android:textColor="#ffffffff"
-                        android:textSize="@dimen/dimen12"
-                        />
-                    <ImageView
-                        android:layout_marginEnd="@dimen/dimen10"
-                        android:layout_marginStart="@dimen/dimen5"
-                        android:src="@mipmap/zhanhuicizhuanicon"
-                        android:id="@+id/zhanhuicizhuan"
-                        app:layout_constraintStart_toEndOf="@+id/zhanhuijiaju"
-                        app:layout_constraintDimensionRatio="h,154:97"
-                        app:layout_constraintTop_toTopOf="@+id/zhanhuijiaju"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"/>
-                    <TextView
-                        app:layout_constraintBottom_toBottomOf="@+id/zhanhuicizhuan"
-                        android:gravity="center"
-                        android:background="#4C000000"
-                        android:paddingTop="@dimen/dimen7"
-                        android:paddingBottom="@dimen/dimen7"
-                        app:layout_constraintStart_toStartOf="@+id/zhanhuicizhuan"
-                        app:layout_constraintEnd_toEndOf="@+id/zhanhuicizhuan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="瓷砖系列"
-                        android:textColor="#ffffffff"
-                        android:textSize="@dimen/dimen12"
-                        />
-
-
-                    <ImageView
-                        android:layout_marginStart="@dimen/dimen10"
-                        android:layout_marginTop="@dimen/dimen10"
-                        android:src="@mipmap/zhanhuiweiyuicon"
-                        android:id="@+id/zhanhuiweiyu"
-                        app:layout_constraintEnd_toStartOf="@+id/zhanhuidengju"
-                        app:layout_constraintDimensionRatio="h,154:97"
-                        app:layout_constraintTop_toBottomOf="@+id/zhanhuicizhuan"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"/>
-                    <TextView
-                        app:layout_constraintBottom_toBottomOf="@+id/zhanhuiweiyu"
-                        android:gravity="center"
-                        android:background="#4C000000"
-                        android:paddingTop="@dimen/dimen7"
-                        android:paddingBottom="@dimen/dimen7"
-                        app:layout_constraintStart_toStartOf="@+id/zhanhuijiaju"
-                        app:layout_constraintEnd_toEndOf="@+id/zhanhuijiaju"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="家居系列"
-                        android:textColor="#ffffffff"
-                        android:textSize="@dimen/dimen12"
-                        />
-                    <ImageView
-                        android:layout_marginEnd="@dimen/dimen10"
-                        android:layout_marginStart="@dimen/dimen5"
-                        android:src="@mipmap/zhanhuidengjuicon"
-                        android:id="@+id/zhanhuidengju"
-                        app:layout_constraintStart_toEndOf="@+id/zhanhuiweiyu"
-                        app:layout_constraintDimensionRatio="h,154:97"
-                        app:layout_constraintTop_toTopOf="@+id/zhanhuiweiyu"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"/>
-                    <TextView
-                        app:layout_constraintBottom_toBottomOf="@+id/zhanhuiweiyu"
-                        android:gravity="center"
-                        android:background="#4C000000"
-                        android:paddingTop="@dimen/dimen7"
-                        android:paddingBottom="@dimen/dimen7"
-                        app:layout_constraintStart_toStartOf="@+id/zhanhuidengju"
-                        app:layout_constraintEnd_toEndOf="@+id/zhanhuidengju"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="灯具系列"
-                        android:textColor="#ffffffff"
-                        android:textSize="@dimen/dimen12"
-                        />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <include

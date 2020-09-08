@@ -2,10 +2,10 @@ package com.rd.rudu.bean.result;
 
 import java.util.List;
 
-public class ExhibitionProductResultBean extends BaseResultBean<List<ExhibitionProductResultBean.ExhibitionProduct>>
+public class ExhibitionStarResultBean extends BaseResultBean<List<ExhibitionStarResultBean.ExhibitionStarProduct>>
 {
 
-    public class ExhibitionProduct
+    public class ExhibitionStarProduct
     {
         public String id;
         public String exId;
