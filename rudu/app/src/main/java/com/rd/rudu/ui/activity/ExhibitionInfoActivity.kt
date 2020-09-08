@@ -3,6 +3,7 @@ package com.rd.rudu.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
@@ -55,7 +56,19 @@ class ExhibitionInfoActivity: BaseActivity<ActivityExhibitioninfoBinding>()
             {
                 if(it.exhibitionNew.data!=null)
                     contentBinding.detail=it.exhibitionNew.data
-                contentBinding.specialProductList.adapter=SpecialProductListAdapter(it.specialExhibition.data,this)
+                else
+                {
+                    contentBinding.detailContainer.visibility= View.GONE
+                }
+
+                if(it.specialExhibition.data?.isNotEmpty()==true)
+                {
+                    contentBinding.specialProductList.adapter=SpecialProductListAdapter(it.specialExhibition.data,this)
+                }
+                else
+                {
+                    contentBinding.specialProductContainer.visibility= View.GONE
+                }
 
                 it.starExhibition.data?.forEachIndexed { idx, item ->
                     var index=(idx+1)
