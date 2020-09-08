@@ -218,26 +218,6 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
          }
      }*/
 
-    @CallSuper
-    override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
-    ) {
-        super.onActivityResult(requestCode, resultCode, data)
-        val fm = supportFragmentManager
-        var fragments: List<Fragment?>? = null
-        try {
-            fragments = fm.fragments
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        if (fragments == null) return
-        for (frag in fragments) {
-            frag?.let { handleResult(it, requestCode, resultCode, data) }
-        }
-    }
-
     /**
      * 递归调用，对所有子Fragement生效
      *
