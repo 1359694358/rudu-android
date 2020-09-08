@@ -104,6 +104,18 @@ interface ServerApi
     //新品偿鲜
     @GET("/api/customer/getJoinFresh")
     fun getJoinFresh():Observable<JSONObject>
+
+    //加盟-展会新品发布
+    @GET("/api/customer/getJoinExhibitionNew")
+    fun getJoinExhibitionNew(@Query("exId")exId:String):Observable<JSONObject>
+
+    //加盟-展会展品专区
+    @GET("/api/customer/getJoinExhibitionSpecial")
+    fun getJoinExhibitionSpecial(@Query("exId")exId:String):Observable<JSONObject>
+
+    //加盟-展会明星单品
+    @GET("/api/customer/getJoinExhibitionStar")
+    fun getJoinExhibitionStar(@Query("exId")exId:String):Observable<JSONObject>
 }
 
 object AppApi
