@@ -14,7 +14,6 @@
         android:paddingStart="@dimen/dimen10"
         android:paddingEnd="@dimen/dimen10"
         android:paddingBottom="@dimen/dimen15"
-        clickOpenUrl="@{String.format(@string/newsurl,data.id)}"
         android:background="@android:color/white">
 
         <ImageView

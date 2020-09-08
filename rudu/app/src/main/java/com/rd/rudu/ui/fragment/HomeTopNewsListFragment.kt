@@ -14,6 +14,7 @@ import com.rd.rudu.bean.result.NewsInfoListResultBean
 import com.rd.rudu.databinding.AdapterTopnewsitem1Binding
 import com.rd.rudu.databinding.AdapterTopnewsitem2Binding
 import com.rd.rudu.databinding.FragmentHomeTopnewslistBinding
+import com.rd.rudu.ui.activity.WebViewActivity
 import com.rd.rudu.ui.adapter.NewsListItemDecoration
 import com.rd.rudu.vm.NewsListVM
 
@@ -78,7 +79,22 @@ class HomeTopNewsListAdapter(context: Context) : BaseRecyclerAdapter<NewsInfoLis
 
     class NewsListItemStyle1Holder(context: Context,layoutId: Int=R.layout.adapter_topnewsitem1) :
             BaseViewHolder<AdapterTopnewsitem1Binding>(context, layoutId,WidthMatchParent)
+    {
+
+        init {
+            itemView.setOnClickListener {
+                WebViewActivity.startActivity(it.context,it.context.getString(R.string.newsurl,contentViewBinding.data!!.id),false)
+            }
+        }
+    }
 
     class NewsListItemStyle2Holder(context: Context,layoutId: Int=R.layout.adapter_topnewsitem2) :
             BaseViewHolder<AdapterTopnewsitem2Binding>(context, layoutId,WidthMatchParent)
+    {
+        init {
+            itemView.setOnClickListener {
+                WebViewActivity.startActivity(it.context,it.context.getString(R.string.newsurl,contentViewBinding.data!!.id),false)
+            }
+        }
+    }
 }
