@@ -36,10 +36,10 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
     companion object
     {
         const val WebUrl="WebUrl"
-        fun newInstance(url:String):HomeWebFragment
+        fun newInstance(url:String,showTitle:Boolean=true):HomeWebFragment
         {
             val fragment=HomeWebFragment()
-            var bunde= bundleOf(Pair(WebUrl,url))
+            var bunde= bundleOf(Pair(WebUrl,url),Pair(Intent.ACTION_SHOW_APP_INFO,showTitle))
             fragment.arguments=bunde
             return fragment
         }
@@ -50,10 +50,12 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
     {
         return R.layout.fragment_homeyouzan
     }
+    var showTitle=true
     val userViewMode: UserViewModel by lazy { getViewModelByApplication(UserViewModel::class.java) }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         url=requireArguments().getString(WebUrl,requireActivity().resources.getString(R.string.youzan_storeurl))
+        showTitle=requireArguments().getBoolean(Intent.ACTION_SHOW_APP_INFO,true)
         addObserver()
     }
 
@@ -85,7 +87,7 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
                 super.onReceivedTitle(p0, p1)
                 p1?.let {
 //                    setTitle(it)
-                    if(requireActivity() is WebViewActivity)
+                    if(showTitle&&requireActivity() is WebViewActivity)
                     {
                         requireActivity().title = it
                     }

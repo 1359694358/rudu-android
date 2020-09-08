@@ -43,17 +43,9 @@ open class BaseViewHolder<B : ViewDataBinding>(
         const val AllMatchParent=3
         @JvmStatic
         @BindingAdapter(value = ["url","res" ],requireAll = false)
-        fun loadImage(image:ImageView,url:String?,@DrawableRes res:Int)
+        fun loadImage(image:ImageView,url:String?,res:Drawable?)
         {
-            var drawable:Drawable?=null
-            try
-            {
-                drawable=ContextCompat.getDrawable(image.context,res?:0)
-            }
-            catch (e:Exception)
-            {
-                e.message
-            }
+            var drawable:Drawable?=res
             if(URLUtil.isNetworkUrl(url))
             {
                 ImageLoader.loader.load(image,url?.toString()?:"",drawable)
