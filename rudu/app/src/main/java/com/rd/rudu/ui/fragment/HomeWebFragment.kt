@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
@@ -23,6 +24,7 @@ import com.rd.rudu.vm.UserViewModel
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
+import com.tencent.smtt.sdk.WebViewClient
 import com.youzan.androidsdk.YouzanSDK
 import com.youzan.androidsdk.YouzanToken
 import com.youzan.androidsdk.event.AbsAuthEvent
@@ -37,10 +39,10 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
     companion object
     {
         const val WebUrl="WebUrl"
-        fun newInstance(url:String,showTitle:Boolean=true):HomeWebFragment
+        fun newInstance(url:String,showTitle:Boolean=true,title:String=""):HomeWebFragment
         {
             val fragment=HomeWebFragment()
-            var bunde= bundleOf(Pair(WebUrl,url),Pair(Intent.ACTION_SHOW_APP_INFO,showTitle))
+            var bunde= bundleOf(Pair(WebUrl,url),Pair(Intent.ACTION_SHOW_APP_INFO,showTitle),Pair(Intent.EXTRA_TITLE,title))
             fragment.arguments=bunde
             return fragment
         }
@@ -72,6 +74,8 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
         }
         else
         {
+            var title:String?=requireArguments().getString(Intent.EXTRA_TITLE,"")
+            contentBinding.titleBar.text=title
             contentBinding.titleBar.viewTreeObserver.addOnDrawListener {
                 if(contentBinding.titleBar.layoutParams!=null&&contentBinding.titleBar.layoutParams is ViewGroup.MarginLayoutParams)
                 {
@@ -100,9 +104,10 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
                 }
             }
         })
-        /* contentBinding.mView.setWebViewClient(object: WebViewClient()
+       /*  contentBinding.mView.setWebViewClient(object: WebViewClient()
          {
              override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                 Log.w("WebUrl",""+url)
                  contentBinding.mView.loadUrl(url)
                  return true;
              }

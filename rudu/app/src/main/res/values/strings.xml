@@ -26,4 +26,6 @@
     <string name="join_contract_bottom">联系人：%1$s\n联系电话：%2$s\n公司地址：%3$s</string>
     <string name="about_rudu_contract">联系电话：%1$s\n联系邮箱：%2$s\n公司地址：%3$s</string>
     <string name="newsurl">https://www.rudu668.com/rudu_admin/information/%1$s</string>
+
+    <string name="shopcar" des="购物车">https://shop44665437.youzan.com/wsctrade/cart?kdt_id=44473269</string>
 </resources>

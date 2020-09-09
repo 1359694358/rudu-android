@@ -56,10 +56,10 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>()
 
     private fun pushFragment()
     {
-        fragmentMap[0]=HomeWebFragment.newInstance(resources.getString(R.string.youzan_storeurl))
+        fragmentMap[0]=HomeWebFragment.newInstance(getString(R.string.youzan_storeurl),false,getString(R.string.home_web))
         fragmentMap[1]= HomeJoinFragment(joinViewModel)
         fragmentMap[2]= HomeTopNewsFragment()
-        fragmentMap[3]= HomeJoinFragment(joinViewModel)
+        fragmentMap[3]= HomeWebFragment.newInstance(getString(R.string.shopcar),false,getString(R.string.home_shopcar))
         fragmentMap[4]= HomeMineFragment()
     }
 

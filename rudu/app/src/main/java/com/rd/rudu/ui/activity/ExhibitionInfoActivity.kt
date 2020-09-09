@@ -69,20 +69,26 @@ class ExhibitionInfoActivity: BaseActivity<ActivityExhibitioninfoBinding>()
                 {
                     contentBinding.specialProductContainer.visibility= View.GONE
                 }
-
-                it.starExhibition.data?.forEachIndexed { idx, item ->
-                    var index=(idx+1)
-                    if(idx%2==0)
-                    {
-                        val starBindingLeft=LayoutExhibitionstaritemLeftimageBinding.inflate(layoutInflater,contentBinding.starProductLayout.starList,true)
-                        starBindingLeft.number.text=if(index<10)"0${index}" else "$index"
-                        starBindingLeft.item=item
-                    }
-                    else
-                    {
-                        val starBindingRight=LayoutExhibitionstaritemRightimageBinding.inflate(layoutInflater,contentBinding.starProductLayout.starList,true)
-                        starBindingRight.number.text=if(index<10)"0${index}" else "$index"
-                        starBindingRight.item=item
+                if(it.starExhibition.data?.isNullOrEmpty()==true)
+                {
+                    contentBinding.starProductLayout.root.visibility=View.GONE
+                }
+                else
+                {
+                    it.starExhibition.data?.forEachIndexed { idx, item ->
+                        var index=(idx+1)
+                        if(idx%2==0)
+                        {
+                            val starBindingLeft=LayoutExhibitionstaritemLeftimageBinding.inflate(layoutInflater,contentBinding.starProductLayout.starList,true)
+                            starBindingLeft.number.text=if(index<10)"0${index}" else "$index"
+                            starBindingLeft.item=item
+                        }
+                        else
+                        {
+                            val starBindingRight=LayoutExhibitionstaritemRightimageBinding.inflate(layoutInflater,contentBinding.starProductLayout.starList,true)
+                            starBindingRight.number.text=if(index<10)"0${index}" else "$index"
+                            starBindingRight.item=item
+                        }
                     }
                 }
             }
