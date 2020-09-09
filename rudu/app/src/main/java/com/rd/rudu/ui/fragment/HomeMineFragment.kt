@@ -25,6 +25,7 @@ import com.rd.rudu.R
 import com.rd.rudu.bean.result.LoginResultBean
 import com.rd.rudu.databinding.FragmentHomemineBinding
 import com.rd.rudu.ui.activity.LoginActivity
+import com.rd.rudu.ui.activity.WebViewActivity
 import com.rd.rudu.utils.GlideEngine
 import com.rd.rudu.utils.clearLoginState
 import com.rd.rudu.vm.UserViewModel
@@ -108,6 +109,37 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
         contentBinding.exitLogin.setOnClickListener {
             clearLoginState()
             refreshUserInfo()
+        }
+
+        contentBinding.allOrder.setOnClickListener {
+            if(!LoginResultBean.LoginResult.getLoginResult().isLogin)
+                startActivity<LoginActivity>()
+            else
+                WebViewActivity.startActivity(it.context,getString(R.string.allorder))
+        }
+        contentBinding.waitPay.setOnClickListener {
+            if(!LoginResultBean.LoginResult.getLoginResult().isLogin)
+                startActivity<LoginActivity>()
+            else
+                WebViewActivity.startActivity(it.context,getString(R.string.waitpay))
+        }
+        contentBinding.waitSend.setOnClickListener {
+            if(!LoginResultBean.LoginResult.getLoginResult().isLogin)
+                startActivity<LoginActivity>()
+            else
+                WebViewActivity.startActivity(it.context,getString(R.string.tosend))
+        }
+        contentBinding.waitComment.setOnClickListener {
+            if(!LoginResultBean.LoginResult.getLoginResult().isLogin)
+                startActivity<LoginActivity>()
+            else
+                WebViewActivity.startActivity(it.context,getString(R.string.waitcomment))
+        }
+        contentBinding.returnGoods.setOnClickListener {
+            if(!LoginResultBean.LoginResult.getLoginResult().isLogin)
+                startActivity<LoginActivity>()
+            else
+                WebViewActivity.startActivity(it.context,getString(R.string.refund))
         }
     }
 

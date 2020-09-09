@@ -28,4 +28,9 @@
     <string name="newsurl">https://www.rudu668.com/rudu_admin/information/%1$s</string>
 
     <string name="shopcar" des="购物车">https://shop44665437.youzan.com/wsctrade/cart?kdt_id=44473269</string>
+    <string name="waitpay" des="待付款">https://shop44665437.youzan.com/wsctrade/order/list?kdt_id=44473269&amp;type=topay</string>
+    <string name="allorder"       des="全部">https://shop44665437.youzan.com/wsctrade/order/list?kdt_id=44473269&amp;type=all</string>
+    <string name="tosend"  des="待发货">https://shop44665437.youzan.com/wsctrade/order/list?kdt_id=44473269&amp;type=tosend</string>
+    <string name="waitcomment"  des="待评价">https://shop44665437.youzan.com/wsctrade/order/evaluate/center?kdt_id=44473269</string>
+    <string name="refund"  des="退换货">https://shop44665437.youzan.com/wsctrade/refund/list</string>
 </resources>

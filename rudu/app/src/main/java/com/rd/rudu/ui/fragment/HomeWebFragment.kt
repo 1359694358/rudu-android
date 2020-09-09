@@ -22,6 +22,8 @@ import com.rd.rudu.ui.activity.WebViewActivity
 import com.rd.rudu.utils.clearLoginState
 import com.rd.rudu.vm.UserViewModel
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient
+import com.tencent.smtt.export.external.interfaces.WebResourceRequest
+import com.tencent.smtt.export.external.interfaces.WebResourceResponse
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
@@ -104,14 +106,12 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
                 }
             }
         })
-       /*  contentBinding.mView.setWebViewClient(object: WebViewClient()
+         contentBinding.mView.setWebViewClient(object: WebViewClient()
          {
-             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                 Log.w("WebUrl",""+url)
-                 contentBinding.mView.loadUrl(url)
-                 return true;
+             override fun shouldInterceptRequest(p0: WebView?, p1: WebResourceRequest?): WebResourceResponse {
+                 return super.shouldInterceptRequest(p0, p1)
              }
-         })*/
+         })
         if(TextUtils.isEmpty(url))
         {
             url=resources.getString(R.string.youzan_storeurl)
