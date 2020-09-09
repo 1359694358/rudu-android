@@ -3,6 +3,7 @@ package com.rd.rudu.vm
 import androidx.lifecycle.ViewModel
 import com.google.android.app.net.TransUtils
 import com.google.android.app.utils.liveDataOf
+import com.rd.rudu.bean.request.NewsListRequestBean
 import com.rd.rudu.bean.result.NewsInfoListResultBean
 import com.rd.rudu.net.AppApi
 
@@ -10,9 +11,9 @@ class NewsListVM: ViewModel()
 {
     val newsListObs=liveDataOf<NewsInfoListResultBean?>()
 
-    fun loadNewsList()
+    fun loadNewsList(pageIndex:Int)
     {
-        AppApi.serverApi.getNewsInfo().compose(TransUtils.jsonTransform<NewsInfoListResultBean>())
+        AppApi.serverApi.getNewsInfo(NewsListRequestBean(pageIndex)).compose(TransUtils.jsonTransform<NewsInfoListResultBean>())
                 .compose(TransUtils.schedulersTransformer())
                 .subscribe(
                         {

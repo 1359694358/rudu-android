@@ -118,8 +118,8 @@ interface ServerApi
     fun getJoinExhibitionStar(@Query("exId")exId:String):Observable<JSONObject>
 
     //资讯列表
-    @GET("/api/customer/getNewsInfo")
-    fun getNewsInfo():Observable<JSONObject>
+    @POST("/api/customer/getNewsInfo")
+    fun getNewsInfo(@Body param:NewsListRequestBean):Observable<JSONObject>
 }
 
 object AppApi

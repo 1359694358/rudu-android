@@ -17,84 +17,95 @@ import com.rd.rudu.databinding.FragmentHomeTopnewslistBinding
 import com.rd.rudu.ui.activity.WebViewActivity
 import com.rd.rudu.ui.adapter.NewsListItemDecoration
 import com.rd.rudu.vm.NewsListVM
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 
 //头条
-class HomeTopNewsListFragment : BaseFragment<FragmentHomeTopnewslistBinding>()
-{
-    val adapter:HomeTopNewsListAdapter by lazy { HomeTopNewsListAdapter(requireActivity()) }
-    val newsListVm:NewsListVM by lazy { getViewModel<NewsListVM>() }
-    override fun getLayoutResId(): Int
-    {
+class HomeTopNewsListFragment : BaseFragment<FragmentHomeTopnewslistBinding>(), OnRefreshLoadMoreListener {
+    val adapter: HomeTopNewsListAdapter by lazy { HomeTopNewsListAdapter(requireActivity()) }
+    val newsListVm: NewsListVM by lazy { getViewModel<NewsListVM>() }
+    override fun getLayoutResId(): Int {
         return R.layout.fragment_home_topnewslist
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    private var pageIndex = 1
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         contentBinding.recyclerView.addItemDecoration(NewsListItemDecoration())
-        contentBinding.recyclerView.adapter=adapter
+        contentBinding.recyclerView.adapter = adapter
         showLoading()
         newsListVm.newsListObs.observe(this, Observer {
             hideLoading()
-            it?.data?.let {
-                adapter.addAll(it)
+            contentBinding.refreshLayout.finishRefresh()
+            contentBinding.refreshLayout.finishLoadMore()
+            contentBinding.refreshLayout.setEnableLoadMore(it?.haveMore()?:false)
+            it?.data?.let {data->
+                if(pageIndex==1)
+                {
+                    adapter.data.clear()
+                }
+                adapter.addAll(data)
                 adapter.notifyDataSetChanged()
             }
         })
-        newsListVm.loadNewsList()
+        contentBinding.refreshLayout.setOnRefreshLoadMoreListener(this)
+        onRefresh(contentBinding.refreshLayout)
     }
 
-}
-
-class HomeTopNewsListAdapter(context: Context) : BaseRecyclerAdapter<NewsInfoListResultBean.NewsInfoItem>(context)
-{
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
-    {
-        if(viewType>1)
-        {
-            return NewsListItemStyle2Holder(context)
-        }
-        return NewsListItemStyle1Holder(context)
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        super.onBindViewHolder(holder, position)
-        when(holder)
-        {
-            is NewsListItemStyle1Holder->
-            {
-                holder.contentViewBinding.data=getItem(position)
+    class HomeTopNewsListAdapter(context: Context) : BaseRecyclerAdapter<NewsInfoListResultBean.NewsInfoItem>(context) {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+            if (viewType > 1) {
+                return NewsListItemStyle2Holder(context)
             }
-            is NewsListItemStyle2Holder->
-            {
-                holder.contentViewBinding.data=getItem(position)
+            return NewsListItemStyle1Holder(context)
+        }
+
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            super.onBindViewHolder(holder, position)
+            when (holder) {
+                is NewsListItemStyle1Holder -> {
+                    holder.contentViewBinding.data = getItem(position)
+                }
+                is NewsListItemStyle2Holder -> {
+                    holder.contentViewBinding.data = getItem(position)
+                }
             }
         }
-    }
 
-    override fun getItemViewType(position: Int): Int
-    {
-        return getItem(position).showPicCount
-    }
+        override fun getItemViewType(position: Int): Int {
+            return getItem(position).showPicCount
+        }
 
-    class NewsListItemStyle1Holder(context: Context,layoutId: Int=R.layout.adapter_topnewsitem1) :
-            BaseViewHolder<AdapterTopnewsitem1Binding>(context, layoutId,WidthMatchParent)
-    {
+        class NewsListItemStyle1Holder(context: Context, layoutId: Int = R.layout.adapter_topnewsitem1) :
+                BaseViewHolder<AdapterTopnewsitem1Binding>(context, layoutId, WidthMatchParent) {
 
-        init {
-            itemView.setOnClickListener {
-                WebViewActivity.startActivity(it.context,it.context.getString(R.string.newsurl,contentViewBinding.data!!.id),false)
+            init {
+                itemView.setOnClickListener {
+                    WebViewActivity.startActivity(it.context, it.context.getString(R.string.newsurl, contentViewBinding.data!!.id), false)
+                }
+            }
+        }
+
+        class NewsListItemStyle2Holder(context: Context, layoutId: Int = R.layout.adapter_topnewsitem2) :
+                BaseViewHolder<AdapterTopnewsitem2Binding>(context, layoutId, WidthMatchParent) {
+            init {
+                itemView.setOnClickListener {
+                    WebViewActivity.startActivity(it.context, it.context.getString(R.string.newsurl, contentViewBinding.data!!.id), false)
+                }
             }
         }
     }
 
-    class NewsListItemStyle2Holder(context: Context,layoutId: Int=R.layout.adapter_topnewsitem2) :
-            BaseViewHolder<AdapterTopnewsitem2Binding>(context, layoutId,WidthMatchParent)
+    override fun onLoadMore(refreshLayout: RefreshLayout)
     {
-        init {
-            itemView.setOnClickListener {
-                WebViewActivity.startActivity(it.context,it.context.getString(R.string.newsurl,contentViewBinding.data!!.id),false)
-            }
-        }
+        pageIndex+=1
+        newsListVm.loadNewsList(pageIndex)
+    }
+
+    override fun onRefresh(refreshLayout: RefreshLayout)
+    {
+        pageIndex=1
+        newsListVm.loadNewsList(pageIndex)
     }
 }
