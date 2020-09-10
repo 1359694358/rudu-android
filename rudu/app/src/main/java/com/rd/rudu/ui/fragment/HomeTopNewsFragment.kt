@@ -73,7 +73,7 @@ class HomeTopNewsFragment: BaseFragment<FragmentHomeTopnewsBinding>() {
 
         }
         tab.navigator=tabNavigatorAdapter
-        val fgarr= arrayOf(HomeTopNewsListFragment(),HomeVideoNewsListFragment())
+        val fgarr= arrayOf<Fragment>(HomeTopNewsListFragment(),HomeVideoNewsListFragment())
         contentBinding.viewPager.bindMagicIndicator(tab)
         contentBinding.viewPager.adapter=object:FragmentStateAdapter(requireActivity())
         {

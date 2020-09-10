@@ -68,6 +68,7 @@
                 />
             <ImageView
                 android:id="@+id/more"
+                android:visibility="invisible"
                 app:layout_constraintTop_toTopOf="@+id/date"
                 android:src="@mipmap/join_more"
                 app:layout_constraintEnd_toEndOf="@id/imageContainer"
