@@ -1,3 +1,4 @@
 rootProject.name = "rudu"
 include ':app'
 include ':applibrary'
+include ':superplayerkit'
