@@ -40,7 +40,7 @@ class GuideActivity: BaseActivity<ActivityGuideBinding>() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var rudu_app_guide_res = intArrayOf(R.drawable.login_bacground,R.drawable.login_bacground,R.drawable.login_bacground)
+        var rudu_app_guide_res = intArrayOf(R.drawable.guide1,R.drawable.guide2,R.drawable.guide3)
         contentBinding.guideSwitch.adapter = object : RecyclerView.Adapter<ViewHolderX>() {
             override fun onCreateViewHolder(
                     parent: ViewGroup,
@@ -58,6 +58,12 @@ class GuideActivity: BaseActivity<ActivityGuideBinding>() {
             override fun onBindViewHolder(holder: ViewHolderX, position: Int) {
                 holder.image.scaleType = ImageView.ScaleType.FIT_XY
                 holder.image.setImageResource(rudu_app_guide_res[position])
+                if(position==(rudu_app_guide_res.size-1))
+                {
+                    holder.itemView.setOnClickListener {
+                        startHome()
+                    }
+                }
             }
         }
 
@@ -70,14 +76,18 @@ class GuideActivity: BaseActivity<ActivityGuideBinding>() {
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                if(currentItem==(rudu_app_guide_res.size-1)&&(positionOffset==0F||positionOffsetPixels==0||positionOffset.toInt()==positionOffsetPixels))
+                /*if(currentItem==(rudu_app_guide_res.size-1)&&(positionOffset==0F||positionOffsetPixels==0||positionOffset.toInt()==positionOffsetPixels))
                 {
-                    saveAny(WatchedGuide,false)
-                    startActivity<HomeActivity>()
-                    finish()
-                }
+                    startHome()
+                }*/
             }
         })
+    }
+    private fun startHome()
+    {
+        saveAny(WatchedGuide,false)
+        startActivity<HomeActivity>()
+        finish()
     }
     class ViewHolderX(var image: ImageView) : RecyclerView.ViewHolder(image)
     {

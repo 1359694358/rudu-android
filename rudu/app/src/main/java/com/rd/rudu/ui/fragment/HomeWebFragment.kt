@@ -106,12 +106,6 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
                 }
             }
         })
-         contentBinding.mView.setWebViewClient(object: WebViewClient()
-         {
-             override fun shouldInterceptRequest(p0: WebView?, p1: WebResourceRequest?): WebResourceResponse {
-                 return super.shouldInterceptRequest(p0, p1)
-             }
-         })
         if(TextUtils.isEmpty(url))
         {
             url=resources.getString(R.string.youzan_storeurl)
