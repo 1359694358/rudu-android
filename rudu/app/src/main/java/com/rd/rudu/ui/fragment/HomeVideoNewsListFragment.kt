@@ -13,6 +13,7 @@ import com.rd.rudu.R
 import com.rd.rudu.bean.result.VideoInfoListResultBean
 import com.rd.rudu.databinding.AdapterTopvideoitemBinding
 import com.rd.rudu.databinding.FragmentHomeVideonewslistBinding
+import com.rd.rudu.ui.activity.TestVideoActivity.Companion.startVideoActivity
 import com.rd.rudu.ui.adapter.NewsListItemDecoration
 import com.rd.rudu.vm.NewsListVM
 import com.scwang.smartrefresh.layout.api.RefreshLayout
@@ -81,4 +82,11 @@ class HomeVideoNewsListAdapter(context: Context) : BaseRecyclerAdapter<VideoInfo
 
     class VideoListItemStyleHolder(context: Context,layoutId: Int=R.layout.adapter_topvideoitem) :
             BaseViewHolder<AdapterTopvideoitemBinding>(context, layoutId, WidthMatchParent)
+    {
+        init {
+            contentViewBinding.playIcon.setOnClickListener {
+                it.context.startVideoActivity(contentViewBinding.videoInfo!!.title!!,contentViewBinding.videoInfo!!.videoUrl!!)
+            }
+        }
+    }
 }

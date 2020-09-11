@@ -51,6 +51,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"/>
                 <ImageView
+                    android:id="@+id/playIcon"
                     app:layout_constraintStart_toStartOf="@+id/image"
                     app:layout_constraintEnd_toEndOf="@+id/image"
                     app:layout_constraintTop_toTopOf="@+id/image"

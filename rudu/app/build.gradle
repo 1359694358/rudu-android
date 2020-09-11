@@ -88,6 +88,8 @@ dependencies {
     api project(path: ':applibrary')
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.8'
     implementation 'com.github.hackware1993:MagicIndicator:+'
+
+    api project(path: ':superplayerkit')
 }
 
 repositories {
