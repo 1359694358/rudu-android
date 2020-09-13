@@ -51,6 +51,7 @@ object ListPlayerUtil
             {
                 (playerView?.parent as ViewGroup).removeView(playerView)
             }
+            playerView.keepScreenOn=false
         }
     }
 
@@ -97,6 +98,7 @@ object ListPlayerUtil
         val model= SuperPlayerModel()
         model.title=title
         model.url=url
+        playerView.keepScreenOn=true
         playerView.playWithModel(model)
     }
 
