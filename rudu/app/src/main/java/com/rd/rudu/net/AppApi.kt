@@ -124,6 +124,10 @@ interface ServerApi
     //视频列表
     @POST("/api/customer/getNewsVideo")
     fun getNewsVideo(@Body param:NewsListRequestBean):Observable<JSONObject>
+
+    //功能列表
+    @GET("/api/customer/getShowMoudles")
+    fun getShowMoudles():Observable<JSONObject>
 }
 
 object AppApi
