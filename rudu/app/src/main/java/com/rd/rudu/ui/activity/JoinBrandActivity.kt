@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.ImageSpan
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.text.set
 import com.google.android.app.net.TransUtils
@@ -20,6 +21,7 @@ import com.rd.rudu.bean.result.BaseResultBean
 import com.rd.rudu.bean.result.JoinBrandInfoResultBean
 import com.rd.rudu.databinding.ActivityJoinbrandBinding
 import com.rd.rudu.net.AppApi
+import com.rd.rudu.net.AppModuleConfig
 
 //品牌招商入驻
 class JoinBrandActivity: BaseActivity<ActivityJoinbrandBinding>()
@@ -40,6 +42,7 @@ class JoinBrandActivity: BaseActivity<ActivityJoinbrandBinding>()
         var data: JoinBrandInfoResultBean.JoinBrandInfoItem?=intent.getSerializableExtras(Intent.ACTION_ATTACH_DATA)
         data?.let {
             contentBinding.data=it
+            title=it.title
             var percent1Span=SpannableStringBuilder("*${it.bgl}%")
             percent1Span[0,1]=ImageSpan(this,R.mipmap.upgrade_percent)
             var percent2Span=SpannableStringBuilder("*${it.fkl}%")
@@ -56,6 +59,11 @@ class JoinBrandActivity: BaseActivity<ActivityJoinbrandBinding>()
         contentBinding.shangjiaForm.submit.setOnClickListener {
             submitHandle()
         }
+
+        contentBinding.xiaoguoTop.visibility= if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.营销效果.toString())) View.VISIBLE else View.GONE
+        contentBinding.xiaoguoBottom.visibility= if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.营销效果.toString())) View.VISIBLE else View.GONE
+        contentBinding.pingtaiyoushi.visibility= if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.平台优势.toString())) View.VISIBLE else View.GONE
+        contentBinding.shangjiaForm.root.visibility= if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.品牌联系及合作.toString())) View.VISIBLE else View.GONE
     }
     fun submitHandle()
     {

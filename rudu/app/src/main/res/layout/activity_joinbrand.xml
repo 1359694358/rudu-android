@@ -55,6 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <LinearLayout
+                        android:id="@+id/xiaoguoTop"
                         android:background="@drawable/join_brand_bannerbg"
                         android:layout_marginStart="@dimen/dimen15"
                         android:layout_marginEnd="@dimen/dimen15"
@@ -87,6 +88,7 @@
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <LinearLayout
+                    android:id="@+id/xiaoguoBottom"
                     android:layout_marginStart="@dimen/dimen15"
                     android:layout_marginEnd="@dimen/dimen15"
                     android:background="@drawable/join_brand_bannerbg2"
@@ -135,6 +137,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
+                    android:id="@+id/pingtaiyoushi"
                     android:layout_height="wrap_content">
                     <View
                         android:scaleType="centerCrop"
@@ -172,112 +175,119 @@
                         android:textColor="#343434"
                         android:textSize="@dimen/dimen14"
                         />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                <androidx.cardview.widget.CardView
-                    app:cardCornerRadius="@dimen/dimen5"
-                    android:layout_marginStart="@dimen/dimen15"
-                    android:layout_marginEnd="@dimen/dimen15"
-                    android:layout_marginTop="@dimen/dimen23"
-                    app:cardElevation="0dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <androidx.cardview.widget.CardView
+                        app:layout_constraintTop_toBottomOf="@+id/title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:cardCornerRadius="@dimen/dimen5"
+                        android:layout_marginStart="@dimen/dimen15"
+                        android:layout_marginEnd="@dimen/dimen15"
+                        android:layout_marginTop="@dimen/dimen23"
+                        app:cardElevation="0dp"
+                        android:id="@+id/card1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <ImageView
-                            url="@{data.introOnePic}"
-                            android:scaleType="fitXY"
-                            android:adjustViewBounds="true"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:src="@mipmap/zhaoshangruzhu_tr"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintWidth_percent="0.47"
-                            android:layout_width="0dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            android:layout_height="0dp"/>
-                        <TextView
-                            android:id="@+id/tishengbaoguang"
-                            android:paddingStart="@dimen/dimen15"
-                            android:paddingTop="@dimen/dimen15"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:layout_width="0dp"
-                            app:layout_constraintWidth_percent="0.53"
-                            android:layout_height="wrap_content"
-                            android:text="@{data.introOneTitle}"
-                            android:textColor="#ff343434"
-                            android:textSize="@dimen/dimen14"
-                            />
-                        <TextView
-                            android:layout_marginEnd="@dimen/dimen34"
-                            app:layout_constraintTop_toBottomOf="@+id/tishengbaoguang"
-                            android:paddingStart="@dimen/dimen15"
-                            android:paddingTop="@dimen/dimen15"
-                            android:paddingBottom="@dimen/dimen15"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:layout_width="0dp"
-                            app:layout_constraintEnd_toEndOf="@+id/tishengbaoguang"
-                            android:layout_height="wrap_content"
-                            android:text="@{data.introOneDesc}"
-                            android:textColor="#9A9A9A"
-                            android:textSize="@dimen/dimen12"
-                            />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                url="@{data.introOnePic}"
+                                android:scaleType="fitXY"
+                                android:adjustViewBounds="true"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:src="@mipmap/zhaoshangruzhu_tr"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintWidth_percent="0.47"
+                                android:layout_width="0dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:layout_height="0dp"/>
+                            <TextView
+                                android:id="@+id/tishengbaoguang"
+                                android:paddingStart="@dimen/dimen15"
+                                android:paddingTop="@dimen/dimen15"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_width="0dp"
+                                app:layout_constraintWidth_percent="0.53"
+                                android:layout_height="wrap_content"
+                                android:text="@{data.introOneTitle}"
+                                android:textColor="#ff343434"
+                                android:textSize="@dimen/dimen14"
+                                />
+                            <TextView
+                                android:layout_marginEnd="@dimen/dimen34"
+                                app:layout_constraintTop_toBottomOf="@+id/tishengbaoguang"
+                                android:paddingStart="@dimen/dimen15"
+                                android:paddingTop="@dimen/dimen15"
+                                android:paddingBottom="@dimen/dimen15"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_width="0dp"
+                                app:layout_constraintEnd_toEndOf="@+id/tishengbaoguang"
+                                android:layout_height="wrap_content"
+                                android:text="@{data.introOneDesc}"
+                                android:textColor="#9A9A9A"
+                                android:textSize="@dimen/dimen12"
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    app:cardElevation="0dp"
-                    app:cardCornerRadius="@dimen/dimen5"
-                    android:layout_marginStart="@dimen/dimen15"
-                    android:layout_marginEnd="@dimen/dimen15"
-                    android:layout_marginTop="@dimen/dimen10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <androidx.cardview.widget.CardView
+                        app:cardElevation="0dp"
+                        app:layout_constraintTop_toBottomOf="@+id/card1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:cardCornerRadius="@dimen/dimen5"
+                        android:layout_marginStart="@dimen/dimen15"
+                        android:layout_marginEnd="@dimen/dimen15"
+                        android:layout_marginTop="@dimen/dimen10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <ImageView
-                            url="@{data.introTwoPic}"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:src="@mipmap/zhaoshangruzhu_tl"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintWidth_percent="0.47"
-                            android:layout_width="0dp"
-                            android:scaleType="fitXY"
-                            android:adjustViewBounds="true"
-                            android:layout_height="0dp"/>
-                        <TextView
-                            android:id="@+id/shuangxianggongying"
-                            android:paddingEnd="@dimen/dimen15"
-                            android:paddingTop="@dimen/dimen15"
-                            android:gravity="end"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_width="0dp"
-                            app:layout_constraintWidth_percent="0.53"
-                            android:layout_height="wrap_content"
-                            android:text="@{data.introTwoTitle}"
-                            android:textColor="#ff343434"
-                            android:textSize="@dimen/dimen14"
-                            />
-                        <TextView
-                            app:layout_constraintTop_toBottomOf="@+id/shuangxianggongying"
-                            android:paddingEnd="@dimen/dimen15"
-                            android:paddingTop="@dimen/dimen15"
-                            android:paddingBottom="@dimen/dimen15"
-                            android:gravity="end"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_width="0dp"
-                            android:layout_marginStart="@dimen/dimen34"
-                            app:layout_constraintStart_toStartOf="@+id/shuangxianggongying"
-                            android:layout_height="wrap_content"
-                            android:text="@{data.introTwoDesc}"
-                            android:textColor="#9A9A9A"
-                            android:textSize="@dimen/dimen12"
-                            />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                url="@{data.introTwoPic}"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:src="@mipmap/zhaoshangruzhu_tl"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintWidth_percent="0.47"
+                                android:layout_width="0dp"
+                                android:scaleType="fitXY"
+                                android:adjustViewBounds="true"
+                                android:layout_height="0dp"/>
+                            <TextView
+                                android:id="@+id/shuangxianggongying"
+                                android:paddingEnd="@dimen/dimen15"
+                                android:paddingTop="@dimen/dimen15"
+                                android:gravity="end"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_width="0dp"
+                                app:layout_constraintWidth_percent="0.53"
+                                android:layout_height="wrap_content"
+                                android:text="@{data.introTwoTitle}"
+                                android:textColor="#ff343434"
+                                android:textSize="@dimen/dimen14"
+                                />
+                            <TextView
+                                app:layout_constraintTop_toBottomOf="@+id/shuangxianggongying"
+                                android:paddingEnd="@dimen/dimen15"
+                                android:paddingTop="@dimen/dimen15"
+                                android:paddingBottom="@dimen/dimen15"
+                                android:gravity="end"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_width="0dp"
+                                android:layout_marginStart="@dimen/dimen34"
+                                app:layout_constraintStart_toStartOf="@+id/shuangxianggongying"
+                                android:layout_height="wrap_content"
+                                android:text="@{data.introTwoDesc}"
+                                android:textColor="#9A9A9A"
+                                android:textSize="@dimen/dimen12"
+                                />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
                 <include
                     android:id="@+id/shangjiaForm"
                     android:layout_marginStart="@dimen/dimen15"
