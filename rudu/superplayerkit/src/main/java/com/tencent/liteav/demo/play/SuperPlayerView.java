@@ -647,6 +647,7 @@ public class SuperPlayerView extends RelativeLayout implements ITXVodPlayListene
                 originParent.removeView(this);
                 ViewGroup content=activity.getWindow().findViewById(android.R.id.content);
                 content.addView(this);
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
                /* if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
                     decorView.setSystemUiVisibility(View.GONE);
                 } else if (Build.VERSION.SDK_INT >= 19) {
@@ -654,7 +655,6 @@ public class SuperPlayerView extends RelativeLayout implements ITXVodPlayListene
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
                     decorView.setSystemUiVisibility(uiOptions);
                 }*/
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             } else {
                 View decorView = activity.getWindow().getDecorView();
                 if (decorView == null) return;
@@ -663,7 +663,7 @@ public class SuperPlayerView extends RelativeLayout implements ITXVodPlayListene
                     ((ViewGroup)getParent()).removeView(this);
                     originParent.addView(this);
                 }
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
                /* if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
                     decorView.setSystemUiVisibility(View.VISIBLE);
                 } else if (Build.VERSION.SDK_INT >= 19) {
