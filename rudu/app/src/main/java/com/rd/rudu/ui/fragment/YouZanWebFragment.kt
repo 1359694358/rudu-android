@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.google.android.app.utils.StatusBarUtil
+import com.google.android.app.utils.ViewUtils
 import com.google.android.app.utils.logd
 import com.google.android.app.widget.BaseActivity
 import com.google.android.app.widget.BaseFragment
@@ -170,6 +171,7 @@ open class YouZanWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBa
                 sendIntent.action = Intent.ACTION_SEND
                 sendIntent.putExtra(Intent.EXTRA_TEXT, content)
                 sendIntent.putExtra(Intent.EXTRA_SUBJECT, data.title)
+                sendIntent.putExtra(Intent.EXTRA_STREAM, data.link)
                 sendIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 sendIntent.type = "text/plain"
                 startActivity(sendIntent)

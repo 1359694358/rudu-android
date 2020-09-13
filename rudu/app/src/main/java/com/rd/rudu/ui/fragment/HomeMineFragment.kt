@@ -18,9 +18,7 @@ import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
-import com.qmuiteam.qmui.widget.dialog.QMUIBottomSheet
-import com.qmuiteam.qmui.widget.dialog.QMUIBottomSheetListItemModel
-import com.qmuiteam.qmui.widget.dialog.QMUITipDialog
+import com.qmuiteam.qmui.widget.dialog.*
 import com.rd.rudu.R
 import com.rd.rudu.bean.result.LoginResultBean
 import com.rd.rudu.databinding.FragmentHomemineBinding
@@ -107,9 +105,22 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
         }
 
         contentBinding.exitLogin.setOnClickListener {
-            clearLoginState()
+           /* clearLoginState()
             refreshUserInfo()
-            startActivity<LoginActivity>()
+            startActivity<LoginActivity>()*/
+            var qm= QMUIDialog.MessageDialogBuilder(it.context)
+            qm.setTitle("")
+            qm.setMessage("确定要退出登录吗?")
+            qm.addAction("取消") { dialog, index ->
+                dialog.dismiss()
+            }
+            qm.addAction("确定") { dialog, index ->
+                dialog.dismiss()
+                clearLoginState()
+                refreshUserInfo()
+                startActivity<LoginActivity>()
+            }
+            qm.show()
         }
 
         contentBinding.allOrder.setOnClickListener {

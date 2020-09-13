@@ -3,6 +3,9 @@ package com.google.android.app.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
@@ -25,6 +28,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.PARAMETER;
@@ -214,5 +218,28 @@ public class ViewUtils
         }
 
         return result;
+    }
+
+    public static boolean queryIntentActivities(Context context, Intent intent) {
+        List<ResolveInfo> resolveInfoList = context.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        return resolveInfoList != null && resolveInfoList.size() > 0;
+    }
+
+    public static String queryIntentClassName(Context context, Intent intent) {
+        List<ResolveInfo> resolveInfoList = context.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        if(resolveInfoList != null && resolveInfoList.size() > 0)
+        {
+            return resolveInfoList.get(0).activityInfo.name;
+        }
+        return null;
+    }
+
+    public static String  queryIntentActivityName(Context context, Intent intent) {
+        List<ResolveInfo> resolveInfoList = context.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        if(resolveInfoList != null && resolveInfoList.size() > 0)
+        {
+            return resolveInfoList.get(0).loadLabel(context.getPackageManager()).toString();
+        }
+        return null;
     }
 }
