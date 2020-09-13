@@ -38,7 +38,7 @@
                 android:layout_height="0dp">
                 <ImageView
                     url="@{blast.imageUrl}"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
                     android:src="@mipmap/join_zhanhui_item"
                     android:layout_width="match_parent"

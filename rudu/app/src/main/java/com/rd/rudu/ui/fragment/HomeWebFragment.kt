@@ -139,6 +139,8 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
         {
             override fun call(context: Context, needLogin:Boolean )
             {
+                if(isDetached||activity==null)
+                    return
                 if(needLogin)
                 {
                     clearLoginState()
@@ -149,7 +151,7 @@ class HomeWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBackHandl
 
         contentBinding.mView.subscribe(object : AbsShareEvent() {
             override fun call(view: Context, data: GoodsShareModel?) {
-                if(data==null)
+                if(data==null||isDetached||activity==null)
                     return
                 //调用系统默认的分享
                 val content = data.desc + " " + data.link

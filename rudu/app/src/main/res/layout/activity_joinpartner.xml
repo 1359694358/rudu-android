@@ -29,13 +29,20 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <ImageView
-                    url="@{data.topUrl}"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/city_partner"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        url="@{data.topUrl}"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:src="@mipmap/city_partner"
+                        app:layout_constraintDimensionRatio="h,332:173"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dimen16"
