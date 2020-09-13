@@ -14,6 +14,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/superplayer_iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,6 +23,7 @@
             android:src="@drawable/superplayer_btn_back_play" />
 
         <TextView
+            android:layout_marginStart="5dp"
             android:id="@+id/superplayer_tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

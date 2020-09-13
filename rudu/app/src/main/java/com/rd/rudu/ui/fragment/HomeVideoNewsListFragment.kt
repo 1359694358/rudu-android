@@ -15,6 +15,7 @@ import com.rd.rudu.databinding.AdapterTopvideoitemBinding
 import com.rd.rudu.databinding.FragmentHomeVideonewslistBinding
 import com.rd.rudu.ui.activity.TestVideoActivity.Companion.startVideoActivity
 import com.rd.rudu.ui.adapter.NewsListItemDecoration
+import com.rd.rudu.utils.ListPlayerUtil
 import com.rd.rudu.vm.NewsListVM
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
@@ -33,6 +34,7 @@ class HomeVideoNewsListFragment : BaseFragment<FragmentHomeVideonewslistBinding>
         super.onViewCreated(view, savedInstanceState)
         contentBinding.recyclerView.addItemDecoration(NewsListItemDecoration())
         contentBinding.recyclerView.adapter=adapter
+        ListPlayerUtil.init(contentBinding.recyclerView)
         showLoading()
         newsListVm.videoListObs.observe(this, Observer {
             hideLoading()
@@ -63,6 +65,11 @@ class HomeVideoNewsListFragment : BaseFragment<FragmentHomeVideonewslistBinding>
         pageIndex=1
         newsListVm.loadVideoList(pageIndex)
     }
+
+    override fun onPause() {
+        super.onPause()
+        ListPlayerUtil.stopPlay()
+    }
 }
 
 class HomeVideoNewsListAdapter(context: Context) : BaseRecyclerAdapter<VideoInfoListResultBean.NewsInfoItem>(context)
@@ -85,7 +92,8 @@ class HomeVideoNewsListAdapter(context: Context) : BaseRecyclerAdapter<VideoInfo
     {
         init {
             contentViewBinding.playIcon.setOnClickListener {
-                it.context.startVideoActivity(contentViewBinding.videoInfo!!.title!!,contentViewBinding.videoInfo!!.videoUrl!!)
+//                it.context.startVideoActivity(contentViewBinding.videoInfo!!.title!!,contentViewBinding.videoInfo!!.videoUrl!!)
+                ListPlayerUtil.playUrl(contentViewBinding.videoInfo!!.videoUrl!!,contentViewBinding.videoInfo!!.title!!,contentViewBinding.videoContainer)
             }
         }
     }

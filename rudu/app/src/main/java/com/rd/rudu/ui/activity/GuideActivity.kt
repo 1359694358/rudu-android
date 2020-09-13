@@ -56,7 +56,8 @@ class GuideActivity: BaseActivity<ActivityGuideBinding>() {
             }
 
             override fun onBindViewHolder(holder: ViewHolderX, position: Int) {
-                holder.image.scaleType = ImageView.ScaleType.FIT_XY
+                holder.image.scaleType = ImageView.ScaleType.CENTER_CROP
+                holder.image.adjustViewBounds=true
                 holder.image.setImageResource(rudu_app_guide_res[position])
                 if(position==(rudu_app_guide_res.size-1))
                 {

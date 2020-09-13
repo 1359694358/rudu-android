@@ -77,4 +77,7 @@ abstract class BaseFragment<T: ViewDataBinding>() : Fragment() {
         loadingView.root.visibility=View.GONE
     }
 
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+    }
 }

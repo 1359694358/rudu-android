@@ -18,6 +18,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -232,6 +233,18 @@ public class SuperPlayerView extends RelativeLayout implements ITXVodPlayListene
         mVodPlayer.setRenderMode(config.renderMode);
         mVodPlayer.setVodListener(this);
         mVodPlayer.enableHardwareDecode(config.enableHWAcceleration);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        return super.onTouchEvent(event);
     }
 
     /**
@@ -561,6 +574,7 @@ public class SuperPlayerView extends RelativeLayout implements ITXVodPlayListene
             mDanmuView.release();
             mDanmuView = null;
         }
+        originParent=null;
         stopPlay();
     }
 
@@ -612,9 +626,17 @@ public class SuperPlayerView extends RelativeLayout implements ITXVodPlayListene
         mPlayerViewCallback = callback;
     }
 
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if(originParent==null)
+            originParent= (ViewGroup) getParent();
+    }
+
     /**
      * 控制是否全屏显示
      */
+    ViewGroup originParent;
     private void fullScreen(boolean isFull) {
         if (getContext() instanceof Activity) {
             Activity activity = (Activity) getContext();
@@ -622,6 +644,9 @@ public class SuperPlayerView extends RelativeLayout implements ITXVodPlayListene
                 //隐藏虚拟按键，并且全屏
                 View decorView = activity.getWindow().getDecorView();
                 if (decorView == null) return;
+                originParent.removeView(this);
+                ViewGroup content=activity.getWindow().findViewById(android.R.id.content);
+                content.addView(this);
                 if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
                     decorView.setSystemUiVisibility(View.GONE);
                 } else if (Build.VERSION.SDK_INT >= 19) {
@@ -632,6 +657,11 @@ public class SuperPlayerView extends RelativeLayout implements ITXVodPlayListene
             } else {
                 View decorView = activity.getWindow().getDecorView();
                 if (decorView == null) return;
+                if(this.getParent()!=null)
+                {
+                    ((ViewGroup)getParent()).removeView(this);
+                    originParent.addView(this);
+                }
                 if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
                     decorView.setSystemUiVisibility(View.VISIBLE);
                 } else if (Build.VERSION.SDK_INT >= 19) {
@@ -1291,6 +1321,7 @@ public class SuperPlayerView extends RelativeLayout implements ITXVodPlayListene
     }
 
     public void release() {
+        originParent=null;
         if (mControllerWindow != null) {
             mControllerWindow.release();
         }

@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.chinamcloud.project.shanshipin.utils.bindMagicIndicator
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.widget.BaseFragment
 import com.rd.rudu.R
 import com.rd.rudu.databinding.FragmentHomeTopnewsBinding
+import com.rd.rudu.utils.ListPlayerUtil
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
@@ -53,6 +55,9 @@ class HomeTopNewsFragment: BaseFragment<FragmentHomeTopnewsBinding>() {
                 titleView.normalColor=color.second
                 titleView.text=titles[index]
                 titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX,context.resources.getDimension(R.dimen.dimen14))
+                titleView.setOnClickListener {
+                    contentBinding.viewPager.currentItem=index
+                }
                 return titleView
             }
 
@@ -86,5 +91,21 @@ class HomeTopNewsFragment: BaseFragment<FragmentHomeTopnewsBinding>() {
             }
 
         }
+        contentBinding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback()
+        {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if(position==0)
+                {
+                    ListPlayerUtil.stopPlay()
+                }
+            }
+        })
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if(hidden)
+            ListPlayerUtil.stopPlay()
     }
 }
