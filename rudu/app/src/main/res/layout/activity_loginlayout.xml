@@ -14,6 +14,12 @@
             android:adjustViewBounds="true"
             android:layout_width="0dp"
             android:layout_height="0dp"/>
+        <include
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@id/toolbarBindingView" layout="@layout/app_toolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            />
         <ImageView
             android:src="@mipmap/rudu_login_logo"
             android:id="@+id/topTitle"

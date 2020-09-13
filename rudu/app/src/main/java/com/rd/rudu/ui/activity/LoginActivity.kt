@@ -8,10 +8,7 @@ import android.text.TextUtils
 import android.view.View
 import androidx.core.text.set
 import androidx.lifecycle.Observer
-import com.google.android.app.utils.StatusBarUtil
-import com.google.android.app.utils.ToastUtil
-import com.google.android.app.utils.Utility
-import com.google.android.app.utils.logd
+import com.google.android.app.utils.*
 import com.google.android.app.widget.BaseActivity
 import com.qmuiteam.qmui.span.QMUITouchableSpan
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog
@@ -60,6 +57,9 @@ class LoginActivity: BaseActivity<ActivityLoginlayoutBinding>()
         contentBinding.appAgree.text=agreeSpan
         addLoginListener()
         countDownTimer = CountDown(60 * 1000)
+
+        toolbarBinding?.root?.setBackgroundColor(Color.TRANSPARENT)
+        toolbarBinding?.backBtn?.setImageDrawable(ViewUtils.setDrawableColor(this,Color.WHITE,R.mipmap.icon_back_b))
     }
     var loadingDialog:QMUITipDialog?=null
     fun addLoginListener()

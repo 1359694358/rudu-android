@@ -22,6 +22,6 @@
     <style name="Theme.Rudu.Home" parent="Theme.Rudu">
         <item name="android:windowFullscreen">true</item>
         <item name="android:fitsSystemWindows">false</item>
-        <item name="android:windowBackground">@drawable/login_bacground</item>
+      <!--  <item name="android:windowBackground">@drawable/login_bacground</item>-->
     </style>
 </resources>

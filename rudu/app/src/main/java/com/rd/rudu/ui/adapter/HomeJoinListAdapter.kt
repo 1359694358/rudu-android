@@ -301,8 +301,8 @@ class HomeJoinChangXianItemHolder(layoutId: Int, context: Context) :
     }
     fun setData(data:JoinFreshResultBean.JoinFreshResultItem)
     {
-        var currentPrice="99"
-        var originPrice="139.9"
+        var currentPrice=data.price
+        var originPrice=data.origin
         var priceFormat= SpannableStringBuilder(context.resources.getString(R.string.price_format,currentPrice,originPrice))
         priceFormat[0,1]= AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen12))
         priceFormat[1,currentPrice.length+1]=AbsoluteSizeSpan(context.resources.getDimensionPixelSize(R.dimen.dimen17))

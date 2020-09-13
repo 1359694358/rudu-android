@@ -109,6 +109,7 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
         contentBinding.exitLogin.setOnClickListener {
             clearLoginState()
             refreshUserInfo()
+            startActivity<LoginActivity>()
         }
 
         contentBinding.allOrder.setOnClickListener {
@@ -140,6 +141,13 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
                 startActivity<LoginActivity>()
             else
                 WebViewActivity.startActivity(it.context,getString(R.string.refund))
+        }
+
+        contentBinding.callServer.setOnClickListener {
+            if(!LoginResultBean.LoginResult.getLoginResult().isLogin)
+                startActivity<LoginActivity>()
+            else
+                WebViewActivity.startActivity(it.context,getString(R.string.contractus))
         }
     }
 
