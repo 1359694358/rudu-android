@@ -5,15 +5,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.utils.ToastUtil
 import com.rd.rudu.R
 import com.rd.rudu.databinding.ActivityHomeBinding
 import com.google.android.app.widget.BaseActivity
-import com.rd.rudu.ui.fragment.HomeJoinFragment
-import com.rd.rudu.ui.fragment.HomeMineFragment
-import com.rd.rudu.ui.fragment.HomeTopNewsFragment
-import com.rd.rudu.ui.fragment.HomeWebFragment
+import com.rd.rudu.ui.fragment.*
 import com.rd.rudu.vm.JoinViewModel
 
 class HomeActivity: BaseActivity<ActivityHomeBinding>()
@@ -56,10 +52,10 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>()
 
     private fun pushFragment()
     {
-        fragmentMap[0]=HomeWebFragment.newInstance(getString(R.string.youzan_storeurl),false,getString(R.string.home_web))
+        fragmentMap[0]=YouZanWebFragment.newInstance(getString(R.string.youzan_storeurl),false,getString(R.string.home_web),HomeWebFragment::class.java)
         fragmentMap[1]= HomeJoinFragment(joinViewModel)
         fragmentMap[2]= HomeTopNewsFragment()
-        fragmentMap[3]= HomeWebFragment.newInstance(getString(R.string.shopcar),false,getString(R.string.home_shopcar))
+        fragmentMap[3]= YouZanWebFragment.newInstance(getString(R.string.shopcar),false,getString(R.string.home_shopcar),HomeShopCarFragment::class.java)
         fragmentMap[4]= HomeMineFragment()
     }
 
@@ -74,7 +70,7 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>()
             }
         }
     }
-    private fun checkedTableIndex(index:Int)
+    fun checkedTableIndex(index:Int)
     {
         chooseFragment(index)
         var bottomLayout:ViewGroup=findViewById(R.id.bottomLayout)

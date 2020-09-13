@@ -1,33 +1,35 @@
 package com.rd.rudu.ui.fragment
 
-import android.graphics.Color
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import com.google.android.app.utils.StatusBarUtil
+import com.rd.rudu.R
+import com.rd.rudu.ui.activity.HomeActivity
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
 
-class HomeWebFragment: YouZanWebFragment()
+class HomeShopCarFragment: YouZanWebFragment()
 {
-    val bgColor=0xffdf0000.toInt()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        contentBinding.titleBar.setBackgroundColor(bgColor)
-        contentBinding.titleBar.setTextColor(Color.WHITE)
-
-        StatusBarUtil.setColor(requireActivity(),bgColor ,0)
-        StatusBarUtil.setDarkMode(requireActivity())
     }
-
     override fun addWebClient() {
         super.addWebClient()
         contentBinding.mView.setWebViewClient(object: WebViewClient()
         {
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                 Log.w("WebUrl",""+url)
+                if(requireActivity().getString(R.string.quguanguan_redirect)==url)
+                {
+                    if(requireActivity() is HomeActivity)
+                    {
+                        (requireActivity() as HomeActivity).checkedTableIndex(0)
+                        return true
+                    }
+                }
                 return super.shouldOverrideUrlLoading(view,url);
             }
 
@@ -41,13 +43,11 @@ class HomeWebFragment: YouZanWebFragment()
         super.onHiddenChanged(hidden)
         if(!hidden)
         {
-            StatusBarUtil.setColor(requireActivity(),bgColor ,0)
-            StatusBarUtil.setDarkMode(requireActivity())
-        }
-        else
-        {
-            StatusBarUtil.setColor(requireActivity(),Color.TRANSPARENT ,0)
-            StatusBarUtil.setLightMode(requireActivity())
+            if(TextUtils.isEmpty(url))
+            {
+                url=resources.getString(R.string.youzan_storeurl)
+            }
+            contentBinding.mView.loadUrl(url)
         }
     }
 }

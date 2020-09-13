@@ -647,13 +647,14 @@ public class SuperPlayerView extends RelativeLayout implements ITXVodPlayListene
                 originParent.removeView(this);
                 ViewGroup content=activity.getWindow().findViewById(android.R.id.content);
                 content.addView(this);
-                if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
+               /* if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
                     decorView.setSystemUiVisibility(View.GONE);
                 } else if (Build.VERSION.SDK_INT >= 19) {
                     int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
                     decorView.setSystemUiVisibility(uiOptions);
-                }
+                }*/
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             } else {
                 View decorView = activity.getWindow().getDecorView();
                 if (decorView == null) return;
@@ -662,11 +663,12 @@ public class SuperPlayerView extends RelativeLayout implements ITXVodPlayListene
                     ((ViewGroup)getParent()).removeView(this);
                     originParent.addView(this);
                 }
-                if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+               /* if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
                     decorView.setSystemUiVisibility(View.VISIBLE);
                 } else if (Build.VERSION.SDK_INT >= 19) {
                     decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-                }
+                }*/
             }
         }
     }

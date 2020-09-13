@@ -30,7 +30,7 @@ public class RoundBackgroundColorSpan extends ReplacementSpan {
         paint.setColor(this.bgColor);
         canvas.drawRoundRect(new RectF(x, top+context.getResources().getDimensionPixelOffset(R.dimen.dimen2), x + ((int) paint.measureText(text, start, end))+context.getResources().getDimensionPixelOffset(R.dimen.dimen10), bottom-1), context.getResources().getDimensionPixelOffset(R.dimen.dimen6), context.getResources().getDimensionPixelOffset(R.dimen.dimen6), paint);
         paint.setColor(this.textColor);
-        canvas.drawText(text, start, end, x+context.getResources().getDimensionPixelOffset(R.dimen.dimen5), y-context.getResources().getDimensionPixelOffset(R.dimen.dimen1)+0.5F, paint);
+        canvas.drawText(text, start, end, x+context.getResources().getDimensionPixelOffset(R.dimen.dimen5), y-context.getResources().getDimensionPixelOffset(R.dimen.dimen1)-0.5F, paint);
         paint.setColor(color1);
     }
 }

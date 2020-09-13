@@ -238,7 +238,7 @@ public class TCControllerFullScreen extends RelativeLayout implements IControlle
      */
     private void initView(Context context) {
         mHideLockViewRunnable = new HideLockViewRunnable(this);
-        LayoutInflater.from(context).inflate(R.layout.superplayer_vod_controller_fullscreen, this);
+        View view=LayoutInflater.from(context).inflate(R.layout.superplayer_vod_controller_fullscreen, this);
 
         mLayoutTop = (RelativeLayout) findViewById(R.id.superplayer_rl_top);
         mLayoutTop.setOnClickListener(this);
@@ -246,7 +246,7 @@ public class TCControllerFullScreen extends RelativeLayout implements IControlle
         mLayoutBottom.setOnClickListener(this);
         mLayoutReplay = (LinearLayout) findViewById(R.id.superplayer_ll_replay);
 
-        mIvBack = (ImageView) findViewById(R.id.superplayer_iv_back);
+        mIvBack = view.findViewById(R.id.superplayer_iv_back);
         mIvLock = (ImageView) findViewById(R.id.superplayer_iv_lock);
         mTvTitle = (TextView) findViewById(R.id.superplayer_tv_title);
         mIvPause = (ImageView) findViewById(R.id.superplayer_iv_pause);

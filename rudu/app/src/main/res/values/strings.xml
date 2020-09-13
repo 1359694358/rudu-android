@@ -33,4 +33,6 @@
     <string name="tosend"  des="待发货">https://shop44665437.youzan.com/wsctrade/order/list?kdt_id=44473269&amp;type=tosend</string>
     <string name="waitcomment"  des="待评价">https://shop44665437.youzan.com/wsctrade/order/evaluate/center?kdt_id=44473269</string>
     <string name="refund"  des="退换货">https://shop44665437.youzan.com/wsctrade/refund/list</string>
+
+    <string name="quguanguan_redirect" des="去逛逛的地址的跳转">https://shop44665437.youzan.com/v2/showcase/homepage?kdt_id=44473269</string>
 </resources>
