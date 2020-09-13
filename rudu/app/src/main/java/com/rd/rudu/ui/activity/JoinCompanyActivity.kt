@@ -3,6 +3,7 @@ package com.rd.rudu.ui.activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import com.google.android.app.utils.*
 import com.google.android.app.utils.imageloader.ImageLoader
@@ -12,6 +13,7 @@ import com.rd.rudu.bean.request.MerchantsApplyEntity
 import com.rd.rudu.bean.result.JoinMerChantsBean
 import com.rd.rudu.databinding.ActivityJoincomanyBinding
 import com.rd.rudu.databinding.LayoutZhaoshangIntroitemBinding
+import com.rd.rudu.net.AppModuleConfig
 import com.rd.rudu.vm.JoinMerchantsVM
 
 class JoinCompanyActivity: BaseActivity<ActivityJoincomanyBinding>()
@@ -43,6 +45,7 @@ class JoinCompanyActivity: BaseActivity<ActivityJoincomanyBinding>()
         toolbarBinding?.backBtn?.setImageDrawable(ViewUtils.setDrawableColor(this,Color.WHITE,R.mipmap.icon_back_b))
         toolbarBinding?.titleText?.setTextColor(Color.WHITE)
         title = "招商加盟"
+
         joinMerchantsVM.joinMerchantsObs.observe(this, Observer{
             hideLoading()
             it.first.data.forEach {item->
@@ -54,6 +57,7 @@ class JoinCompanyActivity: BaseActivity<ActivityJoincomanyBinding>()
         joinMerchantsVM.loadData()
         var data: JoinMerChantsBean.ChantsData?=intent.getSerializableExtras(Intent.ACTION_ATTACH_DATA)
         data?.let {
+            title = it.title
             ImageLoader.loader.load(contentBinding.bannerImage,it.topUrl)
         }
 
@@ -94,5 +98,7 @@ class JoinCompanyActivity: BaseActivity<ActivityJoincomanyBinding>()
                 ToastUtil.show(this,"提交申请失败，请稍候再试")
             }
         })
+        contentBinding.applyJoinContainer.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.申请加盟.toString())) View.VISIBLE else View.GONE
+        contentBinding.contractUs.visibility= if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.招商联系我们.toString())) View.VISIBLE else View.GONE
     }
 }

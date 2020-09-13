@@ -89,6 +89,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
+                    android:id="@+id/applyJoinContainer"
                     android:layout_marginTop="@dimen/dimen10"
                     android:layout_height="wrap_content">
                     <ImageView
@@ -322,6 +323,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:paddingBottom="@dimen/dimen42"
+                    android:id="@+id/contractUsContainer"
                     android:layout_marginTop="@dimen/dimen10"
                     android:layout_height="wrap_content">
                     <ImageView
