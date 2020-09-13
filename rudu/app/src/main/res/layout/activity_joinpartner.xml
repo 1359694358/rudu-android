@@ -39,6 +39,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dimen16"
+                    android:id="@+id/joinIntro"
                     android:background="@drawable/simpledialogbg"
                     android:paddingBottom="@dimen/dimen14"
                     android:layout_height="wrap_content">

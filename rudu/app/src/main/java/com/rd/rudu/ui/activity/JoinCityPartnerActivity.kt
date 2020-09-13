@@ -2,6 +2,7 @@ package com.rd.rudu.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.google.android.app.net.TransUtils
 import com.google.android.app.utils.ToastUtil
 import com.google.android.app.utils.Utility
@@ -14,6 +15,7 @@ import com.rd.rudu.bean.result.BaseResultBean
 import com.rd.rudu.bean.result.JoinPartnerIntroResultBean
 import com.rd.rudu.databinding.ActivityJoinpartnerBinding
 import com.rd.rudu.net.AppApi
+import com.rd.rudu.net.AppModuleConfig
 
 class JoinCityPartnerActivity: BaseActivity<ActivityJoinpartnerBinding>() {
     override fun getLayoutResId(): Int
@@ -30,10 +32,14 @@ class JoinCityPartnerActivity: BaseActivity<ActivityJoinpartnerBinding>() {
         var data: JoinPartnerIntroResultBean.JoinPartnerIntro?=intent.getSerializableExtras(Intent.ACTION_ATTACH_DATA)
         data?.let {
             contentBinding.data=it
+            title = it.title
         }
         contentBinding.shangjiaForm.submit.setOnClickListener {
             submitHandle()
         }
+
+        contentBinding.joinIntro.visibility= if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.合伙人报名.toString())) View.VISIBLE else View.GONE
+        contentBinding.shangjiaForm.root.visibility= if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.合伙人联系及合作.toString())) View.VISIBLE else View.GONE
     }
 
     fun submitHandle()
