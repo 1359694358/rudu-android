@@ -6,14 +6,17 @@ import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.chinamcloud.project.shanshipin.utils.bindMagicIndicator
+import com.google.android.app.adapter.FragmentAdapter
 import com.google.android.app.utils.StatusBarUtil
 import com.google.android.app.widget.BaseFragment
 import com.rd.rudu.R
 import com.rd.rudu.databinding.FragmentHomeTopnewsBinding
 import com.rd.rudu.utils.ListPlayerUtil
+import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
@@ -78,20 +81,9 @@ class HomeTopNewsFragment: BaseFragment<FragmentHomeTopnewsBinding>() {
 
         }
         tab.navigator=tabNavigatorAdapter
-        val fgarr= arrayOf<Fragment>(HomeTopNewsListFragment(),HomeVideoNewsListFragment())
-        contentBinding.viewPager.bindMagicIndicator(tab)
-        contentBinding.viewPager.adapter=object:FragmentStateAdapter(requireActivity())
-        {
-            override fun getItemCount(): Int {
-               return fgarr.size
-            }
-
-            override fun createFragment(position: Int): Fragment {
-                return fgarr[position]
-            }
-
-        }
-        contentBinding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback()
+        val fgarr= arrayListOf<Fragment>(HomeTopNewsListFragment(),HomeVideoNewsListFragment())
+        contentBinding.viewPager.adapter=FragmentAdapter(childFragmentManager,fgarr)
+        contentBinding.viewPager.addOnPageChangeListener(object :ViewPager.SimpleOnPageChangeListener()
         {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -101,6 +93,7 @@ class HomeTopNewsFragment: BaseFragment<FragmentHomeTopnewsBinding>() {
                 }
             }
         })
+        ViewPagerHelper.bind(tab,  contentBinding.viewPager)
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
