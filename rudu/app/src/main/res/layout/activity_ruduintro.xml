@@ -38,6 +38,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_marginStart="@dimen/dimen15"
                     android:layout_marginEnd="@dimen/dimen15"
+                    android:id="@+id/aboutRudu"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dimen16"
                     android:background="@drawable/simpledialogbg"
@@ -97,6 +98,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dimen16"
+                    android:id="@+id/teamContainer"
                     android:layout_marginStart="@dimen/dimen15"
                     android:layout_marginEnd="@dimen/dimen15"
                     android:background="@drawable/simpledialogbg"
@@ -154,6 +156,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dimen9"
+                    android:id="@+id/gongsiyoushi"
                     android:layout_marginStart="@dimen/dimen14"
                     android:layout_marginEnd="@dimen/dimen14"
                     android:layout_height="wrap_content">
@@ -208,6 +211,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_marginStart="@dimen/dimen15"
                     android:paddingBottom="@dimen/dimen15"
+                    android:id="@+id/contractUsContainer"
                     android:layout_marginEnd="@dimen/dimen15"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

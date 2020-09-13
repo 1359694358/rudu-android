@@ -3,6 +3,7 @@ package com.rd.rudu.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,6 +21,7 @@ import com.rd.rudu.databinding.ActivityRuduintroBinding
 import com.rd.rudu.databinding.LayoutIntroProductItemBinding
 import com.rd.rudu.databinding.LayoutTeamPartnerBinding
 import com.rd.rudu.databinding.LayoutZhaoshangIntroitemBinding
+import com.rd.rudu.net.AppModuleConfig
 import com.rd.rudu.ui.adapter.GridStyleItemDecoration
 import com.rd.rudu.vm.RuduIntroVM
 
@@ -44,9 +46,16 @@ class RuduIntroActivity : BaseActivity<ActivityRuduintroBinding>() {
                 Intent.ACTION_ATTACH_DATA)
         introData?.let {
             contentBinding.intro=it
+            title=it.title
         }
         showLoading()
         loadData()
+
+        contentBinding.aboutRudu.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.关于誉都.toString())) View.VISIBLE else View.GONE
+        contentBinding.teamContainer.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.精英团队.toString())) View.VISIBLE else View.GONE
+        contentBinding.gongsiyoushi.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.公司优势.toString())) View.VISIBLE else View.GONE
+        contentBinding.productLayout.root.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.主打产品.toString())) View.VISIBLE else View.GONE
+        contentBinding.contractUsContainer.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.简介联系我们.toString())) View.VISIBLE else View.GONE
     }
 
     private fun loadData()
