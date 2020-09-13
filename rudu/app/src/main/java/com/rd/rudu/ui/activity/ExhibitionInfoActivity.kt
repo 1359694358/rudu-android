@@ -19,6 +19,7 @@ import com.rd.rudu.databinding.ActivityExhibitioninfoBinding
 import com.rd.rudu.databinding.LayoutExhibitionGooditemBinding
 import com.rd.rudu.databinding.LayoutExhibitionstaritemLeftimageBinding
 import com.rd.rudu.databinding.LayoutExhibitionstaritemRightimageBinding
+import com.rd.rudu.net.AppModuleConfig
 import com.rd.rudu.vm.ExhibitionVM
 
 //展会 信息
@@ -44,6 +45,12 @@ class ExhibitionInfoActivity: BaseActivity<ActivityExhibitioninfoBinding>()
             loadData(it)
         }
         showLoading()
+
+        contentBinding.detailContainer.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.新品发布.toString())) View.VISIBLE else View.GONE
+        contentBinding.specialProductContainer.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.展品专区.toString())) View.VISIBLE else View.GONE
+        contentBinding.starProductLayout.root.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.明星单品.toString())) View.VISIBLE else View.GONE
+        contentBinding.hezuopingpai.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.合作品牌.toString())) View.VISIBLE else View.GONE
+        contentBinding.contractUsContainer.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.展会联系我们.toString())) View.VISIBLE else View.GONE
     }
 
     private val exhibitionVM:ExhibitionVM by lazy { getViewModel<ExhibitionVM>() }
