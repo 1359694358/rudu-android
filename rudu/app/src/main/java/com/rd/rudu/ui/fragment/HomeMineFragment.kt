@@ -185,7 +185,7 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
                         if(result.isNotEmpty())
                         {
                             result[0]?.let {
-                                uploadImage(File(it.path))
+                                uploadImage(File(it.realPath))
                             }
                         }
                     }
@@ -212,7 +212,7 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
                         if(result.isNotEmpty())
                         {
                             result[0]?.let {
-                                uploadImage(File(it.path))
+                                uploadImage(File(it.realPath))
                             }
                         }
                     }

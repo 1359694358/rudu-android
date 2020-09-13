@@ -12,6 +12,7 @@ import io.reactivex.plugins.RxJavaPlugins
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -31,7 +32,7 @@ interface ServerApi
 
     @Multipart
     @POST("/api/user/uploadAvatar")
-    fun uploadAvatar(@Part file:MultipartBody.Part ):Observable<JSONObject>
+    fun uploadAvatar(@Part("user_id")user_id:RequestBody, @Part file:MultipartBody.Part ):Observable<JSONObject>
     /*
 
     @POST("api/ap_user/yzLogin")
@@ -176,4 +177,7 @@ object AppApi
         return part
     }
 
+    fun convertToRequestBody(param: String): RequestBody {
+        return param.toRequestBody("application/json; charset=utf-8".toMediaType())
+    }
 }

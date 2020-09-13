@@ -5,13 +5,11 @@ import androidx.lifecycle.ViewModel
 import com.google.android.app.net.MutableLiveDataX
 import com.google.android.app.net.TransUtils
 import com.google.android.app.utils.logw
-import com.rd.rudu.bean.request.LoginEntity
-import com.rd.rudu.bean.request.LoginType
-import com.rd.rudu.bean.request.SmsCodeEntity
-import com.rd.rudu.bean.request.YouZanSysEntity
+import com.rd.rudu.bean.request.*
 import com.rd.rudu.bean.result.*
 import com.rd.rudu.net.AppApi
 import io.reactivex.Observable
+import okhttp3.RequestBody
 import org.json.JSONObject
 import java.io.File
 
@@ -156,7 +154,11 @@ class UserViewModel: ViewModel()
 
     fun changeImage(file:File)
     {
-        AppApi.serverApi.uploadAvatar(AppApi.buildFile(file)).compose(TransUtils.schedulersTransformer())
+        var user_id=LoginResultBean.LoginResult.getLoginResult().id
+        var bean=UploadAvatarBean(user_id)
+        var param= mutableMapOf<String,RequestBody>()
+        param["user_id"]=AppApi.convertToRequestBody(user_id)
+        AppApi.serverApi.uploadAvatar(AppApi.convertToRequestBody(user_id),AppApi.buildFile(file)).compose(TransUtils.schedulersTransformer())
                 .compose(TransUtils.jsonTransform<ChangeAvatarBean>())
                 .subscribe(
                         {
