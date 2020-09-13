@@ -165,7 +165,7 @@
                     android:layout_marginStart="@dimen/dimen15"
                     android:paddingBottom="@dimen/dimen15"
                     android:layout_marginEnd="@dimen/dimen15"
-                    android:id="@+id/hezuopingpai"
+                    android:id="@+id/pingpaiContainer"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:background="@drawable/order_rectbg"

@@ -49,7 +49,7 @@ class ExhibitionInfoActivity: BaseActivity<ActivityExhibitioninfoBinding>()
         contentBinding.detailContainer.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.新品发布.toString())) View.VISIBLE else View.GONE
         contentBinding.specialProductContainer.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.展品专区.toString())) View.VISIBLE else View.GONE
         contentBinding.starProductLayout.root.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.明星单品.toString())) View.VISIBLE else View.GONE
-        contentBinding.hezuopingpai.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.合作品牌.toString())) View.VISIBLE else View.GONE
+        contentBinding.pingpaiContainer.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.合作品牌.toString())) View.VISIBLE else View.GONE
         contentBinding.contractUsContainer.visibility=if(AppModuleConfig.appShowModules.contains(AppModuleConfig.Modules.展会联系我们.toString())) View.VISIBLE else View.GONE
     }
 
