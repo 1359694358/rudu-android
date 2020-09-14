@@ -30,10 +30,6 @@ class HomeWebFragment: YouZanWebFragment()
                 Log.w("WebUrl",""+url)
                 return super.shouldOverrideUrlLoading(view,url);
             }
-
-            override fun shouldInterceptRequest(p0: WebView, p1: WebResourceRequest): WebResourceResponse {
-                return super.shouldInterceptRequest(p0, p1)
-            }
         })
     }
 

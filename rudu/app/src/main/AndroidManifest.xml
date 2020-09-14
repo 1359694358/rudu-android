@@ -67,7 +67,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths_public" />
         </provider>
-
+        <meta-data
+            android:name="PGYER_APPID"
+            android:value="66824b6228d7b353971627721f2d5876" />
 
         <activity android:name=".MainActivity"
             android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"

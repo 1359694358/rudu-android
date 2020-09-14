@@ -10,6 +10,7 @@ import com.rd.rudu.R
 import com.rd.rudu.databinding.ActivityHomeBinding
 import com.google.android.app.widget.BaseActivity
 import com.rd.rudu.ui.fragment.*
+import com.rd.rudu.utils.PgyUpdate
 import com.rd.rudu.vm.JoinViewModel
 
 class HomeActivity: BaseActivity<ActivityHomeBinding>()
@@ -48,6 +49,7 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>()
         checkedTableIndex(0)
         addCheckedListener()
         joinViewModel.loadJoinNavListData()
+        PgyUpdate.updateCheck(this)
     }
 
     private fun pushFragment()

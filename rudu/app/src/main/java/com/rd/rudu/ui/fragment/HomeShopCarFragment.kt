@@ -32,10 +32,6 @@ class HomeShopCarFragment: YouZanWebFragment()
                 }
                 return super.shouldOverrideUrlLoading(view,url);
             }
-
-            override fun shouldInterceptRequest(p0: WebView, p1: WebResourceRequest): WebResourceResponse {
-                return super.shouldInterceptRequest(p0, p1)
-            }
         })
     }
 
