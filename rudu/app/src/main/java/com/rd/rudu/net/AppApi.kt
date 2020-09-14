@@ -44,7 +44,7 @@ interface ServerApi
     @POST("api/ap_user/bindPhone")
     fun socialLoginBind(@Body loginEntity: LoginEntity):Observable<JSONObject>*/
 
-    @GET("/api/ap_user/getAppVersion")
+    @GET("/api/auth/getAppVersion")
     fun checkUpdate():Observable<JSONObject>
 
     //加盟banner
