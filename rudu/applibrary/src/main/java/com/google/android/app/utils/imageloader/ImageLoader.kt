@@ -27,19 +27,19 @@ object ImageLoader
                 Glide.get(context).clearMemory()
             }
 
-            override fun load(image: ImageView, url: String) {
+            override fun load(image: ImageView, url: String?) {
                 load(image, url, null)
             }
 
-            override fun load(image: ImageView, url: String, placeDrawable: Drawable?) {
+            override fun load(image: ImageView, url: String?, placeDrawable: Drawable?) {
                 load(image, url, placeDrawable, null)
             }
 
-            override fun load(image: ImageView, url: String, placeDrawable: Drawable?, errorDrawable: Drawable?) {
+            override fun load(image: ImageView, url: String?, placeDrawable: Drawable?, errorDrawable: Drawable?) {
                 load(image, url, placeDrawable, errorDrawable ?: placeDrawable, null)
             }
 
-            override fun load(image: ImageView, url: String, placeDrawable: Drawable?, errorDrawable: Drawable?, loadListener: LoadListener?) {
+            override fun load(image: ImageView, url: String?, placeDrawable: Drawable?, errorDrawable: Drawable?, loadListener: LoadListener?) {
                 var url = url
                 val requestOption = RequestOptions().error(errorDrawable ?: placeDrawable).placeholder(placeDrawable).fallback(placeDrawable)
                 if(!URLUtil.isNetworkUrl(url))
@@ -55,7 +55,7 @@ object ImageLoader
                     return
                 }
 //                val glideUrl = GlideUrl(url)
-                Glide.with(image).load(url).apply(requestOption).listener(object : RequestListener<Drawable> {
+                Glide.with(image).load("$url").apply(requestOption).listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(e: GlideException?, model: Any, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
                         loadListener?.loadError(e?.message?:"")
                         return false
@@ -77,10 +77,10 @@ object ImageLoader
 
     interface Loader {
         fun clearMemoryCache(context:Context)
-        fun load(image: ImageView, url: String)
-        fun load(image: ImageView, url: String, placeDrawable: Drawable?)
-        fun load(image: ImageView, url: String, placeDrawable: Drawable?, errorDrawable: Drawable?)
-        fun load(image: ImageView, url: String, placeDrawable: Drawable?, errorDrawable: Drawable?, loadListener: LoadListener?)
+        fun load(image: ImageView, url: String?)
+        fun load(image: ImageView, url: String?, placeDrawable: Drawable?)
+        fun load(image: ImageView, url: String?, placeDrawable: Drawable?, errorDrawable: Drawable?)
+        fun load(image: ImageView, url: String?, placeDrawable: Drawable?, errorDrawable: Drawable?, loadListener: LoadListener?)
 
     }
 }

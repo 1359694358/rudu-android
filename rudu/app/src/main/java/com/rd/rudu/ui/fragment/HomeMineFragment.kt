@@ -165,12 +165,11 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
     fun refreshUserInfo()
     {
         var loginResult=LoginResultBean.LoginResult.getLoginResult()
-        if(loginResult.isLogin)
+        if(loginResult!=null&&loginResult.isLogin)
         {
             contentBinding.exitLogin.visibility=View.VISIBLE
             contentBinding.nickName.text="手机号：${loginResult.telephone}"
-            ImageLoader.loader.load(contentBinding.userIcon,loginResult.avatar,ContextCompat.getDrawable(requireActivity(),R.mipmap.morentouxiang))
-//            GlideEngine.createGlideEngine().loadImage(requireContext(),loginResult.avatar,contentBinding.userIcon)
+            ImageLoader.loader.load(contentBinding.userIcon,"${loginResult.avatar}",ContextCompat.getDrawable(requireActivity(),R.mipmap.morentouxiang))
         }
         else
         {
