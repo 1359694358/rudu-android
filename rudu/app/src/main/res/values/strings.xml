@@ -10,7 +10,7 @@
     <string name="reget">s后重取</string>
     <string name="getvalidatenum">获取验证码</string>
     <string name="use_terms">用户使用条款.docx</string>
-    <string name="app_policy">誉都商城隐私政策.docx</string>
+    <string name="app_policy">隐私政策.docx</string>
     <string name="youzan_storeurl" des="注意地址里面的&amp;  是转义了的and符号">https://shop44665437.m.youzan.com/v2/showcase/homepage?alias=8R1fC2WbXq&amp;sl=undefined&amp;st=1&amp;sf=wx_sm&amp;is_share=1&amp;from_uuid=343df3bc-99d2-584c-3630-6ed59ec04f7f&amp;from=singlemessage&amp;redirect_count=1</string>
     <string name="youzan_clientId">3251437bd708a72081</string>
     <string name="youzan_appKey"></string>
@@ -35,4 +35,11 @@
     <string name="refund"  des="退换货">https://shop44665437.youzan.com/wsctrade/refund/list</string>
     <string name="contractus" des="联系客服">https://shop44665437.youzan.com/v3/im/index?c=wsc&amp;v=2&amp;kdt_id=44473269</string>
     <string name="quguanguan_redirect" des="去逛逛的地址的跳转">https://shop44665437.youzan.com/v2/showcase/homepage?kdt_id=44473269</string>
+
+
+    <string name="privacyurl">https://www.rudu668.com/rudu_admin/protocol</string>
+    <string name="privacytitle">用户协议与隐私政策提示</string>
+    <string name="privacy">感谢您的信任和使用。我们将依据《用户协议》及《隐私政策》来帮助您了解我们在收集、使用、存储和共享个人信息的情况以及您享有的相关权利。在您使用App的过程中，我们会收集您的设备信息，操作日志以及浏览记录等信息。在您使用应用的内容上传、分享等服务时，我们需要获取您设备的存储权限、相册权限、位置权限等信息。您可以在相关页面访问、修改、删除你的个人信息或管理您的授权。您可通过阅读完整的《用户协议》和《隐私政策》来了解详细信息。</string>
+    <string name="user_note">《用户协议》</string>
+    <string name="privacy_info">《隐私政策》</string>
 </resources>

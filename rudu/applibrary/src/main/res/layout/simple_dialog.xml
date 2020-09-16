@@ -4,7 +4,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent"
+        android:background="#80000000"
         android:gravity="center"
         android:orientation="vertical">
         <LinearLayout
@@ -22,10 +22,11 @@
                 android:layout_marginTop="@dimen/dimen13"
                 android:text="温馨提示"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/dimen17"
+                android:textSize="@dimen/dimen16"
                 android:textStyle="bold" />
 
-            <TextView
+            <com.qmuiteam.qmui.qqface.QMUIQQFaceView
+                android:clickable="true"
                 android:id="@+id/title2"
                 android:paddingTop="@dimen/dimen15"
                 android:layout_width="match_parent"
@@ -33,12 +34,13 @@
                 android:layout_marginEnd="@dimen/dimen10"
                 android:layout_marginStart="@dimen/dimen10"
                 android:textColor="#383839"
-                android:textSize="@dimen/dimen17"
+                android:textSize="@dimen/dimen15"
 
                 />
 
-            <TextView
+            <com.qmuiteam.qmui.qqface.QMUIQQFaceView
                 android:id="@+id/summary"
+                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -47,7 +49,7 @@
                 android:layout_marginStart="@dimen/dimen12"
                 android:scrollbars="vertical"
                 android:textColor="#383839"
-                android:textSize="@dimen/dimen17" />
+                android:textSize="@dimen/dimen12" />
 
             <View
                 android:layout_width="match_parent"
@@ -70,7 +72,7 @@
                     android:text="取消"
                     android:textAlignment="center"
                     android:textColor="#4879f3"
-                    android:textSize="@dimen/dimen20" />
+                    android:textSize="@dimen/dimen16" />
                 <View
                     android:layout_width="0.6dp"
                     android:layout_height="match_parent"
@@ -85,7 +87,7 @@
                     android:text="确定"
                     android:textAlignment="center"
                     android:textColor="#4879f3"
-                    android:textSize="@dimen/dimen20" />
+                    android:textSize="@dimen/dimen16" />
             </LinearLayout>
         </LinearLayout>
 

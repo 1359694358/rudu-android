@@ -15,6 +15,7 @@ import com.google.android.app.utils.PermissionPageUtils
 import com.google.android.app.utils.ToastUtil
 import com.rd.rudu.ui.activity.GuideActivity
 import com.rd.rudu.ui.activity.LoginActivity
+import com.rd.rudu.utils.PrivacyUtils
 import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -30,68 +31,71 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     {
         var sdCard= listOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
         PermissionX.init(this)
-            .permissions(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-            .onExplainRequestReason { scope, deniedList ->
-                if(deniedList.containsAll(sdCard))
-                {
-                    var simpleDialogBinding=SimpleDialogBinding.inflate(layoutInflater)
-                    simpleDialogBinding.setSubTitle("${resources.getString(R.string.app_name)}需要读取您的存储卡，以便于数据存储")
-                    simpleDialogBinding.setCancelClickListener {
-                        ToastUtil.show(this,"没有取到权限")
+                .permissions(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .onExplainRequestReason { scope, deniedList ->
+                    if(deniedList.containsAll(sdCard))
+                    {
+                        var simpleDialogBinding=SimpleDialogBinding.inflate(layoutInflater)
+                        simpleDialogBinding.setSubTitle("${resources.getString(R.string.app_name)}需要读取您的存储卡，以便于数据存储")
+                        simpleDialogBinding.setCancelClickListener {
+                            ToastUtil.show(this,"没有取到权限")
+                        }
+                        simpleDialogBinding.setSureClickListener {
+                            requestAppPermission()
+                        }
+                        simpleDialogBinding.show(window.decorView as ViewGroup)
                     }
-                    simpleDialogBinding.setSureClickListener {
-                        requestAppPermission()
+                    else
+                    {
+                        if(PrivacyUtils.showPrivacy(this,::init))
+                            init()
                     }
-                    simpleDialogBinding.show(window.decorView as ViewGroup)
-                }
-                else
-                {
-                    init()
-                }
 
-            }
-            .onForwardToSettings { _, deniedList ->
-                if(deniedList.containsAll(sdCard))
-                {
-                    var simpleDialogBinding=SimpleDialogBinding.inflate(layoutInflater)
-                    simpleDialogBinding.setSubTitle("您已禁止${resources.getString(R.string.app_name)}访问访问存储权限。可以点击确认进入设置页面，授予对应权限")
-                    simpleDialogBinding.setCancelClickListener {
-                        ToastUtil.show(this,"没有取到权限")
-                    }
-                    simpleDialogBinding.setSureClickListener {
-                        var permissionPage= PermissionPageUtils(this)
-                        permissionPage.jumpPermissionPage()
-                    }
-                    simpleDialogBinding.show(window.decorView as ViewGroup)
                 }
-                else
-                {
-                    init()
-                }
+                .onForwardToSettings { _, deniedList ->
+                    if(deniedList.containsAll(sdCard))
+                    {
+                        var simpleDialogBinding=SimpleDialogBinding.inflate(layoutInflater)
+                        simpleDialogBinding.setSubTitle("您已禁止${resources.getString(R.string.app_name)}访问访问存储权限。可以点击确认进入设置页面，授予对应权限")
+                        simpleDialogBinding.setCancelClickListener {
+                            ToastUtil.show(this,"没有取到权限")
+                        }
+                        simpleDialogBinding.setSureClickListener {
+                            var permissionPage= PermissionPageUtils(this)
+                            permissionPage.jumpPermissionPage()
+                        }
+                        simpleDialogBinding.show(window.decorView as ViewGroup)
+                    }
+                    else
+                    {
+                        if(PrivacyUtils.showPrivacy(this,::init))
+                            init()
+                    }
 
-            }
-            .request { allGranted, grantedList, _ ->
-                if(allGranted||grantedList.containsAll(sdCard))
-                {
-                    init()
                 }
-                else
-                {
-                    var simpleDialogBinding= SimpleDialogBinding.inflate(layoutInflater)
-                    simpleDialogBinding.setSubTitle("您已禁止${resources.getString(R.string.app_name)}授权权限。可以点击确认进入设置页面，授予对应权限")
-                    simpleDialogBinding.setCancelClickListener {
-                        killProcess()
+                .request { allGranted, grantedList, _ ->
+                    if(allGranted||grantedList.containsAll(sdCard))
+                    {
+                        if(PrivacyUtils.showPrivacy(this,::init))
+                            init()
                     }
-                    simpleDialogBinding.setSureClickListener {
-                        var permissionPage= PermissionPageUtils(this)
-                        permissionPage.jumpPermissionPage()
+                    else
+                    {
+                        var simpleDialogBinding= SimpleDialogBinding.inflate(layoutInflater)
+                        simpleDialogBinding.setSubTitle("您已禁止${resources.getString(R.string.app_name)}授权权限。可以点击确认进入设置页面，授予对应权限")
+                        simpleDialogBinding.setCancelClickListener {
+                            killProcess()
+                        }
+                        simpleDialogBinding.setSureClickListener {
+                            var permissionPage= PermissionPageUtils(this)
+                            permissionPage.jumpPermissionPage()
+                        }
+                        simpleDialogBinding.show(window.decorView as ViewGroup)
                     }
-                    simpleDialogBinding.show(window.decorView as ViewGroup)
                 }
-            }
     }
     private fun init()
     {
@@ -119,7 +123,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun getLayoutResId(): Int {
-       return R.layout.activity_main
+        return R.layout.activity_main
     }
 
     override fun onDestroy() {

@@ -17,7 +17,7 @@ fun SimpleDialogBinding.dissmiss()
     }
 }
 
-fun SimpleDialogBinding.setMainTitle(value:String)
+fun SimpleDialogBinding.setMainTitle(value:CharSequence)
 {
     title1.text = value
 }
@@ -27,24 +27,24 @@ fun SimpleDialogBinding.setMainTitle(@StringRes value:Int)
     title1.setText(value)
 }
 
-fun SimpleDialogBinding.setSubTitle(value:String)
+fun SimpleDialogBinding.setSubTitle(value:CharSequence)
 {
     title2.text = value
 }
 
 fun SimpleDialogBinding.setSubTitle(@StringRes value:Int)
 {
-    title2.setText(value)
+    title2.setText(root.context.getString(value))
 }
 
-fun SimpleDialogBinding.setSummary(value:String)
+fun SimpleDialogBinding.setSummary(value:CharSequence)
 {
     summary.text = value
 }
 
 fun SimpleDialogBinding.setSummary(@StringRes value:Int)
 {
-    summary.setText(value)
+    summary.setText(root.context.getString(value))
 }
 
 fun SimpleDialogBinding.setSureClickListener(call:()->Unit)
