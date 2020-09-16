@@ -183,6 +183,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/recommendCenter"
             app:layout_constraintStart_toStartOf="@+id/topOrderContainer"
             app:layout_constraintEnd_toEndOf="@+id/topOrderContainer"
@@ -199,7 +200,7 @@
             android:paddingTop="@dimen/dimen14"
             android:paddingBottom="@dimen/dimen14"
             android:background="@mipmap/ziliao_bg"
-            android:text="推广中心"
+            android:text="推广大使中心"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/callServer"
