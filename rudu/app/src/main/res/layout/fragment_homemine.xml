@@ -183,7 +183,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/recommendCenter"
             app:layout_constraintStart_toStartOf="@+id/topOrderContainer"
             app:layout_constraintEnd_toEndOf="@+id/topOrderContainer"
