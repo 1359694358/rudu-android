@@ -3,6 +3,7 @@ package com.rd.rudu.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.webkit.URLUtil
 import com.google.android.app.utils.ViewUtils
 import com.google.android.app.widget.BaseActivity
 import com.rd.rudu.R
@@ -15,7 +16,8 @@ class WebViewActivity: BaseActivity<ActivityWebviewBinding>() {
     {
         fun startActivity(context:Context,url:String?,showTitle:Boolean=true)
         {
-            context.startActivity<WebViewActivity>(Pair(YouZanWebFragment.WebUrl,url), Pair(Intent.ACTION_SHOW_APP_INFO,showTitle))
+            if(URLUtil.isNetworkUrl(url))
+                context.startActivity<WebViewActivity>(Pair(YouZanWebFragment.WebUrl,url), Pair(Intent.ACTION_SHOW_APP_INFO,showTitle))
         }
     }
     override fun getLayoutResId(): Int
