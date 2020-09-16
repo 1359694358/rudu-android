@@ -160,6 +160,13 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
             else
                 WebViewActivity.startActivity(it.context,getString(R.string.contractus))
         }
+
+        contentBinding.recommendCenter.setOnClickListener {
+            if(!LoginResultBean.LoginResult.getLoginResult().isLogin)
+                startActivity<LoginActivity>()
+            else
+                WebViewActivity.startActivity(it.context,getString(R.string.recommenturl))
+        }
     }
 
     fun refreshUserInfo()

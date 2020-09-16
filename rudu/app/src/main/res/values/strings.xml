@@ -35,7 +35,7 @@
     <string name="refund"  des="退换货">https://shop44665437.youzan.com/wsctrade/refund/list</string>
     <string name="contractus" des="联系客服">https://shop44665437.youzan.com/v3/im/index?c=wsc&amp;v=2&amp;kdt_id=44473269</string>
     <string name="quguanguan_redirect" des="去逛逛的地址的跳转">https://shop44665437.youzan.com/v2/showcase/homepage?kdt_id=44473269</string>
-
+    <string name="recommenturl" des="推广中心链接">https://shop44665437.youzan.com/v3/im/index?c=wsc&amp;v=2&amp;kdt_id=44473269</string>
 
     <string name="privacyurl">https://www.rudu668.com/rudu_admin/protocol</string>
     <string name="privacytitle">用户协议与隐私政策提示</string>
