@@ -59,15 +59,15 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>()
         val date=Date()
         val df=SimpleDateFormat("yyyyMMdd")
         val now=(df.format(date).toInt())
-        /*if(now<=20200920)//小米审核用的 主要是防止检测外链导航太多
+        if(now<=20200920)//小米审核用的 主要是防止检测外链导航太多
         {
             fragmentMap[0]=HomeTopNewsListFragment()
         }
         else
         {
             fragmentMap[0]=YouZanWebFragment.newInstance(getString(R.string.youzan_storeurl),false,getString(R.string.home_title),HomeWebFragment::class.java)
-        }*/
-        fragmentMap[0]=YouZanWebFragment.newInstance(getString(R.string.youzan_storeurl),false,getString(R.string.home_title),HomeWebFragment::class.java)
+        }
+//        fragmentMap[0]=YouZanWebFragment.newInstance(getString(R.string.youzan_storeurl),false,getString(R.string.home_title),HomeWebFragment::class.java)
         fragmentMap[1]= HomeJoinFragment(joinViewModel)
         fragmentMap[2]= HomeTopNewsFragment()
         fragmentMap[3]= YouZanWebFragment.newInstance(getString(R.string.shopcar),false,getString(R.string.home_shopcar),HomeShopCarFragment::class.java)

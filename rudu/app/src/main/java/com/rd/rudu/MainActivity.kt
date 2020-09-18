@@ -20,11 +20,11 @@ import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         if (intent.flags and Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT != 0) {
             finish()
             return
         }
-        super.onCreate(savedInstanceState)
         requestAppPermission()
     }
     fun requestAppPermission()
