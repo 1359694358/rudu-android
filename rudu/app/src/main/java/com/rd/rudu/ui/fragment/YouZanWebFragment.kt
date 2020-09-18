@@ -84,9 +84,13 @@ open class YouZanWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBa
         if(requireActivity() is WebViewActivity)
         {
             contentBinding.titleBar.visibility=View.GONE
+            contentBinding.backBtn.visibility=View.GONE
         }
         else
         {
+            contentBinding.backBtn.setOnClickListener {
+                processKeyBack()
+            }
             var title:String?=requireArguments().getString(Intent.EXTRA_TITLE,"")
             contentBinding.titleBar.text=title
             contentBinding.titleBar.viewTreeObserver.addOnDrawListener {
@@ -113,6 +117,10 @@ open class YouZanWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBa
                     if(showTitle&&requireActivity() is WebViewActivity)
                     {
                         requireActivity().title = it
+                    }
+                    else
+                    {
+                        setFragmentTitle(it)
                     }
                 }
             }
@@ -177,6 +185,11 @@ open class YouZanWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBa
                 startActivity(sendIntent)
             }
         })
+
+    }
+
+    open fun setFragmentTitle(title: CharSequence)
+    {
 
     }
 

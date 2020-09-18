@@ -9,10 +9,21 @@
         android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/backBtn"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/titleBar"
+            app:layout_constraintTop_toBottomOf="@+id/titleBar"
+            android:scaleType="center"
+            android:layout_width="@dimen/dimen40"
+            android:layout_height="@dimen/dimen40"/>
         <TextView
-            android:background="@android:color/white"
+            app:layout_constraintWidth_percent="0.8"
             android:id="@+id/titleBar"
             android:textSize="@dimen/dimen17"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="#222222"
             android:text="@string/home_web"
             android:textStyle="bold"
@@ -20,7 +31,8 @@
             android:includeFontPadding="false"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
             android:layout_height="@dimen/dimen42"/>
         <com.youzan.androidsdkx5.YouzanBrowser
             android:id="@+id/mView"

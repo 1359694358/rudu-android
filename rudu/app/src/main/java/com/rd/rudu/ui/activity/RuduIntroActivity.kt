@@ -64,13 +64,27 @@ class RuduIntroActivity : BaseActivity<ActivityRuduintroBinding>() {
             hideLoading()
             if(it!=null)
             {
-                it.teamData.data?.forEach {item->
-                    var teamBinding=LayoutTeamPartnerBinding.inflate(layoutInflater,contentBinding.teamItems,true)
-                    teamBinding.teamItem=item
+                if(it.teamData.data?.isEmpty()==true)
+                {
+                    contentBinding.teamContainer.visibility=View.GONE
                 }
-                it.youshi.data?.forEach {item->
-                    var introBinding= LayoutZhaoshangIntroitemBinding.inflate(layoutInflater,contentBinding.merchantsIntro,true)
-                    introBinding.introInfo=item
+                else
+                {
+                    it.teamData.data?.forEach {item->
+                        var teamBinding=LayoutTeamPartnerBinding.inflate(layoutInflater,contentBinding.teamItems,true)
+                        teamBinding.teamItem=item
+                    }
+                }
+                if(it.youshi.data?.isEmpty()==true)
+                {
+                    contentBinding.gongsiyoushi.visibility=View.GONE
+                }
+                else
+                {
+                    it.youshi.data?.forEach {item->
+                        var introBinding= LayoutZhaoshangIntroitemBinding.inflate(layoutInflater,contentBinding.merchantsIntro,true)
+                        introBinding.introInfo=item
+                    }
                 }
                 var adapter=ProductListAdapter(it.product.data,this)
                 val lm=GridLayoutManager(this,2)
