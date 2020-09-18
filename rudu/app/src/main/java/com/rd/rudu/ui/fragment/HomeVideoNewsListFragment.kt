@@ -38,6 +38,7 @@ class HomeVideoNewsListFragment : BaseFragment<FragmentHomeVideonewslistBinding>
         showLoading()
         newsListVm.videoListObs.observe(this, Observer {
             hideLoading()
+            ListPlayerUtil.stopPlay()
             contentBinding.refreshLayout.finishRefresh()
             contentBinding.refreshLayout.finishLoadMore()
             contentBinding.refreshLayout.setEnableLoadMore(it?.haveMore()?:false)

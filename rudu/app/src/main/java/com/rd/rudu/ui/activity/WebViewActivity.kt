@@ -29,7 +29,7 @@ class WebViewActivity: BaseActivity<ActivityWebviewBinding>() {
     {
         super.onCreate(savedInstanceState)
         val fragment=YouZanWebFragment.newInstance(intent.getStringExtra(YouZanWebFragment.WebUrl)?:getString(R.string.youzan_storeurl),intent.getBooleanExtra(Intent.ACTION_SHOW_APP_INFO,true))
-        supportFragmentManager.beginTransaction().add(R.id.webView,fragment).commitAllowingStateLoss()
+        supportFragmentManager.beginTransaction().replace(R.id.webView,fragment).commitAllowingStateLoss()
         var color=0xFF222222.toInt()
         toolbarBinding?.titleText?.setTextColor(color)
         toolbarBinding?.backBtn?.setImageDrawable(ViewUtils.setDrawableColor(this,color,R.mipmap.icon_back_b))
