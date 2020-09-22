@@ -93,7 +93,7 @@ fun saveAny(key:String, obj:Any?)
 fun <T> readAny(key:String):T?
 {
     var byte:ByteArray?=MMKV.defaultMMKV().decodeBytes(key)
-    byte.let {
+    byte?.let {
 
         try {
             var ois= ObjectInputStream(ByteArrayInputStream(byte))
