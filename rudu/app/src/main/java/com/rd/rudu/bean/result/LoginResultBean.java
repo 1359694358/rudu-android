@@ -68,6 +68,8 @@ public class LoginResultBean extends BaseResultBean<LoginResultBean.LoginResult>
         public String accessToken;
         public String verKey;
         public String verCode;
+        public String birthday;
+        public String disabled;
         public YouZanTokenBean yzLoginResponse;
 
         public final boolean isLogin()
@@ -89,6 +91,8 @@ public class LoginResultBean extends BaseResultBean<LoginResultBean.LoginResult>
             accessToken = in.readString();
             verKey = in.readString();
             verCode = in.readString();
+            birthday=in.readString();
+            disabled=in.readString();
         }
 
         public static final Creator<LoginResult> CREATOR = new Creator<LoginResult>() {
@@ -122,6 +126,8 @@ public class LoginResultBean extends BaseResultBean<LoginResultBean.LoginResult>
             parcel.writeString(accessToken);
             parcel.writeString(verKey);
             parcel.writeString(verCode);
+            parcel.writeString(birthday);
+            parcel.writeString(disabled);
         }
     }
 

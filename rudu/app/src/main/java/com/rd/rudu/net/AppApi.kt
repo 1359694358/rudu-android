@@ -30,6 +30,12 @@ interface ServerApi
     @POST("/api/auth/login")
     fun login(@Body loginEntity: LoginEntity):Observable<JSONObject>
 
+    @GET("/api/user/getUserInfo")
+    fun getUserInfo(@Query("id")id:String)
+
+    @POST("/api/user/updateUserById")
+    fun updateUserById(@Body updateUserInfo: UpdateUserInfo)
+
     @Multipart
     @POST("/api/user/uploadAvatar")
     fun uploadAvatar(@Part("user_id")user_id:RequestBody, @Part file:MultipartBody.Part ):Observable<JSONObject>

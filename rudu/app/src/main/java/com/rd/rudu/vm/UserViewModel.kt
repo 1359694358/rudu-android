@@ -172,4 +172,9 @@ class UserViewModel: ViewModel()
                         }
                 )
     }
+
+    fun getUserInfo()
+    {
+
+    }
 }
