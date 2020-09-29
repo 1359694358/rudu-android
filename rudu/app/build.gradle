@@ -90,7 +90,7 @@ dependencies {
     implementation ('com.youzanyun.open.mobile:x5sdk:6.4.35',{
         exclude module: 'x5official'
     })
-
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.4.0'
     implementation 'com.pgyersdk:sdk:+'
     api project(path: ':applibrary')
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.8'

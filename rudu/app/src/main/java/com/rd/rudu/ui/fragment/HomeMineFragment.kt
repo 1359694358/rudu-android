@@ -23,6 +23,7 @@ import com.rd.rudu.R
 import com.rd.rudu.bean.result.LoginResultBean
 import com.rd.rudu.databinding.FragmentHomemineBinding
 import com.rd.rudu.ui.activity.LoginActivity
+import com.rd.rudu.ui.activity.UserProfileActivity
 import com.rd.rudu.ui.activity.WebViewActivity
 import com.rd.rudu.utils.GlideEngine
 import com.rd.rudu.utils.clearLoginState
@@ -72,6 +73,11 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
             var loginResult=LoginResultBean.LoginResult.getLoginResult()
             if(loginResult.isLogin)
             {
+                startActivity<UserProfileActivity>()
+                if(1+1>0)
+                {
+                    return@setOnClickListener
+                }
                 var photoSPan=SpannableStringBuilder("拍摄")
                 photoSPan[0,photoSPan.length]=ForegroundColorSpan(ContextCompat.getColor(requireContext(),R.color.qmuibottomsheettxtcolor))
                 var takePhoto= QMUIBottomSheetListItemModel(photoSPan,"")

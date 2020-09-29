@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dimen170">
+
+        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+            android:id="@+id/personal_info_avatar_img"
+            android:background="#fff1f1f1"
+            app:qmui_is_circle="true"
+            android:layout_width="@dimen/dimen82"
+            android:layout_height="@dimen/dimen82"
+            android:layout_marginTop="@dimen/dimen30"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:textSize="@dimen/dimen14"
+            android:textColor="#ff7f7f7f"
+            android:id="@+id/personal_info_avatar_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen30"
+            android:text="点击修改头像"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+</layout>

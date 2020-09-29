@@ -70,6 +70,9 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
             toolbarBinding?.backBtn?.setOnClickListener {
                 backHandle()
             }
+            toolbarBinding?.moreText?.setOnClickListener {
+                moreClick()
+            }
             if(!getFitSystemWindow())
             {
                 toolbarBinding?.root?.viewTreeObserver?.addOnDrawListener {
@@ -89,6 +92,11 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
         finish()
     }
 
+    protected open fun moreClick()
+    {
+
+    }
+
     override fun setTitle(title:CharSequence)
     {
         toolbarBinding?.titleText?.text=title
@@ -97,6 +105,16 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity()
     override fun setTitle(titleId: Int)
     {
         toolbarBinding?.titleText?.setText(titleId)
+    }
+
+    fun setMoreText(value:CharSequence)
+    {
+        toolbarBinding?.moreText?.setText(value)
+    }
+
+    fun setMoreText(value:Int)
+    {
+        toolbarBinding?.moreText?.setText(value)
     }
 
     open fun setStatusBarMode()

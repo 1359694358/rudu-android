@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/bg_white_corner_8"
+        android:paddingLeft="@dimen/dimen15"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/shape_divider_d9_1px_nopadding"
+        android:showDividers="middle">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dimen44">
+
+            <TextView
+                android:textSize="@dimen/dimen14"
+                android:textColor="#ff333333"
+                android:id="@+id/tv_edit_detail_left_id"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="@dimen/dimen64"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimen23"
+                android:text="用户ID"
+                android:singleLine="true"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:textSize="@dimen/dimen14"
+                android:textColor="#ff333333"
+                android:id="@+id/tv_edit_detail_right_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_toRightOf="@+id/tv_edit_detail_left_id"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:textSize="@dimen/dimen12"
+                android:textColor="#ff333333"
+                android:id="@+id/tv_copy"
+                android:background="@drawable/bg_personal_info_copy"
+                android:paddingLeft="4.0dip"
+                android:paddingTop="1.0dip"
+                android:paddingRight="4.0dip"
+                android:paddingBottom="1.0dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9.0dip"
+                android:text="复制"
+                android:singleLine="true"
+                android:layout_toRightOf="@+id/tv_edit_detail_right_id"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dimen52">
+
+            <TextView
+                android:textSize="@dimen/dimen14"
+                android:textColor="#ff333333"
+                android:id="@+id/et_edit_detail_left_nickname"
+                android:layout_width="@dimen/dimen64"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimen23"
+                android:text="昵称"
+                android:singleLine="true"
+                android:layout_centerVertical="true" />
+
+            <EditText
+                android:textSize="@dimen/dimen14"
+                android:textColor="#ff7f7f7f"
+                android:textColorHint="#ffcccccc"
+                android:id="@+id/tv_edit_detail_right_nickname"
+                android:background="@null"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimen15"
+                android:hint="@string/personal_info_nickname_hint"
+                android:cursorVisible="true"
+                android:singleLine="true"
+                android:layout_toRightOf="@+id/et_edit_detail_left_nickname"
+                android:layout_centerVertical="true"
+                android:textCursorDrawable="@drawable/edit_cursor" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dimen52">
+
+            <TextView
+                android:textSize="@dimen/dimen14"
+                android:textColor="#ff333333"
+                android:id="@+id/et_edit_detail_left_gender"
+                android:layout_width="@dimen/dimen64"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimen23"
+                android:text="@string/personal_info_gender"
+                android:singleLine="true"
+                android:layout_centerVertical="true" />
+
+            <RadioGroup
+                android:orientation="horizontal"
+                android:id="@+id/personal_info_sex_rg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/et_edit_detail_left_gender"
+                android:layout_centerVertical="true">
+
+                <RadioButton
+                    android:textSize="@dimen/dimen14"
+                    android:textColor="#ff7f7f7f"
+                    android:id="@+id/personal_info_sex_male"
+                    android:background="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:text="@string/personal_info_sex_male"
+                    android:drawableLeft="@drawable/selector_scf_commodity_select_cb"
+                    android:drawablePadding="@dimen/dimen8" />
+
+                <RadioButton
+                    android:textSize="@dimen/dimen14"
+                    android:textColor="#ff7f7f7f"
+                    android:id="@+id/personal_info_sex_female"
+                    android:background="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen84"
+                    android:button="@null"
+                    android:text="@string/personal_info_sex_female"
+                    android:drawableLeft="@drawable/selector_scf_commodity_select_cb"
+                    android:drawablePadding="@dimen/dimen8" />
+            </RadioGroup>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dimen52">
+
+            <TextView
+                android:textSize="@dimen/dimen14"
+                android:textColor="#ff333333"
+                android:id="@+id/et_edit_detail_left_birthday"
+                android:layout_width="@dimen/dimen64"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimen23"
+                android:text="出生日期"
+                android:lines="1"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:textSize="@dimen/dimen14"
+                android:textColor="#ff7f7f7f"
+                android:textColorHint="#ffcccccc"
+                android:id="@+id/tv_edit_detail_right_birthday"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimen23"
+                android:hint="请选择出生日期"
+                android:lines="1"
+                android:layout_toRightOf="@+id/et_edit_detail_left_birthday"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

@@ -16,6 +16,8 @@ import com.google.android.app.utils.logd
 import com.google.android.app.widget.BaseActivity
 import com.google.android.app.widget.BaseFragment
 import com.google.android.app.widget.OnKeyBackHandle
+import com.mediacloud.app.share.SocialShareControl
+import com.mediacloud.app.share.SocialShareInfo
 import com.rd.rudu.R
 import com.rd.rudu.databinding.FragmentHomeyouzanBinding
 import com.rd.rudu.ui.activity.LoginActivity
@@ -28,6 +30,7 @@ import com.tencent.smtt.export.external.interfaces.WebResourceResponse
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
+import com.umeng.socialize.bean.SHARE_MEDIA
 import com.youzan.androidsdk.YouzanSDK
 import com.youzan.androidsdk.YouzanToken
 import com.youzan.androidsdk.event.AbsAuthEvent
@@ -182,7 +185,16 @@ open class YouZanWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBa
                 sendIntent.putExtra(Intent.EXTRA_STREAM, data.link)
                 sendIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 sendIntent.type = "text/plain"
-                startActivity(sendIntent)
+                Log.w("App", "call: ${data?.toJson()}")
+                val shareInfo=SocialShareInfo(data.link,data.title,data.desc,data.imgUrl)
+                SocialShareControl.share(requireActivity(),SHARE_MEDIA.WEIXIN,shareInfo)//直接分享到微信
+                /* if(ViewUtils.queryIntentActivities(requireContext(),sendIntent))
+                 {
+                     startActivity(sendIntent)
+                 }
+                 else*/
+//                {
+//                }
             }
         })
 

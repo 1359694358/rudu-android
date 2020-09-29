@@ -123,6 +123,11 @@
             android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.activity.UserProfileActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".ui.activity.WebViewActivity"
             android:windowSoftInputMode="adjustPan"
             android:configChanges="locale|layoutDirection|orientation|keyboardHidden|navigation|screenSize"
@@ -134,6 +139,13 @@
             android:screenOrientation="portrait"
             />
 
+        <activity
+            android:name="${applicationId}.wxapi.WXEntryActivity"
+            android:configChanges="locale|layoutDirection|keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            tools:replace="android:name" />
     </application>
 
 </manifest>

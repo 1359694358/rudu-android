@@ -67,4 +67,8 @@
     <dimen name="dimen127">127dp</dimen>
     <dimen name="dimen125">125dp</dimen>
     <dimen name="dimen200">200dp</dimen>
+    <dimen name="dimen170">170dp</dimen>
+    <dimen name="dimen82">82dp</dimen>
+    <dimen name="dimen64">64dp</dimen>
+    <dimen name="dimen52">52dp</dimen>
 </resources>

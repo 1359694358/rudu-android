@@ -3,6 +3,7 @@ package com.rd.rudu
 import android.util.Log
 import com.google.android.app.DefaultApp
 import com.google.android.app.utils.*
+import com.mediacloud.app.share.SocialShareControl
 import com.pgyersdk.crash.PgyCrashManager
 import com.rd.rudu.R
 import com.tencent.smtt.export.external.TbsCoreSettings
@@ -20,6 +21,7 @@ class App: DefaultApp() {
         YouzanSDK.init(this@App, resources.getString(R.string.youzan_clientId),YouZanSDKX5Adapter())
         YouzanPreloader.preloadHtml(this@App, resources.getString(R.string.youzan_storeurl));
         doAsync {
+            SocialShareControl.initAppKey(this@App)
             ExceptionHandler.getInstance().setCrashCallBack {
                 PgyCrashManager.reportCaughtException(it as java.lang.Exception?)
             }

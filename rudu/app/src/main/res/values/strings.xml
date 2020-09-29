@@ -43,4 +43,8 @@
     <string name="privacy">感谢您的信任和使用。我们将依据《用户协议》及《隐私政策》来帮助您了解我们在收集、使用、存储和共享个人信息的情况以及您享有的相关权利。在您使用App的过程中，我们会收集您的设备信息，操作日志以及浏览记录等信息。在您使用应用的内容上传、分享等服务时，我们需要获取您设备的存储权限、相册权限、位置权限等信息。您可以在相关页面访问、修改、删除你的个人信息或管理您的授权。您可通过阅读完整的《用户协议》和《隐私政策》来了解详细信息。</string>
     <string name="user_note">《用户协议》</string>
     <string name="privacy_info">《隐私政策》</string>
+    <string name="personal_info_nickname_hint">请输入你的昵称</string>
+    <string name="personal_info_gender">性别</string>
+    <string name="personal_info_sex_male">男</string>
+    <string name="personal_info_sex_female">女</string>
 </resources>
