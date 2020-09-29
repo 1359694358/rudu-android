@@ -14,21 +14,18 @@
             android:id="@id/toolbarBindingView"
             layout="@layout/app_toolbar"
             />
-        <include layout="@layout/item_personal_info_avatar" />
+        <include android:id="@+id/avatarLayout" layout="@layout/item_personal_info_avatar" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="@dimen/dimen15" />
 
         <include
+            android:id="@+id/personalInfoLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen10"
             android:layout_marginRight="@dimen/dimen10"
             layout="@layout/item_personal_info_detail" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
     </LinearLayout>
 </layout>
