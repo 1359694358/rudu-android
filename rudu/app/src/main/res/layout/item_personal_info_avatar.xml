@@ -13,6 +13,7 @@
         <com.qmuiteam.qmui.widget.QMUIRadiusImageView
             android:id="@+id/personal_info_avatar_img"
             android:background="#fff1f1f1"
+            app:qmui_border_color="@android:color/transparent"
             app:qmui_is_circle="true"
             android:layout_width="@dimen/dimen82"
             android:layout_height="@dimen/dimen82"

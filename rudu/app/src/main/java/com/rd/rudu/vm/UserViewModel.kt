@@ -24,16 +24,16 @@ class UserViewModel: ViewModel()
     {
         var smsCodeEntity= SmsCodeEntity(phone)
         AppApi.serverApi.getSmsCode(smsCodeEntity).compose(TransUtils.jsonTransform(SmsCodeBean::class.java))
-            .compose(TransUtils.schedulersTransformer())
-            .subscribe(
-                {
-                    smsCodeObserver.postValue(it)
-                }
-                ,
-                {
-                    smsCodeObserver.postValue(null)
-                }
-            )
+                .compose(TransUtils.schedulersTransformer())
+                .subscribe(
+                        {
+                            smsCodeObserver.postValue(it)
+                        }
+                        ,
+                        {
+                            smsCodeObserver.postValue(null)
+                        }
+                )
     }
     //telephone	否	string	用户手机号
 //wx_id	否	string	微信id
@@ -45,35 +45,35 @@ class UserViewModel: ViewModel()
     {
         var loginEntity=LoginEntity(channel_type, telephone, verKey, verCode, wx_id, zfb_id,nickName,avatar)
         AppApi.serverApi.login(loginEntity).compose(TransUtils.schedulersTransformer())
-            .compose(TransUtils.jsonTransform(LoginResultBean::class.java))
-            .subscribe(
-                {
+                .compose(TransUtils.jsonTransform(LoginResultBean::class.java))
+                .subscribe(
+                        {
 
-                    if(channel_type!=LoginType.Mobile&&it.code==40001)
-                    {
-                        loginObserver.postValue(it)
-                        return@subscribe
-                    }
-                    if(it.yes()&&it.data?.yzLoginResponse?.yes()==true)
-                    {
-                        loginObserver.postValue(it)
-                        if(it.data?.yzLoginResponse?.data!=null)
-                            youzanTokenObserver.postValue(it.data?.yzLoginResponse)
-                    }
-                    else
-                    {
-                        LoginResultBean.LoginResult.setLoginResult(null)
-                        loginObserver.postValue(null)
-                        youzanTokenObserver.postValue(null)
-                    }
-                }
-                ,
-                {
-                    LoginResultBean.LoginResult.setLoginResult(null)
-                    loginObserver.postValue(null)
-                    youzanTokenObserver.postValue(null)
-                }
-            )
+                            if(channel_type!=LoginType.Mobile&&it.code==40001)
+                            {
+                                loginObserver.postValue(it)
+                                return@subscribe
+                            }
+                            if(it.yes()&&it.data?.yzLoginResponse?.yes()==true)
+                            {
+                                loginObserver.postValue(it)
+                                if(it.data?.yzLoginResponse?.data!=null)
+                                    youzanTokenObserver.postValue(it.data?.yzLoginResponse)
+                            }
+                            else
+                            {
+                                LoginResultBean.LoginResult.setLoginResult(null)
+                                loginObserver.postValue(null)
+                                youzanTokenObserver.postValue(null)
+                            }
+                        }
+                        ,
+                        {
+                            LoginResultBean.LoginResult.setLoginResult(null)
+                            loginObserver.postValue(null)
+                            youzanTokenObserver.postValue(null)
+                        }
+                )
         return loginEntity
         /*.compose(TransUtils.jsonTransform(LoginResultBean::class.java))
         .flatMap {
@@ -165,7 +165,7 @@ class UserViewModel: ViewModel()
                             logw("$it")
                             changeAvatarObserver.postValue(it)
                         }
-                ,
+                        ,
                         {
                             logw("$it")
                             changeAvatarObserver.postValue(null)
@@ -176,5 +176,20 @@ class UserViewModel: ViewModel()
     fun getUserInfo()
     {
 
+    }
+
+    fun saveUserInfo(id:String, nickName:String, gender:String, avatar:String, birthday:String)
+    {
+        val updateUserInfo=UpdateUserInfo(id, nickName, gender, avatar, birthday)
+        AppApi.serverApi.updateUserById(updateUserInfo).compose(TransUtils.schedulersTransformer())
+                .subscribe(
+                        {
+                            logw("$it")
+                        }
+                        ,
+                        {
+                            logw("$it")
+                        }
+                )
     }
 }
