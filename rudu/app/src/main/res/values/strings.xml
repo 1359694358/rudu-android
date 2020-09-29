@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">誉都商城</string>
 
-<!--  微信 支付宝配置 -->
-    <string name="share_platform_weixinid">wx5a3a992ae23c31de</string>
-    <string name="share_platform_weixinkey">e6f49ffaf8e83a638fcf07091338a95a</string>
     <string name="share_platform_alipayid">2021001188608324</string>
     <string name="share_platform_alipaykey"></string>
     <string name="normaltitle">誉都商城</string>
@@ -47,4 +44,6 @@
     <string name="personal_info_gender">性别</string>
     <string name="personal_info_sex_male">男</string>
     <string name="personal_info_sex_female">女</string>
+    <string name="share_platform_weixinid">wx526c5a5c919bc666</string>
+    <string name="share_platform_weixinkey">24ad37d0b9f7008a939b636310cfbf28</string>
 </resources>
