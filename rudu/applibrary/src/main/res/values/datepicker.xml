@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cancel">取消</string>
+    <string name="title">请选择时间</string>
+    <string name="confirm">确定</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="hour">时</string>
+    <string name="minute">分</string>
+    <string name="app_name">日期选择控件</string>
+    <string name="select_date">选择日期</string>
+    <string name="current_date">当前日期</string>
+    <string name="select_time">选择时间</string>
+    <string name="current_time">当前时间</string>
+
+    <dimen name="picker_view_height">120dp</dimen>
+    <dimen name="date_unit_text_size">16sp</dimen>
+
+    <color name="date_picker_bg">#FFFFFF</color>
+    <color name="date_picker_divider">#11112233</color>
+    <color name="date_picker_text_light">#ff333333</color>
+    <color name="date_picker_text_dark">#333333</color>
+
+    <color name="main_bg">#F0F0F0</color>
+    <color name="select_title_text">#B0B0B0</color>
+    <color name="current_time_bg">#FFFFFF</color>
+    <color name="current_time_text">#666666</color>
+    <color name="selected_time_text">#ff333333</color>
+
+
+    <style name="date_picker_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/date_picker_bg</item>
+    </style>
+</resources>
