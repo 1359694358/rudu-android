@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.set
 import androidx.lifecycle.Observer
 import com.google.android.app.utils.ToastUtil
+import com.google.android.app.utils.Utility
 import com.google.android.app.utils.ViewUtils
 import com.google.android.app.utils.imageloader.ImageLoader
 import com.google.android.app.widget.BaseActivity
@@ -44,6 +45,9 @@ class UserProfileActivity: BaseActivity<ActivityPersonalInfoBinding>() {
         toolbarBinding?.titleText?.setTextColor(color)
         toolbarBinding?.moreText?.setTextColor(color)
         toolbarBinding?.backBtn?.setImageDrawable(ViewUtils.setDrawableColor(this,color,R.mipmap.icon_back_b))
+        contentBinding.personalInfoLayout.tvCopy.setOnClickListener {
+            Utility.copyText(contentBinding.personalInfoLayout.tvEditDetailRightId.text.toString(),this)
+        }
         contentBinding.personalInfoLayout.tvEditDetailRightBirthday.setOnClickListener {
             // 日期格式为yyyy-MM-dd
             var currentDate=(it as TextView).text.toString()
@@ -170,6 +174,7 @@ class UserProfileActivity: BaseActivity<ActivityPersonalInfoBinding>() {
     private fun refreshUserInfo()
     {
         var loginResult= LoginResultBean.LoginResult.getLoginResult()
+        userViewModel.getUserInfo(loginResult.id)
         contentBinding.personalInfoLayout.tvEditDetailRightId.text=loginResult.id
         contentBinding.personalInfoLayout.tvEditDetailRightNickname.setText(loginResult.nickName)
         if(loginResult.birthday?.isNotEmpty()==true)

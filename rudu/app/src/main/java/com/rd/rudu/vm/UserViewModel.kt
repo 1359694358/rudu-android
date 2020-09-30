@@ -173,9 +173,18 @@ class UserViewModel: ViewModel()
                 )
     }
 
-    fun getUserInfo()
+    fun getUserInfo(id:String)
     {
-
+        AppApi.serverApi.getUserInfo(id).compose(TransUtils.schedulersTransformer())
+                .subscribe(
+                        {
+                            logw("$it")
+                        }
+                        ,
+                        {
+                            logw("$it")
+                        }
+                )
     }
 
     fun saveUserInfo(id:String, nickName:String, gender:String, avatar:String, birthday:String)
