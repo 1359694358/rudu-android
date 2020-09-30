@@ -61,6 +61,26 @@ class UserProfileActivity: BaseActivity<ActivityPersonalInfoBinding>() {
         contentBinding.avatarLayout.personalInfoAvatarImg.setOnClickListener {
             uploadImage()
         }
+        userViewModel.fetchUserInfoObserver.observe(this, Observer {
+            if(it?.yes()==true)
+            {
+                refreshUserInfo()
+            }
+        })
+        userViewModel.updateUserInfoObserver.observe(this, Observer {
+            hideLoadingDialog()
+            if(it?.yes()==true)
+            {
+                ToastUtil.show(this,"保存成功")
+            }
+            else
+            {
+                ToastUtil.show(this,"保存失败")
+            }
+            finish()
+        })
+        var loginResult= LoginResultBean.LoginResult.getLoginResult()
+        userViewModel.getUserInfo(loginResult.id)
     }
 
     private fun uploadImage()
@@ -174,9 +194,11 @@ class UserProfileActivity: BaseActivity<ActivityPersonalInfoBinding>() {
     private fun refreshUserInfo()
     {
         var loginResult= LoginResultBean.LoginResult.getLoginResult()
-        userViewModel.getUserInfo(loginResult.id)
-        contentBinding.personalInfoLayout.tvEditDetailRightId.text=loginResult.id
-        contentBinding.personalInfoLayout.tvEditDetailRightNickname.setText(loginResult.nickName)
+        contentBinding.personalInfoLayout.tvEditDetailRightId.text=loginResult.telephone
+        if(loginResult.nickName?.isNotEmpty()==true)
+            contentBinding.personalInfoLayout.tvEditDetailRightNickname.setText(loginResult.nickName)
+        else
+            contentBinding.personalInfoLayout.tvEditDetailRightNickname.setText(loginResult.telephone)
         if(loginResult.birthday?.isNotEmpty()==true)
             contentBinding.personalInfoLayout.tvEditDetailRightBirthday.text = DateFormatUtils.long2Str(DateFormatUtils.str2Long(loginResult.birthday, false), false)
         ImageLoader.loader.load(contentBinding.avatarLayout.personalInfoAvatarImg,"${loginResult.avatar}", ContextCompat.getDrawable(this,R.mipmap.morentouxiang))
@@ -210,7 +232,8 @@ class UserProfileActivity: BaseActivity<ActivityPersonalInfoBinding>() {
         }
         var loginResult= LoginResultBean.LoginResult.getLoginResult()
         var gender=if(contentBinding.personalInfoLayout.personalInfoSexMale.isChecked) "0" else "1"
-        userViewModel.saveUserInfo(loginResult.id,contentBinding.personalInfoLayout.tvEditDetailRightNickname.text.toString(),gender,contentBinding.personalInfoLayout.tvEditDetailRightBirthday.text.toString(),loginResult.avatar)
+        userViewModel.saveUserInfo(loginResult.id,contentBinding.personalInfoLayout.tvEditDetailRightNickname.text.toString(),gender,loginResult.avatar,contentBinding.personalInfoLayout.tvEditDetailRightBirthday.text.toString())
+        showLoadingDialog("正在保存")
     }
     override fun onResume() {
         super.onResume()

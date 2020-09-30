@@ -181,7 +181,14 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
         if(loginResult!=null&&loginResult.isLogin)
         {
             contentBinding.exitLogin.visibility=View.VISIBLE
-            contentBinding.nickName.text="手机号：${loginResult.telephone}"
+            if(loginResult.nickName?.isNotEmpty()==true)
+            {
+                contentBinding.nickName.text="${loginResult.nickName}"
+            }
+            else
+            {
+                contentBinding.nickName.text="${loginResult.telephone}"
+            }
             ImageLoader.loader.load(contentBinding.userIcon,"${loginResult.avatar}",ContextCompat.getDrawable(requireActivity(),R.mipmap.morentouxiang))
         }
         else

@@ -1,5 +1,6 @@
 package com.rd.rudu.vm
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.app.net.MutableLiveDataX
@@ -20,6 +21,8 @@ class UserViewModel: ViewModel()
     val loginObserver=MutableLiveDataX<LoginResultBean?>()
     val youzanTokenObserver=MutableLiveDataX<YouZanTokenBean?>()
     val changeAvatarObserver=MutableLiveDataX<ChangeAvatarBean?>()
+    val updateUserInfoObserver=MutableLiveDataX<BaseResultBean<String>?>()
+    val fetchUserInfoObserver=MutableLiveDataX<FetchUserInfoResult?>()
     fun getSmsCode(phone: String)
     {
         var smsCodeEntity= SmsCodeEntity(phone)
@@ -175,29 +178,51 @@ class UserViewModel: ViewModel()
 
     fun getUserInfo(id:String)
     {
-        AppApi.serverApi.getUserInfo(id).compose(TransUtils.schedulersTransformer())
+        AppApi.serverApi.getUserInfo(id).compose(TransUtils.jsonTransform<FetchUserInfoResult>()).compose(TransUtils.schedulersTransformer())
                 .subscribe(
                         {
                             logw("$it")
+                            if(it.yes()&&it.data!=null)
+                            {
+                                var loginResult= LoginResultBean.LoginResult.getLoginResult()
+                                loginResult.nickName=it.data.nickName
+                                loginResult.gender=it.data.gender
+                                loginResult.birthday=it.data.birthday
+                                LoginResultBean.LoginResult.setLoginResult(loginResult)//保存一下用户信息
+                            }
+                            fetchUserInfoObserver.postValue(it)
                         }
                         ,
                         {
                             logw("$it")
+                            fetchUserInfoObserver.postValue(null)
                         }
                 )
     }
 
     fun saveUserInfo(id:String, nickName:String, gender:String, avatar:String, birthday:String)
     {
-        val updateUserInfo=UpdateUserInfo(id, nickName, gender, avatar, birthday)
-        AppApi.serverApi.updateUserById(updateUserInfo).compose(TransUtils.schedulersTransformer())
+        val updateUserInfo=UpdateUserInfo(id, nickName, gender, avatar, "$birthday 00:00:00")
+        var json=updateUserInfo.toString()
+        Log.w("UserViewModel","$json")
+        AppApi.serverApi.updateUserById(updateUserInfo).compose(TransUtils.jsonTransform<BaseResultBean<String>>()).compose(TransUtils.schedulersTransformer())
                 .subscribe(
                         {
                             logw("$it")
+                            if(it.yes())
+                            {
+                                var loginResult= LoginResultBean.LoginResult.getLoginResult()
+                                loginResult.nickName=nickName
+                                loginResult.gender=gender
+                                loginResult.birthday=birthday
+                                LoginResultBean.LoginResult.setLoginResult(loginResult)//保存一下用户信息
+                            }
+                            updateUserInfoObserver.postValue(it)
                         }
                         ,
                         {
                             logw("$it")
+                            updateUserInfoObserver.postValue(null)
                         }
                 )
     }
