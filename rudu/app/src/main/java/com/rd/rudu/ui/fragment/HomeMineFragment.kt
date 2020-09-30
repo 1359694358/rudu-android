@@ -40,7 +40,6 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
     var loadingDialog: QMUITipDialog?=null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        refreshUserInfo()
         userViewModel.loginObserver.observe(this, Observer {
             if(it?.yes()==true) {
                 logd("登录成功")
@@ -197,6 +196,11 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
             contentBinding.nickName.setText(R.string.app_nologin_nick)
             contentBinding.userIcon.setImageResource(R.mipmap.morentouxiang)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshUserInfo();
     }
 
     fun openAlbum()
