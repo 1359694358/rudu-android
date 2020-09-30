@@ -68,7 +68,17 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
                 contentBinding.titleBar.requestLayout()
             }
         }
-        contentBinding.userIcon.setOnClickListener {
+        var clickListener:View.OnClickListener= View.OnClickListener {
+            var loginResult=LoginResultBean.LoginResult.getLoginResult()
+            if(loginResult.isLogin) {
+                startActivity<UserProfileActivity>()
+            } else {
+                startActivity<LoginActivity>()
+            }
+        }
+        contentBinding.userIcon.setOnClickListener(clickListener)
+        contentBinding.nickName.setOnClickListener(clickListener)
+      /*  contentBinding.userIcon.setOnClickListener {
             var loginResult=LoginResultBean.LoginResult.getLoginResult()
             if(loginResult.isLogin)
             {
@@ -107,7 +117,7 @@ class HomeMineFragment: BaseFragment<FragmentHomemineBinding>() {
             {
                 startActivity<LoginActivity>()
             }
-        }
+        }*/
 
         contentBinding.exitLogin.setOnClickListener {
            /* clearLoginState()

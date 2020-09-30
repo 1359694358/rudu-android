@@ -22,6 +22,7 @@ import com.rd.rudu.R
 import com.rd.rudu.databinding.FragmentHomeyouzanBinding
 import com.rd.rudu.ui.activity.LoginActivity
 import com.rd.rudu.ui.activity.WebViewActivity
+import com.rd.rudu.utils.ShareGridPopUtils
 import com.rd.rudu.utils.clearLoginState
 import com.rd.rudu.vm.UserViewModel
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient
@@ -186,8 +187,7 @@ open class YouZanWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBa
                 sendIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 sendIntent.type = "text/plain"
                 Log.w("App", "call: ${data?.toJson()}")
-                val shareInfo=SocialShareInfo(data.link,data.title,data.desc,data.imgUrl)
-                SocialShareControl.share(requireActivity(),SHARE_MEDIA.WEIXIN,shareInfo)//直接分享到微信
+                ShareGridPopUtils.show(requireActivity(),data,requireActivity().window.decorView)
                 /* if(ViewUtils.queryIntentActivities(requireContext(),sendIntent))
                  {
                      startActivity(sendIntent)
