@@ -1,36 +1,23 @@
-package com.rd.rudu.ui.activity
+package com.rd.rudu.ui.fragment
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.graphics.Color
-import android.graphics.Point
 import android.os.Bundle
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.app.utils.readAny
 import com.google.android.app.utils.saveAny
-import com.google.android.app.widget.BaseActivity
+import com.google.android.app.widget.BaseFragment
 import com.rd.rudu.R
 import com.rd.rudu.databinding.ActivityGuideBinding
+import com.rd.rudu.ui.activity.GuideActivity
+import com.rd.rudu.ui.activity.HomeActivity
 import org.jetbrains.anko.startActivity
 
-class GuideActivity: BaseActivity<ActivityGuideBinding>() {
-    companion object
+class GuideFragment: BaseFragment<ActivityGuideBinding>()
+{
+    override fun getLayoutResId(): Int
     {
-        const val WatchedGuide="WatchedGuide"
-
-        fun needWatchGuide():Boolean
-        {
-            var watched:Boolean=readAny(WatchedGuide)?:true
-            return watched
-        }
-    }
-    override fun getLayoutResId(): Int {
         return R.layout.activity_guide
     }
     var startX = 0f
@@ -38,26 +25,34 @@ class GuideActivity: BaseActivity<ActivityGuideBinding>() {
     var endX = 0f
     var endY = 0f
     var currentItem=0
-    @SuppressLint("ClickableViewAccessibility")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         var rudu_app_guide_res = intArrayOf(R.drawable.guide1,R.drawable.guide2,R.drawable.guide3)
         contentBinding.guideSwitch.adapter = object : RecyclerView.Adapter<ViewHolderX>() {
             override fun onCreateViewHolder(
                     parent: ViewGroup,
                     viewType: Int
-            ): ViewHolderX {
+            ): ViewHolderX
+            {
                 return ViewHolderX(
-                        ImageView(this@GuideActivity)
+                        ImageView(requireActivity())
                 )
             }
 
-            override fun getItemCount(): Int {
+            override fun getItemCount(): Int
+            {
                 return rudu_app_guide_res.size
             }
 
             override fun onBindViewHolder(holder: ViewHolderX, position: Int) {
-                holder.image.scaleType = ImageView.ScaleType.CENTER_CROP
+                if(position==0)
+                {
+                    holder.image.scaleType = ImageView.ScaleType.FIT_XY
+                }
+                else
+                {
+                    holder.image.scaleType = ImageView.ScaleType.CENTER_CROP
+                }
                 holder.image.setImageResource(rudu_app_guide_res[position])
                 if(position==(rudu_app_guide_res.size-1))
                 {
@@ -82,34 +77,18 @@ class GuideActivity: BaseActivity<ActivityGuideBinding>() {
                     contentBinding.skipGuide.visibility=View.GONE
                 }
             }
-
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                /*if(currentItem==(rudu_app_guide_res.size-1)&&(positionOffset==0F||positionOffsetPixels==0||positionOffset.toInt()==positionOffsetPixels))
-                {
-                    startHome()
-                }*/
-            }
         })
     }
     private fun startHome()
     {
-        saveAny(WatchedGuide,false)
-        startActivity<HomeActivity>()
-        finish()
+        saveAny(GuideActivity.WatchedGuide,false)
+        requireActivity().startActivity<HomeActivity>()
+        requireActivity().finish()
     }
     class ViewHolderX(var image: ImageView) : RecyclerView.ViewHolder(image)
     {
         init {
             image.layoutParams=RecyclerView.LayoutParams(-1,-1)
         }
-    }
-
-    override fun getFitSystemWindow(): Boolean {
-        return false
-    }
-
-    override fun getStatusBarColor(): Int {
-        return Color.TRANSPARENT
     }
 }

@@ -3,7 +3,9 @@ package com.rd.rudu
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import com.google.android.app.DefaultApp
 import com.google.android.app.widget.BaseActivity
 import com.permissionx.guolindev.PermissionX
@@ -15,6 +17,7 @@ import com.google.android.app.utils.PermissionPageUtils
 import com.google.android.app.utils.ToastUtil
 import com.rd.rudu.ui.activity.GuideActivity
 import com.rd.rudu.ui.activity.LoginActivity
+import com.rd.rudu.ui.fragment.GuideFragment
 import com.rd.rudu.utils.PrivacyUtils
 import org.jetbrains.anko.startActivity
 
@@ -25,6 +28,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             finish()
             return
         }
+        getWindow().setFlags( WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         requestAppPermission()
     }
     fun requestAppPermission()
@@ -105,17 +109,27 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     fun startHomeActivity()
     {
-        contentBinding.root.postDelayed({
-            if(GuideActivity.needWatchGuide())
-            {
-                startActivity<GuideActivity>()
-            }
-            else
-            {
-                startActivity<HomeActivity>()
-            }
-            finish()
-        },2000)
+        if(GuideActivity.needWatchGuide())
+        {
+            window.decorView.id= View.generateViewId();
+            var id=window.decorView.id
+            supportFragmentManager.beginTransaction().replace(id,GuideFragment()).commitAllowingStateLoss()
+        }
+        else
+        {
+            contentBinding.root.postDelayed({
+                if(GuideActivity.needWatchGuide())
+                {
+//                startActivity<GuideActivity>()
+                }
+                else
+                {
+                    startActivity<HomeActivity>()
+                    finish()
+                }
+//            startActivity<HomeActivity>()
+            },2000)
+        }
     }
     override fun onBackPressed() {
         super.onBackPressed()

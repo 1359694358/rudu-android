@@ -25,18 +25,28 @@ class WebViewActivity: BaseActivity<ActivityWebviewBinding>() {
         return R.layout.activity_webview
     }
 
+    private var webFragment:YouZanWebFragment?=null
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         val fragment=YouZanWebFragment.newInstance(intent.getStringExtra(YouZanWebFragment.WebUrl)?:getString(R.string.youzan_storeurl),intent.getBooleanExtra(Intent.ACTION_SHOW_APP_INFO,true))
+        webFragment=fragment
         supportFragmentManager.beginTransaction().replace(R.id.webView,fragment).commitAllowingStateLoss()
         var color=0xFF222222.toInt()
         toolbarBinding?.titleText?.setTextColor(color)
+        toolbarBinding?.moreText?.setTextColor(color)
+        toolbarBinding?.moreText?.paint?.isFakeBoldText=true
         toolbarBinding?.backBtn?.setImageDrawable(ViewUtils.setDrawableColor(this,color,R.mipmap.icon_back_b))
+        setMoreText(" ··· ")
     }
 
     override fun backHandle()
     {
         super.onBackPressed()
+    }
+
+    override fun moreClick() {
+        super.moreClick()
+        webFragment?.sharePage()
     }
 }

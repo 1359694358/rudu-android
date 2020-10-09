@@ -107,8 +107,8 @@ open class YouZanWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBa
         }
         contentBinding.mView.setWebChromeClient(object : WebChromeClient() {
             override fun onShowCustomView(
-                view: View?,
-                customViewCallback: IX5WebChromeClient.CustomViewCallback
+                    view: View?,
+                    customViewCallback: IX5WebChromeClient.CustomViewCallback
             ) {
                 super.onShowCustomView(view, customViewCallback)
                 customViewCallback.onCustomViewHidden()
@@ -116,14 +116,12 @@ open class YouZanWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBa
 
             override fun onReceivedTitle(p0: WebView?, p1: String?) {
                 super.onReceivedTitle(p0, p1)
+                Log.w("WebView", "onReceivedTitle: $p1" )
                 p1?.let {
 //                    setTitle(it)
-                    if(showTitle&&requireActivity() is WebViewActivity)
-                    {
+                    if (showTitle && requireActivity() is WebViewActivity) {
                         requireActivity().title = it
-                    }
-                    else
-                    {
+                    } else {
                         setFragmentTitle(it)
                     }
                 }
@@ -187,7 +185,7 @@ open class YouZanWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBa
                 sendIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 sendIntent.type = "text/plain"
                 Log.w("App", "call: ${data?.toJson()}")
-                ShareGridPopUtils.show(requireActivity(),data,requireActivity().window.decorView)
+                ShareGridPopUtils.show(requireActivity(),data,getView())
                 /* if(ViewUtils.queryIntentActivities(requireContext(),sendIntent))
                  {
                      startActivity(sendIntent)
@@ -227,5 +225,9 @@ open class YouZanWebFragment: BaseFragment<FragmentHomeyouzanBinding>(), OnKeyBa
     override fun onDestroy()
     {
         super.onDestroy()
+    }
+
+    fun sharePage() {
+        contentBinding.mView.sharePage()
     }
 }
