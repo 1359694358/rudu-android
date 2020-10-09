@@ -5,6 +5,6 @@
         android:state_selected="true">
     </item>
     <item android:state_selected="false">
-        <bitmap android:src="@drawable/icon_jiameng" android:tint="#656565"/>
+        <bitmap android:src="@drawable/icon_jiameng"  android:tint="#333333" />
     </item>
 </selector>

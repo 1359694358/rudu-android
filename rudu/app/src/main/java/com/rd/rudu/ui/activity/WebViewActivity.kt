@@ -14,10 +14,10 @@ import org.jetbrains.anko.startActivity
 class WebViewActivity: BaseActivity<ActivityWebviewBinding>() {
     companion object
     {
-        fun startActivity(context:Context,url:String?,showTitle:Boolean=true)
+        fun startActivity(context:Context,url:String?,showTitle:Boolean=true,showMore:Boolean=true)
         {
             if(URLUtil.isNetworkUrl(url))
-                context.startActivity<WebViewActivity>(Pair(YouZanWebFragment.WebUrl,url), Pair(Intent.ACTION_SHOW_APP_INFO,showTitle))
+                context.startActivity<WebViewActivity>(Pair(YouZanWebFragment.WebUrl,url), Pair(Intent.ACTION_SHOW_APP_INFO,showTitle),Pair(Intent.ACTION_MEDIA_SHARED,showMore))
         }
     }
     override fun getLayoutResId(): Int
@@ -34,10 +34,14 @@ class WebViewActivity: BaseActivity<ActivityWebviewBinding>() {
         supportFragmentManager.beginTransaction().replace(R.id.webView,fragment).commitAllowingStateLoss()
         var color=0xFF222222.toInt()
         toolbarBinding?.titleText?.setTextColor(color)
-        toolbarBinding?.moreText?.setTextColor(color)
-        toolbarBinding?.moreText?.paint?.isFakeBoldText=true
+        var showMore=intent.getBooleanExtra(Intent.ACTION_MEDIA_SHARED,true)
+        if(showMore)
+        {
+            toolbarBinding?.moreText?.setTextColor(color)
+            toolbarBinding?.moreText?.paint?.isFakeBoldText=true
+            setMoreText(" … ")
+        }
         toolbarBinding?.backBtn?.setImageDrawable(ViewUtils.setDrawableColor(this,color,R.mipmap.icon_back_b))
-        setMoreText(" ··· ")
     }
 
     override fun backHandle()

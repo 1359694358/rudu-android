@@ -82,7 +82,7 @@ class HomeTopNewsListFragment : BaseFragment<FragmentHomeTopnewslistBinding>(), 
 
             init {
                 itemView.setOnClickListener {
-                    WebViewActivity.startActivity(it.context, it.context.getString(R.string.newsurl, contentViewBinding.data!!.id), false)
+                    WebViewActivity.startActivity(it.context, it.context.getString(R.string.newsurl, contentViewBinding.data!!.id), showTitle = false, showMore = false)
                 }
             }
         }

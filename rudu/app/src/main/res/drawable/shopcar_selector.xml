@@ -3,5 +3,7 @@
     <item android:state_selected="true">
         <bitmap android:src="@drawable/icon_gouwuche" android:tint="#047BE4"/>
     </item>
-    <item android:drawable="@drawable/icon_gouwuche" android:state_selected="false"/>
+    <item android:state_selected="false">
+        <bitmap  android:src="@drawable/icon_gouwuche"  android:tint="#333333"/>
+    </item>
 </selector>
