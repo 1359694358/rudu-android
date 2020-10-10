@@ -16,16 +16,16 @@ import com.tencent.smtt.sdk.WebViewClient
 
 class HomeWebFragment: YouZanWebFragment()
 {
-    val bgColor=0xffdf0000.toInt()
+    val bgColor=Color.WHITE
     lateinit var backDrawable:Drawable
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         backDrawable=ViewUtils.setDrawableColor(requireActivity(),Color.WHITE, R.mipmap.icon_back_b)
         contentBinding.root.setBackgroundColor(bgColor)
-        contentBinding.titleBar.setTextColor(Color.WHITE)
+        contentBinding.titleBar.setTextColor(Color.BLACK)
         contentBinding.backBtn?.setImageDrawable(backDrawable)
         StatusBarUtil.setColor(requireActivity(),bgColor ,0)
-        StatusBarUtil.setDarkMode(requireActivity())
+        StatusBarUtil.setLightMode(requireActivity())
     }
 
     override fun addWebClient() {
@@ -80,7 +80,7 @@ class HomeWebFragment: YouZanWebFragment()
         if(!hidden)
         {
             StatusBarUtil.setColor(requireActivity(),bgColor ,0)
-            StatusBarUtil.setDarkMode(requireActivity())
+            StatusBarUtil.setLightMode(requireActivity())
             renderColor()
         }
         else
