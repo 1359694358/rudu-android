@@ -1,5 +1,6 @@
 package com.rd.rudu
 
+import android.content.pm.PackageManager
 import android.util.Log
 import com.google.android.app.DefaultApp
 import com.google.android.app.utils.*
@@ -16,8 +17,15 @@ import org.jetbrains.anko.doAsync
 
 class App: DefaultApp() {
 
+    companion object
+    {
+        var VersionCode=-1
+        var VersionName=""
+    }
     override fun onCreate() {
         super.onCreate()
+        VersionCode=packageManager.getPackageInfo(packageName,PackageManager.GET_ACTIVITIES).versionCode
+        VersionName=packageManager.getPackageInfo(packageName,PackageManager.GET_ACTIVITIES).versionName
         YouzanSDK.init(this@App, resources.getString(R.string.youzan_clientId),YouZanSDKX5Adapter())
         YouzanPreloader.preloadHtml(this@App, resources.getString(R.string.youzan_storeurl));
         doAsync {

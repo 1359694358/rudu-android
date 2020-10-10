@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.app.utils.readAny
 import com.google.android.app.utils.saveAny
 import com.google.android.app.widget.BaseActivity
+import com.rd.rudu.App
 import com.rd.rudu.R
 import com.rd.rudu.databinding.ActivityGuideBinding
 import org.jetbrains.anko.startActivity
@@ -22,7 +23,7 @@ import org.jetbrains.anko.startActivity
 class GuideActivity: BaseActivity<ActivityGuideBinding>() {
     companion object
     {
-        const val WatchedGuide="WatchedGuide"
+        val WatchedGuide="WatchedGuide${App.VersionCode}${App.VersionName}"
 
         fun needWatchGuide():Boolean
         {
