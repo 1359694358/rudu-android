@@ -20,7 +20,7 @@ class HomeWebFragment: YouZanWebFragment()
     lateinit var backDrawable:Drawable
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        backDrawable=ViewUtils.setDrawableColor(requireActivity(),Color.WHITE, R.mipmap.icon_back_b)
+        backDrawable=ViewUtils.setDrawableColor(requireActivity(),Color.BLACK, R.mipmap.icon_back_b)
         contentBinding.root.setBackgroundColor(bgColor)
         contentBinding.titleBar.setTextColor(Color.BLACK)
         contentBinding.backBtn?.setImageDrawable(backDrawable)
@@ -46,7 +46,14 @@ class HomeWebFragment: YouZanWebFragment()
             flag=true
             return
         }
-        contentBinding.titleBar.text=title
+        if(title==requireActivity().getString(R.string.app_name))
+        {
+            contentBinding.titleBar.text=requireActivity().getString(R.string.home_title)
+        }
+        else
+        {
+            contentBinding.titleBar.text=title
+        }
         contentBinding.backBtn.visibility=if(contentBinding.mView.canGoBack())View.VISIBLE else View.GONE
         renderColor()
     }
@@ -70,7 +77,7 @@ class HomeWebFragment: YouZanWebFragment()
     {
         if( contentBinding.backBtn.visibility==View.VISIBLE)
         {
-            backDrawable=ViewUtils.setDrawableColor(Color.WHITE,backDrawable)
+            backDrawable=ViewUtils.setDrawableColor(Color.BLACK,backDrawable)
             contentBinding.backBtn?.setImageDrawable(backDrawable)
         }
     }
